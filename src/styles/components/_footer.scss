@@ -1,0 +1,137 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+
+// =========================
+// FOOTER BASE
+// =========================
+.footer-section {
+  width: 100%;
+  padding: 4rem 4rem 1rem 4rem;
+  background-color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+
+  p {
+    color: $text-color-dark;
+    font-size: $fs-mobile-small;
+  }
+}
+
+// =========================
+// CONTENT WRAPPER
+// =========================
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+// =========================
+// SECTIONS (EXPLORE / SOCIALS / CONTACT)
+// =========================
+.footer-explore,
+.footer-socials,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+
+  p {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+  }
+}
+
+// =========================
+// LINKS
+// =========================
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: $text-color-dark;
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $thrid-color;
+  }
+}
+
+// =========================
+// CONTACT SECTION
+// =========================
+.footer-contact {
+  .footer-email {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $text-color-dark;
+    transition: color 0.3s ease;
+    position: relative;
+
+    &:hover {
+      color: $thrid-color;
+
+      .smiley {
+        transform: translateX(-50px) rotate(360deg);
+        opacity: 1;
+      }
+    }
+  }
+  .smiley {
+    position: absolute;
+    left: -20;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    transform: translateX(0px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 0.6s ease, rotate 1s ease;
+  }
+}
+// =========================
+// LOGO + COPYRIGHT
+// =========================
+.footer-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $spacing-xxlarge;
+
+  .footer-logo {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer-copy {
+    color: $text-color-dark;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+// =========================
+// GLOBAL LINKS (optional reset)
+// =========================
+a {
+  font-family: $font-mono;
+  text-decoration: none;
+  color: $text-color-dark;
+
+  &:hover {
+    color: $thrid-color;
+  }
+}

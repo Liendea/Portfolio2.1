@@ -1,0 +1,41 @@
+@use "variables" as *;
+@use "fonts" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+}
+
+body {
+  font-family: $font-primary;
+  background-color: $primary-color;
+  color: $text-color-light;
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+// BUTTON
+button {
+  padding: 1rem 2rem;
+  background-color: transparent;
+  border: 1px solid $secondary-color;
+  border-radius: 10px;
+  font-size: $fs-mobile-small;
+  font-weight: $thin;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: $secondary-color;
+  border: none;
+  font-weight: $regular;
+}

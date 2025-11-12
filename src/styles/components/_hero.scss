@@ -1,0 +1,82 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+
+.hero-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.197);
+
+  .hero-text {
+    padding: $spacing-medium;
+    line-height: 0.9;
+
+    .animated-text {
+      margin-top: $spacing-medium;
+      padding-left: $spacing-small;
+    }
+  }
+
+  .button-wrapper {
+    margin-top: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+  .button-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .explore-button {
+    padding: 1rem 5rem;
+    background-color: transparent;
+    color: $text-color-light;
+    font-weight: 300;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .explore-arrow {
+    margin-left: 1rem;
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  .explore-button:hover {
+    color: $text-color-white;
+  }
+  .explore-button:hover .explore-arrow {
+    animation: arrow-down 1s infinite;
+  }
+}
+
+/* animation */
+@keyframes arrow-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  51% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

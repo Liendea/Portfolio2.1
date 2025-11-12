@@ -1,0 +1,12 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+
+/* =========== LANDING ========== */
+/* ============ PAGE ============*/
+/* ========== WRAPPER ==========*/
+
+.page-wrapper {
+  transition: background-color 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
