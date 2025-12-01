@@ -1,0 +1,87 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+//@import "../mixins";
+
+.about-section {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+
+  .tech-stack-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 0;
+    margin: 8rem 0 4rem 0;
+    width: 50%;
+
+    .tech-stack-list {
+      display: flex;
+      gap: 8rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 4rem;
+
+      .stack-icon {
+        height: 64px;
+        width: auto;
+      }
+    }
+  }
+
+  .stats-section {
+    width: 100%;
+    height: auto;
+    margin-block: 8rem;
+    padding: 0;
+
+    .stats-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+
+      .stat-card {
+        background-color: $thrid-color;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .language-stat {
+        width: 60%;
+        .language-legend {
+          display: flex;
+          gap: 4rem;
+
+          .legend-item {
+            width: auto;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            .color-dot {
+              width: 1rem;
+              height: 1rem;
+              border-radius: 100%;
+            }
+          }
+        }
+
+        .stacked-bar-chart {
+          margin-block: 4rem;
+          display: flex;
+          height: 1rem;
+
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .commit-stat {
+      width: 30%;
+      align-items: center;
+    }
+  }
+}

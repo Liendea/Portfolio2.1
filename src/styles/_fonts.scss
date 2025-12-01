@@ -16,19 +16,23 @@ $font-mono: var(--font-geist-mono), monospace;
 h1 {
   @include responsive-font($fs-mobile-xlarge, $fs-desktop-xxlarge);
   font-family: $font-primary;
+  text-transform: uppercase;
 }
 
 h2 {
   @include responsive-font($fs-mobile-large, $fs-desktop-xlarge);
   font-family: $font-primary;
+  text-transform: uppercase;
 }
 
 h3 {
   @include responsive-font($fs-mobile-medium, $fs-desktop-large);
   font-family: $font-primary;
+  text-transform: uppercase;
 }
 
 h4 {
   @include responsive-font($fs-mobile-small, $fs-desktop-medium);
   font-family: $font-primary;
+  text-transform: uppercase;
 }

@@ -24,18 +24,27 @@ body {
 }
 
 // BUTTON
-button {
-  padding: 1rem 2rem;
-  background-color: transparent;
-  border: 1px solid $secondary-color;
-  border-radius: 10px;
+.button {
   font-size: $fs-mobile-small;
+  padding: 1rem 2rem;
+  border-radius: 10px;
   font-weight: $thin;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-button:hover {
-  background-color: $secondary-color;
-  border: none;
-  font-weight: $regular;
+// Global page styles
+
+section {
+  padding: 4rem;
+}
+.page-title {
+  margin-top: $spacing-xxlarge;
+  text-transform: uppercase;
+}
+.body-text {
+  margin-block: $spacing-xlarge;
+  width: 50%;
 }

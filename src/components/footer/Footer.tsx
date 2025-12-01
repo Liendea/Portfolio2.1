@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import smiley from "../../../../public/icons/smiley.svg";
-import logo from "../../../../public/images/LIENDEA.png";
+import smiley from "../../../public/icons/smiley.svg";
+import logo from "../../../public/images/LIENDEA.png";
 
 export default function Footer() {
   return (

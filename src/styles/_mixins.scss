@@ -1,0 +1,6 @@
+// Mixin för breakpoints
+@mixin respond-above($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}

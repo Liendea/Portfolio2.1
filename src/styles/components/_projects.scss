@@ -1,0 +1,62 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+
+/* ================= PROJECT PAGE ================ */
+/* ================================================*/
+
+.project-grid {
+  margin-top: $spacing-xxlarge;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: $spacing-xxlarge; // mellanrum mellan projekten
+  flex-wrap: wrap; // för responsivitet
+
+  .project-card {
+    width: auto;
+    flex: 1 1 45%; // tar upp ~hälften av bredden
+    min-width: 300px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-img-wrapper {
+      position: relative;
+
+      width: 100%;
+
+      .project-img {
+        width: 100%;
+      }
+
+      .project-title {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        background-color: black;
+        color: $text-color-white;
+        font-size: $fs-mobile-xsmall;
+        padding: $spacing-small;
+      }
+    }
+    .project-text {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 4px;
+      color: $text-color-light;
+
+      p {
+        font-size: $fs-mobile-xsmall;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 import { RefObject } from "react";
 import AnimatedText from "./AnimatedText";
 import Image from "next/image";
-import arrows from "../../../../public/images/Arrows.svg";
+import arrows from "../../../public/icons/Arrows_light.svg";
 
 interface HeroProps {
   onExploreClick: () => void;
@@ -18,6 +18,7 @@ export default function Hero({
   showVideo,
   showButton,
 }: HeroProps) {
+  //BACKGROUND VIDEO SETTINGS
   const videostyling: React.CSSProperties = {
     opacity: showVideo ? 1 : 0,
     pointerEvents: showVideo ? "auto" : "none",
