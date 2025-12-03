@@ -1,0 +1,29 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+
+.contact-section {
+  .contact-block {
+    display: flex;
+    gap: 8rem;
+    align-items: flex-start;
+    height: auto;
+    margin-block: 8rem;
+
+    .contact-title {
+      text-transform: uppercase;
+      width: 10rem;
+    }
+
+    .contact-fields {
+      display: flex;
+      flex-direction: column;
+
+      .contact-field-wrapper {
+        margin-bottom: 1rem;
+        .contact-field {
+          color: $text-color-light;
+        }
+      }
+    }
+  }
+}

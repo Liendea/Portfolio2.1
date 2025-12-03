@@ -36,3 +36,20 @@ h4 {
   font-family: $font-primary;
   text-transform: uppercase;
 }
+
+p {
+  @include responsive-font($fs-mobile-xsmall, $fs-mobile-small);
+  font-weight: $thin;
+  font-family: $font-mono;
+}
+
+a {
+  @include responsive-font($fs-mobile-xsmall, $fs-mobile-small);
+  font-weight: $thin;
+  font-family: $font-mono;
+  color: $text-color-light;
+}
+
+a:hover {
+  color: $text-color-white;
+}

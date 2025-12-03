@@ -11,5 +11,8 @@
 @use "./components/landingpage" as *;
 @use "./components/projectpreview" as *;
 @use "./components/footer" as *;
+
+// PAGES
 @use "./components/projects" as *;
 @use "./components/aboutPage" as *;
+@use "./components/contactPage" as *;

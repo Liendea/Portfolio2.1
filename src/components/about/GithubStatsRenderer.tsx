@@ -43,10 +43,10 @@ export default async function StatsRenderer({ section }: StatsRendererProps) {
     <>
       <h4 className="section-title">{sectionTitle}</h4>
 
-      <div className="stats-container">
+      <div className="github-stats-container">
         {/* --- B. Toppspråk --- */}
         <div className="stat-card language-stat">
-          <p>Most used language</p>
+          <p className="card-title">Most used language</p>
           <LanguageBar topLanguages={githubStats.topLanguages} />
         </div>
 

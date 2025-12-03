@@ -6,8 +6,8 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
+      name: "page",
+      title: "Page",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
@@ -29,6 +29,7 @@ export default defineType({
         { type: "textBlock" },
         { type: "techStackBlock" },
         { type: "statsBlock" },
+        { type: "contactBlock" },
         /*Lägg till fler sectioner här */
       ],
     }),

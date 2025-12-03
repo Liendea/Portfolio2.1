@@ -1,8 +1,8 @@
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import { unstable_noStore as noStore } from "next/cache"; // <-- NY IMPORT
-import StatsRenderer from "@/src/components/about/StatsRenderer";
+import GithubStatsRenderer from "@/src/components/about/GithubStatsRenderer";
 import TechStackList from "@/src/components/about/TechStackList";
+import Wakatime from "@/src/components/about/WakatimeStatsRenderer";
 
 type PageBuilderSection = textBlockType | techStackBlockType | statsBlockType;
 
@@ -38,8 +38,6 @@ type statsBlockType = {
 };
 
 export default async function About() {
-  noStore(); // <-- FÖRHINDRA CACHNING
-
   const aboutQuery = groq`
 *[_type == "page" && slug.current == "about"][0] { 
     _id, 
@@ -100,7 +98,10 @@ export default async function About() {
           case "statsBlock":
             return (
               <section className="stats-section" key={index}>
-                <StatsRenderer section={section as statsBlockType} />
+                <div className="stats-container">
+                  <GithubStatsRenderer section={section as statsBlockType} />
+                  <Wakatime />
+                </div>
               </section>
             );
           default:

@@ -12,10 +12,10 @@ export default function Footer() {
         <div className="footer-explore">
           <p>EXPLORE</p>
           <div className="footer-links">
-            <a href="#projects" className="footer-link">
+            <a href="/projects" className="footer-link">
               Projects
             </a>
-            <a href="#about" className="footer-link">
+            <a href="/about" className="footer-link">
               About
             </a>
             <a href="#top" className="footer-link">

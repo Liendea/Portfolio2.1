@@ -1,12 +1,13 @@
 @use "../variables" as *;
 @use "../fonts" as *;
-//@import "../mixins";
+@use "../mixins" as *;
 
 .about-section {
   padding: 4rem;
   display: flex;
   flex-direction: column;
 
+  // TECHSTACK SECTION + ICONS
   .tech-stack-section {
     display: flex;
     flex-direction: column;
@@ -14,7 +15,7 @@
     gap: 4rem;
     padding: 0;
     margin: 8rem 0 4rem 0;
-    width: 50%;
+    width: 100%;
 
     .tech-stack-list {
       display: flex;
@@ -30,6 +31,7 @@
     }
   }
 
+  // STATISTIK SECTION
   .stats-section {
     width: 100%;
     height: auto;
@@ -38,50 +40,82 @@
 
     .stats-container {
       display: flex;
-      justify-content: space-between;
-      margin-top: 4rem;
+      flex-direction: column;
 
-      .stat-card {
-        background-color: $thrid-color;
-        padding: 4rem;
+      // GITHUB STATS
+      .github-stats-container {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+        justify-content: space-between;
+        margin-top: 4rem;
+        gap: 2rem;
 
-      .language-stat {
-        width: 60%;
-        .language-legend {
+        @include tablet {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .stat-card {
+          background-color: $thrid-color;
+          padding: 4rem;
           display: flex;
-          gap: 4rem;
+          flex-direction: column;
+          justify-content: center;
+        }
 
-          .legend-item {
-            width: auto;
+        // SPRÅK BAR
+        .language-stat {
+          width: 100%;
+          text-transform: uppercase;
+
+          .card-title {
+            font-weight: bold;
+          }
+          .language-legend {
             display: flex;
-            gap: 1rem;
-            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
 
-            .color-dot {
-              width: 1rem;
-              height: 1rem;
-              border-radius: 100%;
+            .legend-item {
+              width: auto;
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+
+              .color-dot {
+                width: 1rem;
+                height: 1rem;
+                border-radius: 100%;
+              }
             }
+          }
+          .stacked-bar-chart {
+            margin-block: 4rem;
+            display: flex;
+            height: 1rem;
+            border-radius: 50%;
           }
         }
 
-        .stacked-bar-chart {
-          margin-block: 4rem;
-          display: flex;
-          height: 1rem;
+        // COMMITS
+        .commit-stat {
+          width: 30%;
+          align-items: center;
 
-          border-radius: 50%;
+          @include tablet {
+            width: 100%;
+          }
         }
-      }
-    }
+      } // GITHUB STATS CONTAINER
 
-    .commit-stat {
-      width: 30%;
-      align-items: center;
-    }
-  }
-}
+      // WAKATIME
+      .wakatime-figure {
+        background-color: $thrid-color;
+        max-width: 60%;
+        margin-block: 2rem;
+        padding: 4rem;
+      }
+    } // STATS CONTAINER
+  } // STATS SECTION
+} // ABOUT SECTION
