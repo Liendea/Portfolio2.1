@@ -8,11 +8,11 @@
 // Components
 @use "./components/header" as *;
 @use "./components/hero" as *;
-@use "./components/landingpage" as *;
 @use "./components/projectpreview" as *;
 @use "./components/footer" as *;
 
 // PAGES
-@use "./components/projects" as *;
-@use "./components/aboutPage" as *;
-@use "./components/contactPage" as *;
+@use "./components/pages/landingpage" as *;
+@use "./components/pages/projectsPage" as *;
+@use "./components/pages/aboutPage" as *;
+@use "./components/pages/contactPage" as *;

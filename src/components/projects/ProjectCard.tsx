@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { urlFor } from "../../sanity/lib/image";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 type ProjectCardProps = {
-  src: string;
+  imageObject: SanityImageSource;
   title: string;
   description?: string;
   width: number;
@@ -9,13 +11,20 @@ type ProjectCardProps = {
   url: string;
 };
 export default function ProjectCard({
-  src,
+  imageObject,
   title,
   description,
   width,
   height,
   url,
 }: ProjectCardProps) {
+  const imageUrl = urlFor(imageObject)
+    .width(width)
+    .height(height)
+    .quality(100)
+    .url();
+
+  console.log(imageUrl);
   return (
     <a
       href={url}
@@ -27,7 +36,7 @@ export default function ProjectCard({
         <div className="project-img-wrapper">
           <Image
             className="project-img"
-            src={src}
+            src={imageUrl}
             alt={title}
             width={width}
             height={height}

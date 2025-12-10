@@ -13,68 +13,55 @@
   justify-content: center;
   margin-top: $spacing-xxlarge;
 
-  .project-preview-section h4 {
-    margin-bottom: 4rem;
-  }
-
-  .body-text {
-    margin: $spacing-xxlarge 0;
-    width: 30%;
-  }
-
   .project-preview-grid {
     margin-top: $spacing-xxlarge;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    gap: $spacing-xxlarge; // mellanrum mellan projekten
+    gap: $spacing-large; // mellanrum mellan projekten
     flex-wrap: wrap; // för responsivitet
-  }
+    border: 1px solid red;
 
-  .project-card {
-    width: auto;
-    flex: 1 1 45%; // tar upp ~hälften av bredden
-    min-width: 300px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
-
-    .project-img-wrapper {
+    .project-card {
+      width: auto;
+      cursor: pointer;
       position: relative;
+      transition: transform 0.3s ease;
 
-      width: 100%;
+      &:hover {
+        transform: translateY(-5px);
+      }
 
-      .project-img {
+      .project-img-wrapper {
+        position: relative;
+
         width: 100%;
-      }
 
-      .project-title {
-        position: absolute;
-        top: 15px;
-        left: 20px;
-        background-color: black;
-        color: $text-color-white;
-        font-size: $fs-mobile-xsmall;
-        padding: $spacing-small;
-      }
-    }
-    .project-text {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 4px;
-      color: $text-color-light;
+        .project-img {
+          width: 100%;
+        }
 
-      p {
-        font-size: $fs-mobile-xsmall;
+        .project-title {
+          position: absolute;
+          top: 15px;
+          left: 20px;
+          background-color: black;
+          color: $text-color-white;
+          font-size: $fs-mobile-xsmall;
+          padding: $spacing-small;
+        }
+      }
+      .project-text {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 4px;
+        color: $text-color-light;
+
+        p {
+          font-size: $fs-mobile-xsmall;
+        }
       }
     }
   }

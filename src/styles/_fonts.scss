@@ -17,30 +17,35 @@ h1 {
   @include responsive-font($fs-mobile-xlarge, $fs-desktop-xxlarge);
   font-family: $font-primary;
   text-transform: uppercase;
+  line-height: 100%;
 }
 
 h2 {
   @include responsive-font($fs-mobile-large, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;
+  line-height: 110%;
 }
 
 h3 {
   @include responsive-font($fs-mobile-medium, $fs-desktop-large);
   font-family: $font-primary;
   text-transform: uppercase;
+  line-height: 120%;
 }
 
 h4 {
   @include responsive-font($fs-mobile-small, $fs-desktop-medium);
   font-family: $font-primary;
   text-transform: uppercase;
+  line-height: 130%;
 }
 
 p {
   @include responsive-font($fs-mobile-xsmall, $fs-mobile-small);
   font-weight: $thin;
   font-family: $font-mono;
+  line-height: 150%;
 }
 
 a {

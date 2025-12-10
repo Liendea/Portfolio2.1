@@ -10,6 +10,7 @@
   justify-content: center;
   padding: 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.197);
+  overflow: hidden;
 
   .hero-text {
     padding: $spacing-medium;
@@ -28,36 +29,35 @@
     justify-content: center;
     opacity: 1;
     transition: opacity 1s ease;
+
+    .explore-button {
+      padding: 1rem 5rem;
+      background-color: transparent;
+      color: $text-color-light;
+      font-weight: 300;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .explore-arrow {
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .explore-button:hover {
+      color: $text-color-white;
+    }
+    .explore-button:hover .explore-arrow {
+      animation: arrow-down 1s infinite;
+    }
   }
   .button-wrapper.hidden {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
-  }
-
-  .explore-button {
-    padding: 1rem 5rem;
-    background-color: transparent;
-    color: $text-color-light;
-    font-weight: 300;
-    font-size: 1.5rem;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-
-  .explore-arrow {
-    margin-left: 1rem;
-    transition: transform 0.3s ease;
-    position: relative;
-  }
-
-  .explore-button:hover {
-    color: $text-color-white;
-  }
-  .explore-button:hover .explore-arrow {
-    animation: arrow-down 1s infinite;
   }
 }
 

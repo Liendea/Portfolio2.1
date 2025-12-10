@@ -30,6 +30,7 @@ export default defineType({
         { type: "techStackBlock" },
         { type: "statsBlock" },
         { type: "contactBlock" },
+        { type: "projectBlock" },
         /*Lägg till fler sectioner här */
       ],
     }),

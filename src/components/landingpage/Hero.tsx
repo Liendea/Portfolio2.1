@@ -1,23 +1,14 @@
 "use client";
 
-import { RefObject } from "react";
 import AnimatedText from "./AnimatedText";
 import Image from "next/image";
 import arrows from "../../../public/icons/Arrows_light.svg";
+import { useState } from "react";
 
-interface HeroProps {
-  onExploreClick: () => void;
-  heroRef: RefObject<HTMLElement | null>;
-  showVideo: boolean;
-  showButton: boolean;
-}
+export default function Hero() {
+  const [showVideo, setShowVideo] = useState(true);
+  const [showButton, setShowButton] = useState(true);
 
-export default function Hero({
-  onExploreClick,
-  heroRef,
-  showVideo,
-  showButton,
-}: HeroProps) {
   //BACKGROUND VIDEO SETTINGS
   const videostyling: React.CSSProperties = {
     opacity: showVideo ? 1 : 0,
@@ -32,40 +23,48 @@ export default function Hero({
     zIndex: -1000,
   };
 
+  const onExploreClick = () => {
+    setShowVideo(false);
+    setShowButton(false);
+    document.body.classList.remove("no-scroll");
+  };
+
   return (
-    <section ref={heroRef} className="hero-section">
-      {/* Bakgrundsvideo */}
-      <div className={`background-video ${showVideo ? "" : "hidden"}`}>
-        <video
-          src="/images/ForestVideo.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={videostyling}
-        />
-      </div>
-
-      {/* Text */}
-      <div className="hero-text">
-        <h1>FRONTEND</h1>
-        <h1>DEVELOPER</h1>
-        <AnimatedText />
-      </div>
-
-      {/* Explore-knapp */}
-      <div className={`button-wrapper ${showButton ? "" : "hidden"}`}>
-        <button onClick={onExploreClick} className="explore-button">
-          EXPLORE
-          <Image
-            src={arrows}
-            className="explore-arrow"
-            alt="arrow"
-            width={40}
-            height={40}
+    <>
+      <section className="hero-section">
+        {/* Bakgrundsvideo */}
+        <div className={`background-video`}>
+          <video
+            src="/images/ForestVideo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={videostyling}
           />
-        </button>
-      </div>
-    </section>
+        </div>
+
+        {/* Text */}
+        <div className="hero-text">
+          <h1>FRONTEND</h1>
+          <h1>DEVELOPER</h1>
+          <AnimatedText />
+        </div>
+
+        {/* Explore-knapp */}
+        <div className={`button-wrapper ${showButton ? "" : "hidden"}`}>
+          <button onClick={onExploreClick} className="explore-button">
+            EXPLORE
+            <Image
+              src={arrows}
+              className="explore-arrow"
+              alt="arrow"
+              width={40}
+              height={40}
+            />
+          </button>
+        </div>
+      </section>
+    </>
   );
 }

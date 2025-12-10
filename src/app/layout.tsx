@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk, Geist_Mono } from "next/font/google";
+import "../styles/main.scss";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -23,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${schibstedGrotesk.variable} ${geistMono.variable}`}>
+      <body
+        className={`${schibstedGrotesk.variable} ${geistMono.variable} no-scroll`}
+      >
         {children}
       </body>
     </html>

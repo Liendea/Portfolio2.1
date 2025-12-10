@@ -1,52 +1,88 @@
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "../../../sanity/lib/client";
 import { groq } from "next-sanity";
-import ProjectCard from "@/src/components/ProjectCard";
 
-type Project = {
-  _id: number;
-  _type: "project";
+import ScrollCarousel from "@/src/components/projects/ScrollCarusel";
+
+type PageBuilderSection = textBlockType | projectBlockType;
+
+type projectPageData = {
+  _id: string;
   title: string;
   slug: string;
-  description?: string;
-  imageSrc: string;
+  pageBuilder: PageBuilderSection[];
+};
+
+type textBlockType = {
+  _type: "textBlock";
+  pageTitle: string;
+  ingress: string;
+};
+
+export type projectItem = {
+  _type: "projectItem";
+  title: string;
+  description: string;
+  image: SanityImageSource;
   url: string;
 };
 
+export type projectBlockType = {
+  _type: "projectBlock";
+  title: string;
+  projectItems: projectItem[];
+};
+
 export default async function ProjectsPage() {
-  const projectsQuery = groq`
-*[_type == "project"]
-{
+  const projectQuery = groq`
+*[_type == "page" && slug.current == "projects"][0] { 
     _id, 
     title, 
-    "slug":slug.current, 
-    description, 
-    url, 
-    "imageSrc": mainImage.asset->url
+    "slug": slug.current, 
+    
+    // Hämta hela Page Builder arrayen
+    pageBuilder[] { ..., // Hämta alla syandardfält (inkl _key och _type)
+    
+    _type == "textBlock" => {
+    pageTitle,
+    ingress
+    },
+        _type == "projectBlock" => {
+            title,
+            "projectItems": projects[] -> {
+           title,
+           url,
+           description,
+           // Hämta hela bildobjektet, inklusive asset-referensen
+                image,
+            },  
+        },
+    }
 }`;
 
-  const projects: Project[] = await client.fetch(projectsQuery);
+  const projects: projectPageData = await client.fetch(projectQuery);
 
   return (
     <section className="project-section">
-      <h2 className="page-title">Projects</h2>
-      <p className="body-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
+      {projects.pageBuilder?.map(
+        (section: PageBuilderSection, index: number) => {
+          switch (section._type) {
+            case "textBlock":
+              return (
+                <div className="project-content" key={index}>
+                  <h2 className="page-title">{section.pageTitle}</h2>
+                  <p className="body-text">{section.ingress}</p>
+                </div>
+              );
+            case "projectBlock":
+              const projectBlock = section as projectBlockType;
+              return <ScrollCarousel key={index} projectBlock={projectBlock} />;
 
-      <div className="project-grid">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project._id}
-            url={project.url}
-            title={project.title}
-            description={project.description}
-            src={project.imageSrc}
-            width={750}
-            height={600}
-          />
-        ))}
-      </div>
+            default:
+              return null;
+          }
+        }
+      )}
     </section>
   );
 }

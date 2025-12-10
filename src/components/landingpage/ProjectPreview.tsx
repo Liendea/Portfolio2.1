@@ -1,39 +1,75 @@
 import arrow from "../../../public/icons/Arrows_dark.svg";
-import ProjectCard from "../ProjectCard";
+import ProjectCard from "../projects/ProjectCard";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "../../sanity/lib/client";
 import { groq } from "next-sanity";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-interface Project {
+type PageBuilderSection = textBlockType | projectBlockType;
+
+type projectPageData = {
+  _id: string;
+  title: string;
+  slug: string;
+  pageBuilder: PageBuilderSection[];
+};
+
+type textBlockType = {
+  _type: "textBlock";
+  pageTitle: string;
+  ingress: string;
+};
+
+type projectItem = {
+  _type: "projectItem";
   title: string;
   description: string;
-  imageSrc: string;
+  image: SanityImageSource;
   url: string;
-}
+};
 
-export default async function ProjectPreview({
-  ref,
-}: {
-  ref?: React.Ref<HTMLElement>;
-}) {
+type projectBlockType = {
+  _type: "projectBlock";
+  title: string;
+  projectItems: projectItem[];
+};
+
+export default async function ProjectPreview() {
   // 1. GROQ-fråga för att hämta de 2 senaste projekten
   const featuredProjectsQuery = groq`
-        *[_type == "project" && defined(mainImage)] {
-            _id,
+*[_type == "page" && slug.current == "projects"][0] { 
+    _id, 
+    title, 
+    "slug": slug.current, 
+    
+    // Hämta hela Page Builder arrayen
+    pageBuilder[] { ..., // Hämta alla syandardfält (inkl _key och _type)
+    
+    _type == "textBlock" => {
+    pageTitle,
+    ingress
+    },
+        _type == "projectBlock" => {
             title,
-            description,
-            url,
-            // Hämta URL:en från Sanity
-            "imageSrc": mainImage.asset->url, 
-        } | order(_createdAt desc) [0..1]
-    `;
+            "projectItems": projects[] -> {
+           title,
+           url,
+           description,
+           // Hämta hela bildobjektet, inklusive asset-referensen
+                image,
+            },  
+        },
+    }
+}`;
 
   // 2. Hämta data
-  const featuredProjects: Project[] = await client.fetch(featuredProjectsQuery);
+  const featuredProjects: projectPageData = await client.fetch(
+    featuredProjectsQuery
+  );
 
   return (
-    <section ref={ref} className="project-preview-section">
+    <section className="project-preview-section">
       <h4>Featured Projects</h4>
       <p className="body-text">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Non magnam a
@@ -42,17 +78,35 @@ export default async function ProjectPreview({
       </p>
 
       <div className="project-preview-grid">
-        {featuredProjects.map((project: Project, index: number) => (
-          <ProjectCard
-            key={index}
-            url={project.url}
-            title={project.title}
-            description={project.description}
-            src={project.imageSrc}
-            width={750}
-            height={600}
-          />
-        ))}
+        {featuredProjects.pageBuilder.map(
+          (section: PageBuilderSection, index: number) => {
+            switch (section._type) {
+              case "projectBlock":
+                // Type Assertion för att undvika TS-fel vid åtkomst av unika fält
+                const projectBlock = section as projectBlockType;
+                return (
+                  <div key={index} className="project-grid">
+                    {projectBlock.projectItems
+                      .slice(0 - 2)
+                      .map((item: projectItem, index: number) => (
+                        <ProjectCard
+                          key={index}
+                          url={item.url}
+                          title={item.title}
+                          description={item.description}
+                          imageObject={item.image}
+                          width={500}
+                          height={375}
+                        />
+                      ))}
+                  </div>
+                );
+
+              default:
+                return null;
+            }
+          }
+        )}
       </div>
 
       <Link href="/projects" className="button projects-button">

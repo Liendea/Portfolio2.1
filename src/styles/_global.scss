@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "fonts" as *;
+@use "mixins" as *;
 
 * {
   margin: 0;
@@ -18,7 +19,7 @@ body {
   color: $text-color-light;
 }
 
-.no-scroll {
+body.no-scroll {
   overflow: hidden;
   height: 100vh;
 }
@@ -37,15 +38,19 @@ body {
 
 // Global page styles
 
-section {
+section:not(.project-section) {
   padding: 4rem;
+
+  @include respond-above(1800px) {
+    padding: 8rem;
+  }
 }
 .page-title {
   margin-top: $spacing-xxlarge;
   text-transform: uppercase;
 }
 .body-text {
-  margin-block: $spacing-xlarge;
+  margin-block: $spacing-xxlarge;
   width: 70%;
   font-family: $font-mono;
 }

@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "project",
-  title: "Project",
+  name: "projectItem",
+  title: "Project Item",
   type: "document",
   fields: [
     defineField({
@@ -35,12 +35,9 @@ export default defineType({
       description: "Techstack or tools used",
     }),
     defineField({
-      name: "mainImage",
+      name: "image",
       title: "Image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
       validation: (Rule) => Rule.required(),
     }),
   ],
