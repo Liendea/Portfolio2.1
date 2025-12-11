@@ -1,11 +1,8 @@
-import Hero from "../../components/landingpage/Hero";
-import ProjectPreview from "../../components/landingpage/ProjectPreview";
+import Page from "./[slug]/page";
 
-export default function Page() {
-  return (
-    <div className="page-wrapper">
-      <Hero />
-      <ProjectPreview />
-    </div>
-  );
+export default async function HomePage() {
+  // Här kan du hämta en "home"-slug från Sanity, t.ex. "home"
+  const slug = "home";
+
+  return <Page params={{ slug }} />;
 }

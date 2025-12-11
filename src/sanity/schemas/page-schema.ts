@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "projectItem",
-  title: "Project Item",
+  name: "page",
+  title: "Pages",
   type: "document",
   fields: [
     defineField({
@@ -22,23 +22,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "url",
-      title: "Project URL",
-      type: "url",
-      description: "Link to project",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "description",
-      title: "Short description",
-      type: "text",
-      description: "Techstack or tools used",
-    }),
-    defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      validation: (Rule) => Rule.required(),
+      name: "pageBuilder",
+      title: "Sections",
+      type: "array",
+      of: [
+        { type: "textBlock" },
+        { type: "techStackBlock" },
+        { type: "statsBlock" },
+        { type: "contactBlock" },
+        { type: "projectBlock" },
+        { type: "heroBlock" },
+        /*Lägg till fler sectioner här */
+      ],
     }),
   ],
 });

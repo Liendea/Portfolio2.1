@@ -1,17 +1,21 @@
-import "../../styles/main.scss";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import { fetchSettings } from "../../sanity/lib/fetchSettings";
 
-export default function SiteLayout({
+export default async function Page({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const settings = await fetchSettings();
+
   return (
     <>
-      <Header />
-      {children}
-      <Footer />
+      {settings?.header && <Header {...settings.header} />}
+
+      <main>{children}</main>
+
+      {settings?.footer && <Footer {...settings.footer} />}
     </>
   );
 }

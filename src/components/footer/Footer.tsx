@@ -1,10 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import smiley from "../../../public/icons/smiley.svg";
-import logo from "../../../public/images/LIENDEA.png";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { urlFor } from "../../sanity/lib/image";
 
-export default function Footer() {
+type LinkItem = {
+  title: string;
+  href: string;
+};
+
+type FooterProps = {
+  exploreLinks?: LinkItem[];
+  socialLinks?: LinkItem[];
+  contactEmail?: string;
+  logo?: SanityImageSource;
+  copyright?: string;
+};
+
+export default function Footer({
+  exploreLinks = [],
+  socialLinks = [],
+  contactEmail = "",
+  logo,
+  copyright = "",
+}: FooterProps) {
+  const imageUrl = logo ? urlFor(logo).url() : "";
+
   return (
     <footer className="footer-section">
       <div className="footer-content">
@@ -12,15 +33,11 @@ export default function Footer() {
         <div className="footer-explore">
           <p>EXPLORE</p>
           <div className="footer-links">
-            <a href="/projects" className="footer-link">
-              Projects
-            </a>
-            <a href="/about" className="footer-link">
-              About
-            </a>
-            <a href="#top" className="footer-link">
-              Back to the top
-            </a>
+            {exploreLinks.map((link, i) => (
+              <a key={i} href={link.href} className="footer-link">
+                {link.title}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -28,61 +45,45 @@ export default function Footer() {
         <div className="footer-socials">
           <p>FOLLOW ME</p>
           <div className="footer-links">
-            <a
-              href="https://www.linkedin.com/in/bengtsson-linda/"
-              className="footer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-            <a href="#" className="footer-link">
-              Instagram
-            </a>
-            <a
-              href="https://github.com/Liendea"
-              className="footer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+            {socialLinks.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.title}
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Contact */}
-        <div className="footer-contact">
-          <p>SAY HELLO</p>
-          <a href="mailto:bengtsson-linda@outlook.com" className="footer-email">
-            <span className="footer-smiley">
-              <Image
-                src={smiley}
-                alt="smiley face"
-                className="smiley"
-                width={24}
-                height={24}
-              />
-            </span>
-            bengtsson-linda@outlook.com
-          </a>
-        </div>
+        {contactEmail && (
+          <div className="footer-contact">
+            <p>SAY HELLO</p>
+            <a href={`mailto:${contactEmail}`} className="footer-email">
+              {contactEmail}
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Logo + Copyright */}
-      <div className="footer-logo-container">
-        <Image
-          src={logo}
-          alt="Linda Bengtsson Logo"
-          className="footer-logo"
-          width={1000}
-          height={500}
-          priority
-        />
-        <p className="footer-copy">
-          <span>© 2025 Linda Bengtsson. </span>
-          <span>All rights reserved.</span>
-        </p>
-      </div>
+      {logo && (
+        <div className="footer-logo-container">
+          <Image
+            src={imageUrl}
+            alt="Footer Logo"
+            className="footer-logo"
+            width={1000}
+            height={500}
+            priority
+          />
+          {copyright && <p className="footer-copy">{copyright}</p>}
+        </div>
+      )}
     </footer>
   );
 }

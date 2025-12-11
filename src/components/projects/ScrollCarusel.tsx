@@ -3,25 +3,31 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type {
-  projectBlockType,
-  projectItem,
-} from "../../app/(site)/projects/page";
 import ProjectCard from "./ProjectCard";
+import type { projectItem } from "../../app/(site)/[slug]/page";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type ScrollCaruselProps = {
+export type projectBlockType = {
+  _type: "projectBlock";
+  title: string;
+  projectItems: projectItem[];
+};
+
+type ScrollCarouselProps = {
   projectBlock: projectBlockType;
 };
 
-export default function ScrollCarusel({ projectBlock }: ScrollCaruselProps) {
+export default function ScrollCarousel({ projectBlock }: ScrollCarouselProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!projectBlock?.projectItems || projectBlock.projectItems.length === 0)
+      return;
+
     const ctx = gsap.context(() => {
       const container = containerRef.current;
-      const cards = gsap.utils.toArray(".container", container);
+      const cards = gsap.utils.toArray(".project-card-container", container);
 
       if (!cards || cards.length === 0) return;
 
@@ -44,8 +50,8 @@ export default function ScrollCarusel({ projectBlock }: ScrollCaruselProps) {
 
   return (
     <div ref={containerRef} className="project-carousel">
-      {projectBlock.projectItems.map((item: projectItem, index: number) => (
-        <div key={index} className="container">
+      {projectBlock.projectItems.map((item, index) => (
+        <div key={index} className="project-card-container">
           <ProjectCard
             url={item.url}
             title={item.title}

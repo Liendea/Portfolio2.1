@@ -2,9 +2,13 @@
 
 import { motion } from "framer-motion";
 
-const text = "Let's build something great together!";
+type AnimatedTextProps = {
+  textToAnimate: string | undefined;
+};
 
-export default function AnimatedText(): React.JSX.Element {
+export default function AnimatedText({
+  textToAnimate,
+}: AnimatedTextProps): React.JSX.Element {
   return (
     <motion.p
       className="animated-text"
@@ -17,7 +21,7 @@ export default function AnimatedText(): React.JSX.Element {
       }}
       style={{ display: "flex" }}
     >
-      {text.split("").map((char, i) => (
+      {textToAnimate?.split("").map((char, i) => (
         <motion.span
           key={i}
           variants={{

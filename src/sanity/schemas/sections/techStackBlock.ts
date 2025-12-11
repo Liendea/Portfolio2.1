@@ -6,7 +6,6 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      // NYTT FÄLT: Rubrik för sektionen
       name: "title",
       title: "Rubrik för sektionen",
       type: "string",
@@ -16,7 +15,7 @@ export default defineType({
       name: "techStackItems",
       title: "Tech Stack",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "techStackItem" }] }],
+      of: [{ type: "techStackItem" }], // direkt object istället för reference
       validation: (Rule) => Rule.required().min(1),
     }),
   ],

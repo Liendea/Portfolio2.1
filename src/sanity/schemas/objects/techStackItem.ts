@@ -2,8 +2,8 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "techStackItem",
-  title: "Tech stack",
-  type: "document",
+  title: "Tech Stack Item",
+  type: "object", // ändrat från document
   fields: [
     defineField({
       name: "title",
@@ -13,7 +13,7 @@ export default defineType({
     }),
     defineField({
       name: "icon",
-      title: "IconImage",
+      title: "Icon Image",
       type: "image",
       validation: (Rule) => Rule.required(),
     }),

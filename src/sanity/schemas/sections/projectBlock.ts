@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "projectBlock",
-  title: "ProjectList",
+  title: "Project List",
   type: "object",
   fields: [
     defineField({
@@ -12,15 +12,11 @@ export default defineType({
     }),
     defineField({
       name: "projects",
-      title: "Project",
+      title: "Projects",
       type: "array",
       description: "Add projects",
       of: [
-        {
-          type: "reference",
-          to: [{ type: "projectItem" }],
-          title: "project",
-        },
+        { type: "projectItem" }, // <-- ändrat från reference till object
       ],
       validation: (Rule) => Rule.required().min(1),
     }),
@@ -32,13 +28,9 @@ export default defineType({
     },
     prepare(selection) {
       const { title, projectItems } = selection;
-
-      // 2. CALCULATE THE LENGTH IN THE PREPARE FUNCTION
       const count = projectItems?.length || 0;
-
       return {
         title: title,
-        // 3. Use the calculated count
         subtitle: `Projektlista (${count} projekt)`,
       };
     },

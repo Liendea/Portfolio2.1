@@ -4,7 +4,7 @@
 /* =========== HEADER ========== */
 /* ==============================*/
 
-.header {
+.header-container {
   transition: background-color 0.5s ease-in-out;
   display: flex;
   justify-content: space-between;
@@ -13,26 +13,21 @@
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.197);
 
-  P {
-    font-size: 2.5rem;
-  }
-
-  a {
-    font-size: $fs-mobile-small;
-    font-family: $font-mono;
-    text-decoration: none;
-    color: $text-color-light;
-  }
-
-  a:hover {
-    color: $text-color-white;
-  }
-
   .navigation {
     display: flex;
     justify-content: space-around;
     width: 50%;
-
     // Länk styling finns i global.scss
+
+    a {
+      font-size: $fs-mobile-small;
+      font-family: $font-mono;
+      text-decoration: none;
+      color: $text-color-light;
+    }
+
+    a:hover {
+      color: $text-color-white;
+    }
   }
 }
