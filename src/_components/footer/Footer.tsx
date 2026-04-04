@@ -43,27 +43,29 @@ export default function Footer({
             ))}
           </div>
         </div>
-        <div className="footer-socials">
-          <p>CONNECT</p>
-          <div className="footer-links">
-            {socialLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                className="footer-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.title}
-              </a>
-            ))}
+        {pathname !== "/contact" && socialLinks.length > 0 && (
+          <div className="footer-socials">
+            <p>CONNECT</p>
+            <div className="footer-links">
+              {socialLinks.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  className="footer-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.title}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-        {contactEmail && (
+        )}
+        {pathname !== "/contact" && contactEmail && (
           <div className="footer-contact">
             <p>SAY HELLO</p>
             <a href={`mailto:${contactEmail}`} className="footer-email">
-              Send Email
+              Send
             </a>
           </div>
         )}

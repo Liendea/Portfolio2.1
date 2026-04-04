@@ -1,11 +1,11 @@
 import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Hero from "@/src/_sections/hero/Index";
+import Hero from "@/src/_sections/heroSection/Index";
 import ProjectSection from "@/src/_sections/projectSection/index";
-import StatisticSection from "@/src/_sections/statistic/index";
-import TechStackSection from "@/src/_sections/techstack/index";
-import ContactSection from "@/src/_sections/contact";
+import StatisticSection from "@/src/_sections/statisticSection/index";
+import TechStackSection from "@/src/_sections/techstackSection/index";
+import ContactSection from "@/src/_sections/contactSection";
 import IntroSection from "@/src/_sections/introSection/IntroSection";
 import AboutParagraph from "@/src/_components/aboutParagraph";
 

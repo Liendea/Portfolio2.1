@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { urlFor } from "../../../sanity/lib/image";
+import { urlFor } from "@/src/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -67,6 +67,7 @@ export default function TechStackList({ techStackItems }: TechStackListProps) {
 
   return (
     <>
+      <hr className="divider" />
       <p className="techstack-title glitch">TECH STACK</p>
       <div ref={wrapperRef} style={{ position: "relative" }}>
         <div className="icon-Grid">
