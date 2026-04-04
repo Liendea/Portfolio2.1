@@ -65,7 +65,7 @@ export default function Footer({
           <div className="footer-contact">
             <p>SAY HELLO</p>
             <a href={`mailto:${contactEmail}`} className="footer-email">
-              Send
+              Send Email
             </a>
           </div>
         )}
