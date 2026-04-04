@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Hero from "@/src/_sections/heroSection/Index";
 import ProjectSection from "@/src/_sections/projectSection/index";
 import StatisticSection from "@/src/_sections/statisticSection/index";
-import TechStackSection from "@/src/_sections/techstackSection/index";
+import TechStackSection from "@/src/_sections/stackSection/index";
 import ContactSection from "@/src/_sections/contactSection";
 import IntroSection from "@/src/_sections/introSection/IntroSection";
 import AboutParagraph from "@/src/_components/aboutParagraph";

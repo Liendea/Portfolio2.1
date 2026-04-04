@@ -8,16 +8,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type techStackItem = {
+type StackItem = {
   title: string;
   icon: SanityImageSource;
 };
 
-type TechStackListProps = {
-  techStackItems: techStackItem[];
+type StackListProps = {
+  techStackItems: StackItem[];
 };
 
-export default function TechStackList({ techStackItems }: TechStackListProps) {
+export default function TechStackList({ techStackItems }: StackListProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +71,7 @@ export default function TechStackList({ techStackItems }: TechStackListProps) {
       <p className="techstack-title glitch">TECH STACK</p>
       <div ref={wrapperRef} style={{ position: "relative" }}>
         <div className="icon-Grid">
-          {techStackItems?.map((stackItem: techStackItem) => {
+          {techStackItems?.map((stackItem: StackItem) => {
             const imageUrl = urlFor(stackItem.icon).url();
             return (
               <Image

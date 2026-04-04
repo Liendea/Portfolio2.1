@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { urlFor } from "../../sanity/lib/image";
+import { urlFor } from "@/src/sanity/lib/image";
 
 type LinkItem = {
   title: string;

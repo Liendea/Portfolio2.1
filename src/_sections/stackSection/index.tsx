@@ -1,4 +1,4 @@
-import TechStackList from "./techstackList/TechStackList";
+import TechStackList from "./stackList/StackList";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 type techStackBlockType = {
