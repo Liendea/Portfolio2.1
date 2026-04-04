@@ -19,6 +19,10 @@
     line-height: 0.9;
     display: block;
 
+    @include mobile {
+      padding: 0;
+    }
+
     .hero-text {
       font-size: $fs-desktop-xxlarge;
       font-weight: $bold;
