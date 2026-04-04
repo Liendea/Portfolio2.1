@@ -3,6 +3,7 @@
 @use "../mixins" as *;
 
 .contact-section {
+  margin-top: 4rem;
   .contact-block {
     display: flex;
     align-items: flex-start;
