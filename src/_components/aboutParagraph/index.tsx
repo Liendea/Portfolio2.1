@@ -20,7 +20,7 @@ export default function AboutParagraph({ section }: IntroSectionProps) {
         textToAnimate={section.pageTitle}
         color={section.pageTitleColor}
       />
-      <div>
+      <div className="intro-paragraphs">
         {paragraphs.map((paragraph, index) => (
           <p key={index} style={{ color: section.ingressColor?.hex }}>
             {paragraph}

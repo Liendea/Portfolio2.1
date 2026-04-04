@@ -66,36 +66,39 @@ export default function TechStackList({ techStackItems }: TechStackListProps) {
   }, []);
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative" }}>
-      <div className="icon-Grid">
-        {techStackItems?.map((stackItem: techStackItem) => {
-          const imageUrl = urlFor(stackItem.icon).url();
-          return (
-            <Image
-              key={stackItem.title}
-              className="stack-icon"
-              src={imageUrl}
-              width="170"
-              height="64"
-              alt={stackItem.title}
-            />
-          );
-        })}
-      </div>
+    <>
+      <p className="techstack-title glitch">TECH STACK</p>
+      <div ref={wrapperRef} style={{ position: "relative" }}>
+        <div className="icon-Grid">
+          {techStackItems?.map((stackItem: techStackItem) => {
+            const imageUrl = urlFor(stackItem.icon).url();
+            return (
+              <Image
+                key={stackItem.title}
+                className="stack-icon"
+                src={imageUrl}
+                width="170"
+                height="64"
+                alt={stackItem.title}
+              />
+            );
+          })}
+        </div>
 
-      {/* Gradient-overlay som försvinner vid scroll */}
-      <div
-        ref={overlayRef}
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "60%",
-          background: "linear-gradient(to bottom, transparent, black)",
-          pointerEvents: "none",
-        }}
-      />
-    </div>
+        {/* Gradient-overlay som försvinner vid scroll */}
+        <div
+          ref={overlayRef}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "60%",
+            background: "linear-gradient(to bottom, transparent, black)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+    </>
   );
 }

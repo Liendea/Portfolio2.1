@@ -4,11 +4,15 @@
 
 // TECHSTACK SECTION + ICONS
 
+.techstack-title {
+  text-transform: uppercase;
+}
+
 .icon-Grid {
+  margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-
   justify-items: center;
 
   .stack-icon {

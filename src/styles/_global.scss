@@ -58,10 +58,16 @@ body.no-scroll {
       justify-content: flex-end;
       width: 100%;
     }
-    .body-text {
+    .intro-paragraphs {
       margin-top: $spacing-xxlarge;
-      width: 50%;
+      width: 60%;
       font-family: $font-mono;
+
+      @include mobile {
+        width: 100%;
+        margin-top: $spacing-xxlarge;
+        padding-top: $spacing-xlarge;
+      }
     }
   }
 }
