@@ -13,6 +13,8 @@ import footerSettings from "./settings/footerSettings";
 import settings from "./settings/settings";
 import heroSection from "./sections/heroSection";
 import scrollCarouselBlock from "./sections/scrollCarouselBlock";
+import spacerBlock from "./sections/spacerBlock";
+import dividerBlock from "./sections/dividerBlock";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // LÄGG TILL SKAPADE SCHEMAS HÄR
@@ -31,5 +33,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     headerSettings,
     footerSettings,
     scrollCarouselBlock,
+    spacerBlock,
+    dividerBlock,
   ],
 };

@@ -32,6 +32,8 @@ export default defineType({
         { type: "contactBlock" },
         { type: "projectBlock" },
         { type: "heroBlock" },
+        { type: "spacer" },
+        { type: "divider" },
         /*Lägg till fler sectioner här */
       ],
     }),

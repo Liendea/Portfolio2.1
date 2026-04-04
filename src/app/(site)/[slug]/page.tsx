@@ -8,6 +8,8 @@ import TechStackSection from "@/src/_sections/stackSection/index";
 import ContactSection from "@/src/_sections/contactSection";
 import IntroSection from "@/src/_sections/introSection/IntroSection";
 import AboutParagraph from "@/src/_components/aboutParagraph";
+import Spacer from "@/src/_components/spacer";
+import Divider from "@/src/_components/divider";
 
 export type SanityColor = {
   hex: string;
@@ -44,7 +46,13 @@ type PageBuilderSection =
       githubUsername: string;
       wakatimeUsername?: string;
     }
-  | { _type: "contactBlock"; title: string; contactItems: contactItem[] };
+  | { _type: "contactBlock"; title: string; contactItems: contactItem[] }
+  | { _type: "spacer"; size: "small" | "medium" | "large" }
+  | {
+      _type: "divider";
+      layout: "full" | "centered";
+      padding: "none" | "small" | "large";
+    };
 
 export type contactItem = {
   displayText: string;
@@ -111,7 +119,12 @@ export default async function Page(props: {
       } 
     },
     _type == "statsBlock" => { sectionTitle, githubUsername, wakatimeUsername },
-    _type == "contactBlock" => { title, "contactItems": contactFields[] { displayText, url } }
+    _type == "contactBlock" => { title, "contactItems": contactFields[] { displayText, url } },
+    _type == "spacer" => {size},
+  _type == "divider" => {
+  layout,
+  padding
+},
   }
 }
 `;
@@ -172,6 +185,18 @@ export default async function Page(props: {
             // CONTACT SECTION
             return <ContactSection key={index} contactBlock={section} />;
 
+          case "spacer":
+            // SPACER SECTION
+            return <Spacer key={index} size={section.size} />;
+
+          case "divider":
+            return (
+              <Divider
+                key={index}
+                layout={section.layout}
+                padding={section.padding}
+              />
+            );
           default:
             return null;
         }

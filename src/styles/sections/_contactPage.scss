@@ -3,6 +3,7 @@
 @use "../mixins" as *;
 
 .contact-section {
+  margin-top: 4rem;
   .contact-block {
     display: flex;
     align-items: flex-start;
@@ -10,11 +11,6 @@
     height: auto;
     margin-block: 2rem;
     color: $text-color-light;
-
-    @include mobile {
-      gap: 1rem;
-      margin-block: 0rem;
-    }
 
     a {
       color: $text-color-light;
@@ -42,7 +38,8 @@
 
   @include mobile {
     .contact-block {
-      margin-top: 8rem;
+      margin-top: 2rem;
+      gap: 1rem;
     }
   }
 }

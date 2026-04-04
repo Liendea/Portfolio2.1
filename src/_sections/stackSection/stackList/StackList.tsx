@@ -67,7 +67,6 @@ export default function TechStackList({ techStackItems }: StackListProps) {
 
   return (
     <>
-      <hr className="divider" />
       <p className="techstack-title glitch">TECH STACK</p>
       <div ref={wrapperRef} style={{ position: "relative" }}>
         <div className="icon-Grid">
