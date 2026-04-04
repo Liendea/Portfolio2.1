@@ -6,10 +6,12 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 export type NavLink = { title: string; href: string };
 
 export type HeaderSettings = {
-  logo: SanityImageSource;
+  logoDesktop: SanityImageSource;
+  logoMobile: SanityImageSource;
   navigationLinks: NavLink[];
   backgroundColor?: string;
   textColor?: string;
+  exploreText?: string;
 };
 
 export type FooterSettings = {
@@ -29,7 +31,9 @@ export async function fetchSettings(): Promise<SiteSettings | null> {
   const query = groq`
     *[_type == "settings"][0]{
       "header": header {
-        logo,
+    "logoDesktop": logoDesktop,
+  "logoMobile": logoMobile,
+        exploreText,
         navigationLinks,
         backgroundColor,
         textColor

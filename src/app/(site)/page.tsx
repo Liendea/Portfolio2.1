@@ -1,8 +1,7 @@
 import Page from "./[slug]/page";
 
 export default async function HomePage() {
-  // Här kan du hämta en "home"-slug från Sanity, t.ex. "home"
-  const slug = "home";
-
-  return <Page params={{ slug }} />;
+  const slugValue = "home";
+  const params = Promise.resolve({ slug: slugValue });
+  return <Page params={params} />;
 }

@@ -1,6 +1,6 @@
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
-import { fetchSettings } from "../../sanity/lib/fetchSettings";
+import Header from "@/src/_components/header/Header";
+import Footer from "@/src/_components/footer/Footer";
+import { fetchSettings } from "@/src/sanity/lib/fetchSettings";
 
 export default async function Page({
   children,

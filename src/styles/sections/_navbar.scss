@@ -1,0 +1,65 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+// Navigations meny öppen på HERO
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100vh;
+  gap: 3rem;
+  position: absolute;
+  right: 3rem;
+  z-index: 10000;
+  top: 180px;
+
+  @include mobile {
+    gap: 1rem;
+    right: 1rem;
+    top: 110px;
+  }
+
+  a {
+    font-size: $fs-mobile-small;
+    font-family: $font-mono;
+    text-decoration: none;
+    color: $text-color-light;
+
+    @include mobile {
+      font-size: $fs-mobile-xsmall;
+    }
+  }
+
+  a:hover {
+    color: $text-color-white;
+  }
+}
+
+.navigation.hidden {
+  display: none;
+}
+
+// När Navigation öppen på alla sidor utom HERO
+.navigation.shifted {
+  top: 360px;
+  @include mobile {
+    top: 165px;
+  }
+}
+
+.navlink:hover .smiley {
+  transform: translateX(-20px) rotate(360deg);
+  opacity: 1;
+}
+
+.smiley {
+  margin-right: 20px;
+  display: inline-block;
+  transform: translateX(20px);
+  opacity: 0;
+  transition:
+    transform 1s ease,
+    opacity 0.6s ease,
+    rotate 1s ease;
+}

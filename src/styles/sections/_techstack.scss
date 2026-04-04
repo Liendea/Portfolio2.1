@@ -1,0 +1,18 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+// TECHSTACK SECTION + ICONS
+
+.icon-Grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  justify-items: center;
+
+  .stack-icon {
+    height: 64px;
+    width: auto;
+  }
+}

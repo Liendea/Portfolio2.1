@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description: "portfolio 2.1",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${schibstedGrotesk.variable} ${geistMono.variable} no-scroll`}
+        className={`${schibstedGrotesk.variable} ${geistMono.variable} 
+    `}
       >
         {children}
       </body>

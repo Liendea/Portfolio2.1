@@ -6,10 +6,22 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "logo",
-      title: "Logo",
+      name: "logoDesktop",
+      title: "Logo Desktop",
       type: "image",
       options: { hotspot: true },
+    }),
+    defineField({
+      name: "logoMobile",
+      title: "Logo Mobile",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "exploreText",
+      title: "Explore Button Text",
+      type: "string",
+      initialValue: "EXPLORE",
     }),
     defineField({
       name: "navigationLinks",
@@ -46,7 +58,7 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { logo: "logo" },
+    select: { logo: "logoDesktop" },
     prepare(selection) {
       return { title: "Header Settings", media: selection.logo || undefined };
     },

@@ -15,13 +15,12 @@ body {
 
 body {
   font-family: $font-primary;
-  background-color: $primary-color;
+  background-color: black;
   color: $text-color-light;
 }
 
 body.no-scroll {
   overflow: hidden;
-  height: 100vh;
 }
 
 // BUTTON
@@ -37,20 +36,48 @@ body.no-scroll {
 }
 
 // Global page styles
+.page-wrapper {
+  transition: background-color 0.5s ease-in-out;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
 
-section:not(.project-section) {
-  padding: 4rem;
+  section {
+    padding: 3rem;
 
-  @include respond-above(1800px) {
-    padding: 8rem;
+    @include mobile {
+      padding: 1rem;
+    }
+  }
+
+  // INTRO SECTION [TITEL OCH INGRESSTEXT]
+  .intro-section {
+    .page-title {
+      text-transform: uppercase;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+    .body-text {
+      margin-top: $spacing-xxlarge;
+      width: 50%;
+      font-family: $font-mono;
+    }
   }
 }
-.page-title {
-  margin-top: $spacing-xxlarge;
-  text-transform: uppercase;
+
+.desktop-only {
+  display: block;
+
+  @include mobile {
+    display: none;
+  }
 }
-.body-text {
-  margin-block: $spacing-xxlarge;
-  width: 70%;
-  font-family: $font-mono;
+
+.mobile-only {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
 }

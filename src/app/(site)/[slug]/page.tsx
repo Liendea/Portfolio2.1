@@ -1,13 +1,21 @@
 import { groq } from "next-sanity";
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import Hero from "@/src/_sections/hero/Index";
+import ProjectSection from "@/src/_sections/projectSection/index";
+import StatisticSection from "@/src/_sections/statistic/index";
+import TechStackSection from "@/src/_sections/techstack/index";
+import ContactSection from "@/src/_sections/contact";
+import IntroSection from "@/src/_sections/introSection/IntroSection";
+import AboutParagraph from "@/src/_components/aboutParagraph";
 
-import Hero from "../../../components/landingpage/Hero";
-import ScrollCarousel from "../../../components/projects/ScrollCarusel";
-import GithubStats from "../../../components/about/GithubStatsRenderer";
-import Wakatime from "../../../components/about/WakatimeStatsRenderer";
-import TechStackList from "../../../components/about/TechStackList";
-//import ProjectPreview from "../../components/landingpage/ProjectPreview";
+export type SanityColor = {
+  hex: string;
+  alpha: number;
+  hsl?: { h: number; s: number; l: number; a: number };
+  hsv?: { h: number; s: number; v: number; a: number };
+  rgb?: { r: number; g: number; b: number; a: number };
+};
 
 type PageBuilderSection =
   | {
@@ -16,10 +24,18 @@ type PageBuilderSection =
       subheading: string;
       backgroundType: "video" | "image" | "color";
       backgroundMedia?: string;
-      backgroundColor?: string;
+      backgroundColor?: SanityColor;
       exploreText?: string;
+      headingColor: SanityColor;
+      subheadingColor: SanityColor;
     }
-  | { _type: "textBlock"; pageTitle: string; ingress: string }
+  | {
+      _type: "textBlock";
+      pageTitle: string;
+      ingress: string;
+      pageTitleColor: SanityColor;
+      ingressColor: SanityColor;
+    }
   | { _type: "projectBlock"; title: string; projectItems: projectItem[] }
   | { _type: "techStackBlock"; title: string; techStackItems: techStackItem[] }
   | {
@@ -37,7 +53,7 @@ export type contactItem = {
 
 export type techStackItem = {
   title: string;
-  iconUrl: string;
+  icon: SanityImageSource;
 };
 
 export type projectItem = {
@@ -60,8 +76,6 @@ export default async function Page(props: {
 }) {
   const { slug: rawSlug } = await props.params;
   const slug = rawSlug ? String(rawSlug).toLowerCase() : "home";
-  console.log("rawslug är: ", rawSlug);
-  console.log("hämtad slug från sanity", slug);
 
   const query = groq`
 *[_type == "page" && slug.current == $slug][0] {
@@ -76,23 +90,24 @@ export default async function Page(props: {
       backgroundType,
     "backgroundMedia": coalesce(backgroundVideo.asset->url, backgroundImage.asset->url),
       backgroundColor,
-      exploreText
+      headingColor,
+      subheadingColor,
     },
-    _type == "textBlock" => { pageTitle, ingress },
+    _type == "textBlock" => { pageTitle, ingress, pageTitleColor, ingressColor },
     _type == "projectBlock" => { 
       title, 
-      "projectItems": projects[] -> { 
+      "projectItems": projects[] { 
         title, 
         description, 
         image, 
-        url 
-      } 
+        url
+      }
     },
     _type == "techStackBlock" => { 
       title, 
-      "techStackItems": techStackItems[]->{ 
+      "techStackItems": techStackItems[]{ 
         title, 
-        "iconUrl": icon.asset->url 
+        icon, 
       } 
     },
     _type == "statsBlock" => { sectionTitle, githubUsername, wakatimeUsername },
@@ -117,56 +132,45 @@ export default async function Page(props: {
                 subheading={section.subheading}
                 backgroundType={section.backgroundType}
                 backgroundMedia={section.backgroundMedia}
+                backgroundColor={section.backgroundColor}
+                headingColor={section.headingColor}
+                subheadingColor={section.subheadingColor}
               />
             );
 
           case "textBlock":
+            if (slug === "about") {
+              return (
+                // ABOUT PAGE INTRO SECTION
+                <AboutParagraph key={index} section={section} />
+              );
+            } else {
+              return (
+                // PAGE TITLE AND INGRESS
+                <IntroSection key={index} section={section} />
+              );
+            }
+          case "projectBlock":
             return (
-              <div key={index}>
-                <h2>{section.pageTitle}</h2>
-                <p>{section.ingress}</p>
-              </div>
+              // PROJECT CAROUSEL
+              <ProjectSection key={index} projectBlock={section} />
             );
 
-          case "projectBlock":
-            return <ScrollCarousel key={index} projectBlock={section} />;
-
           case "techStackBlock":
-            return <TechStackList key={index} section={section} />;
+            return (
+              // TECH STACK LIST SECTION
+              <TechStackSection key={index} techStackBlock={section} />
+            );
 
           case "statsBlock":
             return (
-              <div key={index}>
-                <GithubStats section={section} />
-                {section.wakatimeUsername && <Wakatime />}
-              </div>
+              // GIT HUB & WAKATIME STATS SECTION
+              <StatisticSection key={index} statsBlock={section} />
             );
 
           case "contactBlock":
-            return (
-              <div key={index} className="contact-block">
-                <p className="contact-title">{section.title}</p>
-                <div className="contact-fields">
-                  {section.contactItems?.map((item, i) =>
-                    item.url ? (
-                      <a
-                        key={i}
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="contact-field"
-                      >
-                        {item.displayText}
-                      </a>
-                    ) : (
-                      <p key={i} className="contact-field">
-                        {item.displayText}
-                      </p>
-                    )
-                  )}
-                </div>
-              </div>
-            );
+            // CONTACT SECTION
+            return <ContactSection key={index} contactBlock={section} />;
 
           default:
             return null;

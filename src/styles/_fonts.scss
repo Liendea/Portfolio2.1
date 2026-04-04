@@ -3,6 +3,21 @@
 $font-primary: var(--font-schibsted-grotesk), sans-serif;
 $font-mono: var(--font-geist-mono), monospace;
 
+//FONTSIZE DESKTOP
+$fs-desktop-small: 2rem; // 32px
+$fs-desktop-medium: 4rem; // 64px
+$fs-desktop-large: 6rem; // 96px
+$fs-desktop-xlarge: 8rem; //128px
+$fs-desktop-xxlarge: 12rem; //192px
+
+//FONTSIZE MOBILE
+$fs-mobile-xxsmall: 12px; // 12px
+$fs-mobile-xsmall: 1rem; // 16px
+$fs-mobile-small: 1.5rem; // 24px
+$fs-mobile-medium: 2rem; // 32px
+$fs-mobile-large: 2.5rem; // 40px
+$fs-mobile-xlarge: 3.5rem; // 56px
+
 // RESPONSIVE FONT MIXIN
 @mixin responsive-font($mobile-size, $desktop-size) {
   font-size: $mobile-size;
@@ -20,7 +35,8 @@ h1 {
   line-height: 100%;
 }
 
-h2 {
+h2,
+.h2 {
   @include responsive-font($fs-mobile-large, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;

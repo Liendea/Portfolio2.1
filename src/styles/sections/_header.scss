@@ -1,0 +1,102 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+/* ============== HEADER ============= */
+/* ====== LOGO & EPLORE BUTTON =======*/
+
+header {
+  .header-container {
+    transition: background-color 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.197);
+    z-index: 1000;
+
+    @include mobile {
+      padding: 1rem;
+    }
+
+    .logo-mobile {
+      display: none;
+    }
+
+    @include mobile {
+      .logo-desktop {
+        display: none;
+      }
+      .logo-mobile {
+        display: block;
+      }
+    }
+
+    .button-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 1;
+      transition: opacity 1s ease;
+
+      .explore-button {
+        background-color: transparent;
+        color: $text-color-light;
+        font-weight: 300;
+        font-size: $fs-mobile-small;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+
+        @include mobile {
+          font-size: $fs-mobile-xsmall;
+        }
+      }
+      .explore-arrow {
+        margin-left: 1rem;
+        transition: transform 0.3s ease;
+        position: relative;
+
+        @include mobile {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      .explore-button:hover {
+        color: $text-color-white;
+      }
+      .explore-button:hover .explore-arrow {
+        animation: arrow-down 1s infinite;
+      }
+    }
+    .button-wrapper.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+  }
+}
+
+/* animation */
+@keyframes arrow-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  51% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -3,16 +3,13 @@
 @use "fonts" as *;
 @use "global" as *;
 
-// Layouts
-
-// Components
-@use "./components/header" as *;
-@use "./components/hero" as *;
-@use "./components/projectpreview" as *;
-@use "./components/footer" as *;
-
-// PAGES
-@use "./components/pages/landingpage" as *;
-@use "./components/pages/projectsPage" as *;
-@use "./components/pages/aboutPage" as *;
-@use "./components/pages/contactPage" as *;
+// SECTIONS
+@use "./sections/projectCarousel" as *;
+@use "./sections/projectGrid" as *;
+@use "./sections/hero" as *;
+@use "./sections/techstack" as *;
+@use "./sections/contactPage" as *;
+@use "./sections/header" as *;
+@use "./sections/footer" as *;
+@use "./sections/stats" as *;
+@use "./sections/navbar" as *;
