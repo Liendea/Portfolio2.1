@@ -32,50 +32,40 @@ export default function Hero({
 }: HeroProps) {
   const [currentRole, setCurrentRole] = useState<Role>("FRONTEND");
   const scrollValue = useRef(0);
-
-  const theshold1 = 50; // Fullstack
-  const theshold2 = 100; // UX
-  const theshold3 = 150; // UI
-  const theshold4 = 200; // App
-  const maxScroll = 250; // Reset
+  const roles: Role[] = ["FRONTEND", "FULLSTACK", "UX ", "UI", "APP"];
 
   useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      scrollValue.current += event.deltaY;
+    // 1. Kolla om vi är på mobil (t.ex. skärmbredd under 768px)
+    const isMobile = window.innerWidth < 768;
 
-      if (scrollValue.current < theshold1) {
-        setCurrentRole("FRONTEND");
-      } else if (
-        scrollValue.current >= theshold1 &&
-        scrollValue.current < theshold2
-      ) {
-        setCurrentRole("FULLSTACK");
-      } else if (
-        scrollValue.current >= theshold2 &&
-        scrollValue.current < theshold3
-      ) {
-        setCurrentRole("UX ");
-      } else if (
-        scrollValue.current >= theshold3 &&
-        scrollValue.current < theshold4
-      ) {
-        setCurrentRole("UI");
-      } else if (
-        scrollValue.current >= theshold4 &&
-        scrollValue.current < maxScroll
-      ) {
-        setCurrentRole("APP");
-      } else if (scrollValue.current >= maxScroll) {
-        scrollValue.current = 0; // Reset
-      }
-    };
+    if (isMobile) {
+      // --- MOBILLOGIK: Tidsstyrd loop ---
+      let index = 0;
+      const interval = setInterval(() => {
+        index = (index + 1) % roles.length;
+        setCurrentRole(roles[index]);
+      }, 2000);
 
-    window.addEventListener("wheel", handleWheel, { passive: true });
+      return () => clearInterval(interval);
+    } else {
+      // --- DESKTOPLOGIK: Wheel/Scroll ---
+      const handleWheel = (event: WheelEvent) => {
+        scrollValue.current += event.deltaY;
 
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  });
+        const threshold = 50;
+        // Enklare sätt att räkna ut index baserat på scroll
+        const newIndex =
+          Math.floor(Math.abs(scrollValue.current / threshold)) % roles.length;
+        setCurrentRole(roles[newIndex]);
+
+        // Valfritt: Hindra scrollValue från att växa i oändlighet
+        if (scrollValue.current > 1000) scrollValue.current = 0;
+      };
+
+      window.addEventListener("wheel", handleWheel, { passive: true });
+      return () => window.removeEventListener("wheel", handleWheel);
+    }
+  }, []); // Körs en gång vid mount
 
   return (
     <section
@@ -96,14 +86,14 @@ export default function Hero({
 
       <div className="hero-text-container">
         <h1 className="hero-text" style={{ color: headingColor?.hex }}>
-          <span key={currentRole} className="role-animation">
+          <span key={currentRole} className="role-animation glitch">
             {currentRole}
           </span>
-          <br /> {currentRole === "FRONTEND" && "DEVELOPER"}
-          {currentRole === "FULLSTACK" && "DEVELOPER"}
-          {currentRole === "UX " && "DESIGNER"}
-          {currentRole === "UI" && "DESIGNER"}
-          {currentRole === "APP" && "DEVELOPER"}
+          <br />
+          {/* Dynamisk text efter roll */}
+          {currentRole === "UX " || currentRole === "UI"
+            ? "DESIGNER"
+            : "DEVELOPER"}
         </h1>
         <div className="animated-text-container">
           <P_Animation
