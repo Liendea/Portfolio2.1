@@ -44,7 +44,7 @@ export default function Footer({
           </div>
         </div>
         <div className="footer-socials">
-          <p>FOLLOW ME</p>
+          <p>CONNECT</p>
           <div className="footer-links">
             {socialLinks.map((link, i) => (
               <a
@@ -63,7 +63,7 @@ export default function Footer({
           <div className="footer-contact">
             <p>SAY HELLO</p>
             <a href={`mailto:${contactEmail}`} className="footer-email">
-              {contactEmail}
+              Send Email
             </a>
           </div>
         )}

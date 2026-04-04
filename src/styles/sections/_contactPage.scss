@@ -5,15 +5,24 @@
 .contact-section {
   .contact-block {
     display: flex;
-    gap: 4rem;
     align-items: flex-start;
+    gap: 10rem;
     height: auto;
-    margin-block: 8rem;
+    margin-block: 2rem;
     color: $text-color-light;
 
     @include mobile {
-      gap: 2rem;
-      margin-block: 4rem;
+      gap: 1rem;
+      margin-block: 1rem;
+    }
+
+    a {
+      color: $text-color-light;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $text-color-white;
     }
 
     .contact-title {

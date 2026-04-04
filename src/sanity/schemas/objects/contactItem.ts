@@ -15,11 +15,20 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "Email",
+      title: "E-post (Valfri)",
+      type: "string",
+      description: "Ange epost email@exempel.com",
+    }),
+    defineField({
       name: "url",
       title: "Länk (Valfri)",
       type: "url",
-      description:
-        "Valfri länk (t.ex. mailto:email@exempel.com eller https://linkedin.com/in/...).",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https", "mailto", "tel"], // Tillåt mailto här!
+        }),
+      description: "Ange mailto:email@exempel.com eller en vanlig URL.",
     }),
   ],
   // Gör förhandsgranskningen i Studio snygg

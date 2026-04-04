@@ -81,3 +81,14 @@ body.no-scroll {
     display: block;
   }
 }
+
+// GLOBAL LINKS
+a {
+  font-family: $font-mono;
+  text-decoration: none;
+  color: $text-color-dark;
+
+  &:hover {
+    color: $thrid-color;
+  }
+}
