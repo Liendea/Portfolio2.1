@@ -178,6 +178,7 @@ export default async function Page(props: {
           case "statsBlock":
             return (
               // GIT HUB & WAKATIME STATS SECTION
+
               <StatisticSection key={index} statsBlock={section} />
             );
 

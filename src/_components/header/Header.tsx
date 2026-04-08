@@ -17,8 +17,8 @@ type HeaderProps = {
   logoDesktop: SanityImageSource;
   logoMobile: SanityImageSource;
   navigationLinks: NavLink[];
-  backgroundColor?: SanityColor;
-  textColor?: SanityColor;
+  backgroundColor?: SanityColor | null;
+  textColor?: SanityColor | null;
   exploreText?: string;
 };
 

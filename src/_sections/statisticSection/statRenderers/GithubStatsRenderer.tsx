@@ -24,18 +24,12 @@ export default async function GithubStatsRenderer({
   // Detta anrop använder din hemliga GITHUB_TOKEN säkert på servern.
   const githubStats: GithubStats | null = await getGithubStats(githubUsername);
 
-  // OBS: Du skulle lägga till WakaTime-hämtning här senare om du har en API-funktion för det.
-  // const wakatimeStats = await getWakaTimeStats(section.wakatimeUsername);
-
   // 3. Hantera fel vid datahämtning
   if (!githubStats) {
     return (
       <>
         <h4>{sectionTitle}</h4>
-        <p className="error-message">
-          Kunde inte ladda statistik från GitHub. Kontrollera användarnamn eller
-          token.
-        </p>
+        <p className="error-message">Coming soon</p>
       </>
     );
   }

@@ -16,8 +16,8 @@ type FooterProps = {
   contactEmail?: string;
   logo?: SanityImageSource;
   copyright?: string;
-  textColor?: SanityColor;
-  backgroundColor?: SanityColor;
+  textColor?: SanityColor | null;
+  backgroundColor?: SanityColor | null;
 };
 
 export default function Footer({
