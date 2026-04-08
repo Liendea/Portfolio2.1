@@ -90,7 +90,7 @@ export default function Footer({
           />
           {copyright && (
             <p className="footer-copy" style={{ color: textColor?.hex }}>
-              Copyright: {copyright}
+              Copyright:{copyright}
             </p>
           )}
         </div>
