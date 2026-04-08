@@ -3,6 +3,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/src/sanity/lib/image";
+import type { SanityColor } from "../../app/(site)/[slug]/page";
 
 type LinkItem = {
   title: string;
@@ -15,6 +16,8 @@ type FooterProps = {
   contactEmail?: string;
   logo?: SanityImageSource;
   copyright?: string;
+  textColor?: SanityColor;
+  backgroundColor?: SanityColor;
 };
 
 export default function Footer({
@@ -22,7 +25,9 @@ export default function Footer({
   socialLinks = [],
   contactEmail = "",
   logo,
-  copyright = "",
+  copyright,
+  textColor,
+  backgroundColor,
 }: FooterProps) {
   const pathname = usePathname();
 
@@ -31,8 +36,11 @@ export default function Footer({
   const imageUrl = logo ? urlFor(logo).url() : "";
 
   return (
-    <footer className="footer-section">
-      <div className="footer-content">
+    <footer
+      className="footer-section"
+      style={{ backgroundColor: backgroundColor?.hex }}
+    >
+      <div className="footer-content" style={{ color: textColor?.hex }}>
         <div className="footer-explore">
           <p>EXPLORE</p>
           <div className="footer-links">
@@ -80,7 +88,11 @@ export default function Footer({
             height={500}
             priority
           />
-          {copyright && <p className="footer-copy">{copyright}</p>}
+          {copyright && (
+            <p className="footer-copy" style={{ color: textColor?.hex }}>
+              Copyright: {copyright}
+            </p>
+          )}
         </div>
       )}
     </footer>

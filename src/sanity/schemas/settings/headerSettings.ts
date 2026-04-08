@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { colorSwatches } from "../../lib/defaultColors";
 
 export default defineType({
   name: "headerSettings",
@@ -47,14 +48,20 @@ export default defineType({
     defineField({
       name: "backgroundColor",
       title: "Background Color",
-      type: "string",
-      description: "Hex color for header background",
+      type: "color",
+      options: {
+        colorList: colorSwatches,
+        disableAlpha: false,
+      },
     }),
     defineField({
       name: "textColor",
       title: "Text Color",
-      type: "string",
-      description: "Hex color for header text",
+      type: "color",
+      options: {
+        colorList: colorSwatches,
+        disableAlpha: false,
+      },
     }),
   ],
   preview: {

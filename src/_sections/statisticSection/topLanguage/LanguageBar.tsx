@@ -10,8 +10,8 @@ type LanguageBarProps = {
 
 const getColor = (index: number): string => {
   const colors = [
-    "#F7DF1E", // Gul (t.ex. JavaScript)
     "#007ACC", // Blå (t.ex. Typescript)
+    "#F7DF1E", // Gul (t.ex. JavaScript)
     "#4497dbff", // Annan blå (t.ex. Python)
     "#DE4B35", // Röd (t.ex. HTML/CSS)
     "#ea29e7ff", // Lila (t.ex. Vue/Sass)

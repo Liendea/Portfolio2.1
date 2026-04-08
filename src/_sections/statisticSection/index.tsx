@@ -1,5 +1,4 @@
 import GithubStatsRenderer from "./statRenderers/GithubStatsRenderer";
-import Wakatime from "./statRenderers/WakatimeStatsRenderer";
 
 type statsBlockType = {
   _type: "statsBlock";
@@ -17,7 +16,6 @@ export default function StatisticSection({ statsBlock }: statsProps) {
     <section className="stats-section">
       <div className="stats-container">
         <GithubStatsRenderer statsBlock={statsBlock} />
-        <Wakatime />
       </div>
     </section>
   );

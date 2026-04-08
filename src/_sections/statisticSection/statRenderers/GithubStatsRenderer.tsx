@@ -46,19 +46,17 @@ export default async function GithubStatsRenderer({
       <h4 className="section-title">{sectionTitle}</h4>
 
       <div className="github-stats-container">
-        {/* --- B. Toppspråk --- */}
-        <div className="stat-card language-stat">
-          <p className="card-title">Most used language</p>
-          <LanguageBar topLanguages={githubStats.topLanguages} />
-        </div>
-
         {/* --- A. Commits --- */}
         <div className="stat-card commit-stat">
           <h3>{githubStats.totalCommits.toLocaleString()}</h3>
           <p>Commits this year</p>
         </div>
 
-        {/* Lägg till WakaTime stats här när du implementerat funktionen */}
+        {/* --- B. Toppspråk --- */}
+        <div className="stat-card language-stat">
+          <p className="card-title">Most used language</p>
+          <LanguageBar topLanguages={githubStats.topLanguages} />
+        </div>
       </div>
     </>
   );

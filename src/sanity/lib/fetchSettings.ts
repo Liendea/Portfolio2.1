@@ -40,9 +40,10 @@ export async function fetchSettings(): Promise<SiteSettings | null> {
       },
       "footer": footer {
         text,
-       exploreLinks,
-  socialLinks, 
-  contactEmail,
+        exploreLinks,
+        socialLinks, 
+        contactEmail,
+        copyright,
         backgroundColor,
         textColor,
         logo

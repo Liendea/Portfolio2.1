@@ -7,8 +7,6 @@
   width: 100%;
   height: auto;
   margin-block: 8rem;
-  padding: 0;
-  border: 1px solid red;
 
   .stats-container {
     display: flex;
@@ -18,10 +16,11 @@
     .github-stats-container {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-top: 4rem;
-      gap: 2rem;
+      gap: 4rem;
 
-      @include tablet {
+      @include mobile {
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -29,8 +28,7 @@
       }
 
       .stat-card {
-        background-color: $thrid-color;
-        padding: 4rem;
+        background-color: black;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -63,30 +61,31 @@
           }
         }
         .stacked-bar-chart {
-          margin-block: 4rem;
+          margin-block: 2rem;
           display: flex;
           height: 1rem;
-          border-radius: 50%;
         }
       }
 
       // COMMITS
       .commit-stat {
-        width: 30%;
+        width: 40%;
         align-items: center;
 
-        @include tablet {
+        margin-block: 4rem;
+
+        @include mobile {
           width: 100%;
         }
       }
-    } // GITHUB STATS CONTAINER
+    }
 
     // WAKATIME
     .wakatime-figure {
-      background-color: $thrid-color;
+      background-color: black;
       max-width: 60%;
       margin-block: 2rem;
       padding: 4rem;
     }
-  } // STATS CONTAINER
-} // STATS SECTION
+  }
+}
