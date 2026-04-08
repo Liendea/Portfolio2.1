@@ -6,6 +6,7 @@ import { urlFor } from "../../sanity/lib/image";
 import Navbar from "../navbar";
 import { useState } from "react";
 import ExploreButton from "../buttons/ExploreButton";
+import type { SanityColor } from "../../app/(site)/[slug]/page";
 
 type NavLink = {
   title: string;
@@ -16,8 +17,8 @@ type HeaderProps = {
   logoDesktop: SanityImageSource;
   logoMobile: SanityImageSource;
   navigationLinks: NavLink[];
-  backgroundColor?: string;
-  textColor?: string;
+  backgroundColor?: SanityColor;
+  textColor?: SanityColor;
   exploreText?: string;
 };
 
@@ -44,8 +45,8 @@ export default function Header({
   return (
     <header
       style={{
-        backgroundColor: backgroundColor || "",
-        color: textColor || "#000",
+        backgroundColor: backgroundColor?.hex || "",
+        color: textColor?.hex || "#000",
       }}
     >
       <div className="header-container">

@@ -2,6 +2,7 @@
 import { groq } from "next-sanity";
 import { client } from "./client"; // din sanity client
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityColor } from "@/src/app/(site)/[slug]/page";
 
 export type NavLink = { title: string; href: string };
 
@@ -9,16 +10,16 @@ export type HeaderSettings = {
   logoDesktop: SanityImageSource;
   logoMobile: SanityImageSource;
   navigationLinks: NavLink[];
-  backgroundColor?: string;
-  textColor?: string;
+  backgroundColor?: SanityColor;
+  textColor?: SanityColor;
   exploreText?: string;
 };
 
 export type FooterSettings = {
   text?: string;
   links?: NavLink[];
-  backgroundColor?: string;
-  textColor?: string;
+  backgroundColor?: SanityColor;
+  textColor?: SanityColor;
   logo?: SanityImageSource;
 };
 
