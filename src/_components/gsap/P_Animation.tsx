@@ -3,13 +3,15 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
+type AnimatedTextProps = {
+  textToAnimate?: string;
+  color?: string;
+};
+
 export default function AnimatedText({
   textToAnimate,
   color,
-}: {
-  textToAnimate?: string;
-  color: string;
-}) {
+}: AnimatedTextProps) {
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function AnimatedText({
     gsap.fromTo(
       ref.current.children,
       { opacity: 0, x: -10 },
-      { opacity: 1, x: 0, stagger: 0.04 }
+      { opacity: 1, x: 0, stagger: 0.04 },
     );
   }, [textToAnimate]);
 

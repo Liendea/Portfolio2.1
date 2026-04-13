@@ -10,18 +10,37 @@
 }
 
 .icon-Grid {
+  padding: 1rem;
   margin-top: 6rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  justify-items: center;
+  justify-items: flex-start;
 
-  .stack-icon {
-    height: 64px;
-    width: auto;
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @include mobile {
-      height: 48px;
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stack-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+
+    .stack-icon {
+      height: 64px;
+      width: auto;
+      margin-right: 1rem;
+
+      @include mobile {
+        height: 48px;
+        margin-right: 0.5rem;
+      }
     }
   }
 }

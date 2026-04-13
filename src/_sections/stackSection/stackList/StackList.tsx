@@ -5,6 +5,8 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
+import P_Animation from "@/src/_components/gsap/P_Animation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +23,7 @@ export default function TechStackList({ techStackItems }: StackListProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  const [showTitle, setShowTitle] = useState<string | null>(null);
   useEffect(() => {
     if (!wrapperRef.current || !overlayRef.current) return;
 
@@ -73,14 +76,25 @@ export default function TechStackList({ techStackItems }: StackListProps) {
           {techStackItems?.map((stackItem: StackItem) => {
             const imageUrl = urlFor(stackItem.icon).url();
             return (
-              <Image
+              <div
                 key={stackItem.title}
-                className="stack-icon"
-                src={imageUrl}
-                width="170"
-                height="64"
-                alt={stackItem.title}
-              />
+                className="stack-item"
+                onMouseOver={() => setShowTitle(stackItem.title)}
+                onMouseLeave={() => setShowTitle(null)}
+              >
+                <Image
+                  key={stackItem.title}
+                  className="stack-icon"
+                  src={imageUrl}
+                  width="170"
+                  height="64"
+                  alt={stackItem.title}
+                />
+
+                {showTitle === stackItem.title && (
+                  <P_Animation textToAnimate={stackItem.title} color=""/>
+                )}
+              </div>
             );
           })}
         </div>
