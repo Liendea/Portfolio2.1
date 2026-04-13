@@ -8,10 +8,21 @@
 .project-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: $spacing-xxlarge; // mellanrum mellan projekten
-  padding: $spacing-xxlarge;
+  gap: $spacing-xlarge; // mellanrum mellan projekten
+  padding: $spacing-large;
   width: 100%;
   justify-content: center;
+
+  @include desktop {
+    gap: $spacing-xlarge;
+    padding: $spacing-small;
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-xlarge;
+    padding: $spacing-small;
+  }
 
   .project-card {
     cursor: pointer;
@@ -26,16 +37,17 @@
       position: absolute;
       top: 15px;
       left: 20px;
-      background-color: white;
+      background-color: rgb(255, 255, 255);
       color: black;
       font-size: $fs-mobile-xsmall;
-      padding: $spacing-small;
+      padding: $spacing-xsmall;
     }
 
     .project-img-wrapper {
       width: 100%;
-      aspect-ratio: 4 / 3; // eller t.ex. 4 / 3 — välj det som passar dina bilder
+      aspect-ratio: 4 / 3;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.121);
 
       .project-img {
         width: 100%;
