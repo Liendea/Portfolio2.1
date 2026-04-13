@@ -27,8 +27,8 @@ export default function ScrollCarousel({ projectItems }: ScrollCarouselProps) {
             title={item.title}
             description={item.description}
             imageObject={item.image}
-            width={700}
-            height={575}
+            width={3000}
+            height={2250}
           />
         </div>
       ))}

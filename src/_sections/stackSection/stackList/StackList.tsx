@@ -40,7 +40,7 @@ export default function TechStackList({ techStackItems }: StackListProps) {
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: "top 60%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       );

@@ -21,9 +21,24 @@
 // =========================
 .footer-content {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-
   flex-wrap: wrap;
+  gap: 6rem;
+  margin-bottom: 4rem;
+
+  @include desktop {
+    flex-direction: column;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  @include mobile {
+    flex-direction: column;
+    gap: 3rem;
+  }
 }
 
 // =========================
@@ -33,14 +48,12 @@
 .footer-socials,
 .footer-contact {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 200px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25%;
 
-  @include mobile {
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+  @include desktop {
+    width: 100%;
   }
 
   p {
@@ -57,45 +70,27 @@
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-}
+  gap: 1rem;
+  margin-top: 0.3rem;
 
-.footer-link {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: $text-color-dark;
-  text-decoration: none;
-  transition: color 0.3s ease;
-
-  @include mobile {
-    font-size: 1rem;
-    text-align: right;
-  }
-
-  &:hover {
-    color: $thrid-color;
-  }
-}
-
-// =========================
-// CONTACT SECTION
-// =========================
-.footer-contact {
-  .footer-email {
-    font-size: 1.3rem;
-    font-weight: 600;
+  .footer-link {
+    font-size: 1.2rem;
+    font-weight: 500;
     color: $text-color-dark;
+    text-decoration: none;
     transition: color 0.3s ease;
-    position: relative;
 
     @include mobile {
       font-size: 1rem;
+      text-align: right;
     }
+
     &:hover {
       color: $thrid-color;
     }
   }
 }
+
 // =========================
 // LOGO + COPYRIGHT
 // =========================
@@ -113,10 +108,10 @@
     width: 100%;
     height: auto;
   }
+}
 
-  .footer-copy {
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    text-align: center;
-  }
+.footer-copy {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  text-align: left;
 }

@@ -29,7 +29,7 @@ export default function ProjectSection({ projectBlock }: projectSectionProps) {
       <div className="desktop-only">
         <ProjectGrid projectItems={projectBlock.projectItems} />
       </div>
-      <div className="mobile-only">
+      <div className="tablet-only">
         <ScrollCarousel projectItems={projectBlock.projectItems} />
       </div>
     </section>

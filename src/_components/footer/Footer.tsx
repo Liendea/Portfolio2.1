@@ -72,9 +72,11 @@ export default function Footer({
         {pathname !== "/contact" && contactEmail && (
           <div className="footer-contact">
             <p>SAY HELLO</p>
-            <a href={`mailto:${contactEmail}`} className="footer-email">
-              Send Email
-            </a>
+            <div className="footer-links">
+              <a href={`mailto:${contactEmail}`} className="footer-link">
+                Send Email
+              </a>
+            </div>
           </div>
         )}
       </div>
@@ -88,12 +90,13 @@ export default function Footer({
             height={500}
             priority
           />
-          {copyright && (
-            <p className="footer-copy" style={{ color: textColor?.hex }}>
-              Copyright:{copyright}
-            </p>
-          )}
         </div>
+      )}
+
+      {copyright && (
+        <p className="footer-copy" style={{ color: textColor?.hex }}>
+          Copyright:{copyright}
+        </p>
       )}
     </footer>
   );

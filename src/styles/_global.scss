@@ -78,6 +78,18 @@ body.no-scroll {
   @include mobile {
     display: none;
   }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.tablet-only {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
 }
 
 .mobile-only {

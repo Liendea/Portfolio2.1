@@ -1,13 +1,11 @@
 import { getGithubStats, GithubStats } from "../../../lib/github-api";
 import LanguageBar from "../topLanguage/LanguageBar";
-// import Image from "next/image"; // För att visa ikoner senare
 
 // Detta är konfigurationsdatan som kommer direkt från Sanity via GROQ
 type statsBlockType = {
   _type: "statsBlock";
   sectionTitle: string;
   githubUsername: string;
-  wakatimeUsername?: string; // Valfri
 };
 
 type StatsRendererProps = {
@@ -21,7 +19,7 @@ export default async function GithubStatsRenderer({
   const { githubUsername, sectionTitle } = statsBlock;
   console.log(sectionTitle);
   // 2. Anropa den server-side funktionen
-  // Detta anrop använder din hemliga GITHUB_TOKEN säkert på servern.
+  // Detta anrop använder GITHUB_TOKEN säkert på servern.
   const githubStats: GithubStats | null = await getGithubStats(githubUsername);
 
   // 3. Hantera fel vid datahämtning
@@ -29,7 +27,7 @@ export default async function GithubStatsRenderer({
     return (
       <>
         <h4>{sectionTitle}</h4>
-        <p className="error-message">Coming soon</p>
+        <p className="error-message">Could not fetch data</p>
       </>
     );
   }
@@ -37,8 +35,6 @@ export default async function GithubStatsRenderer({
   // 4. Rendera det dynamiska innehållet
   return (
     <>
-      <h4 className="section-title">{sectionTitle}</h4>
-
       <div className="github-stats-container">
         {/* --- A. Commits --- */}
         <div className="stat-card commit-stat">
@@ -48,7 +44,7 @@ export default async function GithubStatsRenderer({
 
         {/* --- B. Toppspråk --- */}
         <div className="stat-card language-stat">
-          <p className="card-title">Most used language</p>
+          <p className="card-title">Most used languages</p>
           <LanguageBar topLanguages={githubStats.topLanguages} />
         </div>
       </div>

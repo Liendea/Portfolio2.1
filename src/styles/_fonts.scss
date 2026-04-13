@@ -3,6 +3,11 @@
 $font-primary: var(--font-schibsted-grotesk), sans-serif;
 $font-mono: var(--font-geist-mono), monospace;
 
+// FontWeight
+$thin: 200;
+$regular: 400;
+$bold: 700;
+
 //FONTSIZE DESKTOP
 $fs-desktop-small: 2rem; // 32px
 $fs-desktop-medium: 4rem; // 64px
@@ -44,7 +49,7 @@ h2,
 }
 
 h3 {
-  @include responsive-font($fs-mobile-medium, $fs-desktop-large);
+  @include responsive-font($fs-mobile-xlarge, $fs-desktop-large);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 120%;

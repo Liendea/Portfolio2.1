@@ -8,15 +8,15 @@ type LanguageBarProps = {
   topLanguages: TopLanguage[];
 };
 
-const getColor = (index: number): string => {
-  const colors = [
-    "#007ACC", // Blå (t.ex. Typescript)
-    "#F7DF1E", // Gul (t.ex. JavaScript)
-    "#4497dbff", // Annan blå (t.ex. Python)
-    "#DE4B35", // Röd (t.ex. HTML/CSS)
-    "#ea29e7ff", // Lila (t.ex. Vue/Sass)
+const getColorGradient = (index: number) => {
+  const gradients = [
+    { start: "#6fc0f2", end: "#00b5f1" }, // Blå (Ljus till mörk)
+    { start: "#f6eeb1", end: "#d4bf13" }, // Gul (Ljus till mörk)
+    { start: "#60b5ff", end: "#0e4068" }, // Ljusblå (Ljus till mörk)
+    { start: "#f49f94", end: "#f46812" }, // Röd/Orange (Ljus till mörk)
+    { start: "#f0bbf1", end: "#e328ea" }, // Lila (Ljus till mörk)
   ];
-  return colors[index % colors.length];
+  return gradients[index % gradients.length];
 };
 
 export default function LanguageBar({ topLanguages }: LanguageBarProps) {
@@ -26,37 +26,33 @@ export default function LanguageBar({ topLanguages }: LanguageBarProps) {
 
   return (
     <>
-      {/* 1. SJÄLVA STACKADE STAPELN */}
       <div className="stacked-bar-chart">
-        {topLanguages.map((language, index) => (
-          <div
-            key={language.name}
-            className="bar-segment"
-            style={{
-              // Bredden sätts av procenten
-              width: `${language.percentage}%`,
-              // Färgen sätts av vår getColor funktion
-              backgroundColor: getColor(index),
-            }}
-            // Accessibility: kan visa info vid hover
-            title={`${language.name}: ${language.percentage.toFixed(1)}%`}
-          />
-        ))}
+        {topLanguages.map((language, index) => {
+          const { start, end } = getColorGradient(index);
+          return (
+            <div
+              key={language.name}
+              className="bar-segment"
+              style={{
+                width: `${language.percentage}%`,
+                backgroundImage: `linear-gradient(90deg, ${start} 0%, ${end} 100%)`,
+              }}
+              title={`${language.name}: ${language.percentage.toFixed(1)}%`}
+            />
+          );
+        })}
       </div>
 
-      {/* 2. Visar legenden (språk & procent) ovanför stapeln */}
       <div className="language-legend">
-        {topLanguages.map((language, index) => (
-          <div key={language.name} className="legend-item">
-            <span
-              className="color-dot"
-              style={{
-                backgroundColor: getColor(index),
-              }}
-            />
-            {language.name} ({language.percentage.toFixed(1)}%)
-          </div>
-        ))}
+        {topLanguages.map((language, index) => {
+          const { start } = getColorGradient(index);
+          return (
+            <div key={language.name} className="legend-item">
+              <span className="color-dot" style={{ backgroundColor: start }} />
+              {language.name} ({language.percentage.toFixed(1)}%)
+            </div>
+          );
+        })}
       </div>
     </>
   );

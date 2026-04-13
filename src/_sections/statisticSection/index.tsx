@@ -14,9 +14,7 @@ type statsProps = {
 export default function StatisticSection({ statsBlock }: statsProps) {
   return (
     <section className="stats-section">
-      <div className="stats-container">
-        <GithubStatsRenderer statsBlock={statsBlock} />
-      </div>
+      <GithubStatsRenderer statsBlock={statsBlock} />
     </section>
   );
 }
