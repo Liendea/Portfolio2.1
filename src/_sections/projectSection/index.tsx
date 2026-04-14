@@ -1,4 +1,4 @@
-import ScrollCarousel from "./carousel/ScrollCarusel";
+//import ScrollCarousel from "./carousel/ScrollCarusel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import ProjectGrid from "./projectGrid/projectGrid";
 

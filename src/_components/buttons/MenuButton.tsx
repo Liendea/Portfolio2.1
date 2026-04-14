@@ -11,11 +11,11 @@ export default function ExploreButton({
   onExploreClick,
 }: exploreButtonProps) {
   return (
-    <button onClick={onExploreClick} className="explore-button">
+    <button onClick={onExploreClick} className="menu-button">
       {buttonText}
       <Image
         src={hamburger}
-        className="explore-arrow"
+        className="hamburger-icon"
         alt="menu icon"
         width={40}
         height={40}

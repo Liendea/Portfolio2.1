@@ -67,12 +67,7 @@ export default function Header({
           />
         </Link>
 
-        <div className="button-wrapper">
-          <MenuButton
-            buttonText={exploreText}
-            onExploreClick={onExploreClick}
-          />
-        </div>
+        <MenuButton buttonText={exploreText} onExploreClick={onExploreClick} />
 
         {showNavbar && (
           <Navbar

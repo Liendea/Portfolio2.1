@@ -33,50 +33,27 @@ header {
       }
     }
 
-    .button-wrapper {
-      width: 100%;
+    .menu-button {
+      cursor: pointer;
       display: flex;
       justify-content: flex-end;
-      opacity: 1;
-      transition: opacity 1s ease;
+      background-color: transparent;
+      width: 30%;
+      border: none;
+    }
+    .hamburger-icon {
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+      position: relative;
 
-      .explore-button {
-        background-color: transparent;
-        color: $text-color-light;
-        font-weight: 300;
-        font-size: $fs-mobile-small;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        text-transform: uppercase;
-
-        @include mobile {
-          font-size: $fs-mobile-xsmall;
-        }
-      }
-      .explore-arrow {
-        margin-left: 1rem;
-        transition: transform 0.3s ease;
-        position: relative;
-
-        @include mobile {
-          width: 30px;
-          height: 30px;
-        }
-      }
-
-      .explore-button:hover {
-        color: $text-color-white;
-      }
-      .explore-button:hover .explore-arrow {
-        animation: glitch-flicker 1s infinite;
+      @include mobile {
+        width: 30px;
+        height: 30px;
       }
     }
-    .button-wrapper.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
+
+    .menu-button:hover .hamburger-icon {
+      animation: glitch-flicker 1s infinite;
     }
   }
 }
