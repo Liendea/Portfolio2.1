@@ -76,7 +76,7 @@ export default function Navbar({
                   width="20"
                   height="20"
                 />
-              </span>{" "}
+              </span>
               {link.title}
             </Link>
           </div>

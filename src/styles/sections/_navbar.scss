@@ -22,8 +22,6 @@
 
   .navlink {
     animation: glitch-flicker 0.4s ease-out;
-  }
-  a {
     font-size: $fs-mobile-small;
     font-family: $font-mono;
     text-decoration: none;
@@ -35,7 +33,7 @@
     }
   }
 
-  a:hover {
+  .navlink:hover {
     color: $text-color-white;
   }
 }
