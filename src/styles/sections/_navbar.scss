@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: flex-end;
   width: 100vh;
-  gap: 3rem;
+  gap: 4rem;
   position: absolute;
   right: 3rem;
   z-index: 10000;
@@ -25,6 +25,7 @@
     font-family: $font-mono;
     text-decoration: none;
     color: $text-color-light;
+    font-weight: 400;
 
     @include mobile {
       font-size: $fs-mobile-xsmall;
