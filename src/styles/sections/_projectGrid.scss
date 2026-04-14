@@ -71,6 +71,10 @@
 
       p {
         font-size: $fs-mobile-xsmall;
+
+        @include mobile {
+          font-size: $fs-mobile-xxsmall;
+        }
       }
     }
   }
