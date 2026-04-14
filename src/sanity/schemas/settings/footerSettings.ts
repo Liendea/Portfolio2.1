@@ -16,18 +16,9 @@ export default defineType({
       },
     }),
     defineField({
-      name: "exploreLinks",
-      title: "Explore Links",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            { name: "title", title: "Title", type: "string" },
-            { name: "href", title: "URL", type: "string" },
-          ],
-        },
-      ],
+      name: "contactEmail",
+      title: "Contact Email",
+      type: "string",
     }),
     defineField({
       name: "socialLinks",
@@ -44,9 +35,18 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "contactEmail",
-      title: "Contact Email",
-      type: "string",
+      name: "exploreLinks",
+      title: "Explore Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "title", title: "Title", type: "string" },
+            { name: "href", title: "URL", type: "string" },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "logo",

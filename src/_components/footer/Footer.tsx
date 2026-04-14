@@ -41,16 +41,16 @@ export default function Footer({
       style={{ backgroundColor: backgroundColor?.hex }}
     >
       <div className="footer-content" style={{ color: textColor?.hex }}>
-        <div className="footer-explore">
-          <p>EXPLORE</p>
-          <div className="footer-links">
-            {exploreLinks.map((link, i) => (
-              <a key={i} href={link.href} className="footer-link">
-                {link.title}
+        {pathname !== "/contact" && contactEmail && (
+          <div className="footer-contact">
+            <p>SAY HELLO</p>
+            <div className="footer-links">
+              <a href={`mailto:${contactEmail}`} className="footer-link">
+                Send Email
               </a>
-            ))}
+            </div>
           </div>
-        </div>
+        )}
         {pathname !== "/contact" && socialLinks.length > 0 && (
           <div className="footer-socials">
             <p>CONNECT</p>
@@ -69,16 +69,16 @@ export default function Footer({
             </div>
           </div>
         )}
-        {pathname !== "/contact" && contactEmail && (
-          <div className="footer-contact">
-            <p>SAY HELLO</p>
-            <div className="footer-links">
-              <a href={`mailto:${contactEmail}`} className="footer-link">
-                Send Email
+        <div className="footer-explore">
+          <p>EXPLORE</p>
+          <div className="footer-links">
+            {exploreLinks.map((link, i) => (
+              <a key={i} href={link.href} className="footer-link">
+                {link.title}
               </a>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
       {logo && (
         <div className="footer-logo-container">

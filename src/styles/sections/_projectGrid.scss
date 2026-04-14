@@ -41,6 +41,11 @@
       color: black;
       font-size: $fs-mobile-xsmall;
       padding: $spacing-xsmall;
+
+      @include mobile {
+        font-size: $fs-mobile-xxsmall;
+        padding: $spacing-xsmall;
+      }
     }
 
     .project-img-wrapper {

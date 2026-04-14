@@ -30,7 +30,8 @@ export default function ProjectSection({ projectBlock }: projectSectionProps) {
         <ProjectGrid projectItems={projectBlock.projectItems} />
       </div>
       <div className="tablet-only">
-        <ScrollCarousel projectItems={projectBlock.projectItems} />
+        <ProjectGrid projectItems={projectBlock.projectItems} />
+        {/* <ScrollCarousel projectItems={projectBlock.projectItems} /> */}
       </div>
     </section>
   );

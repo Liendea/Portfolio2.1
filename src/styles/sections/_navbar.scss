@@ -36,6 +36,9 @@
   }
 }
 
+.navlink {
+  animation: glitch-flicker 0.4s ease-out;
+}
 .navigation.hidden {
   display: none;
 }

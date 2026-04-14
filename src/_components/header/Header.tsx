@@ -5,7 +5,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "../../sanity/lib/image";
 import Navbar from "../navbar";
 import { useState } from "react";
-import ExploreButton from "../buttons/ExploreButton";
+import MenuButton from "../buttons/MenuButton";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
 
 type NavLink = {
@@ -68,7 +68,7 @@ export default function Header({
         </Link>
 
         <div className="button-wrapper">
-          <ExploreButton
+          <MenuButton
             buttonText={exploreText}
             onExploreClick={onExploreClick}
           />

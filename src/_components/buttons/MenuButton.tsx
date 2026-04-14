@@ -1,5 +1,5 @@
 import Image from "next/image";
-import arrow from "../../../public/icons/Arrows_light.svg";
+import hamburger from "../../../public/icons/Hamburger.svg";
 
 type exploreButtonProps = {
   buttonText: string;
@@ -14,9 +14,9 @@ export default function ExploreButton({
     <button onClick={onExploreClick} className="explore-button">
       {buttonText}
       <Image
-        src={arrow}
+        src={hamburger}
         className="explore-arrow"
-        alt="arrow"
+        alt="menu icon"
         width={40}
         height={40}
       />
