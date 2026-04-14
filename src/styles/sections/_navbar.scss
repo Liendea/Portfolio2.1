@@ -20,6 +20,9 @@
     top: 110px;
   }
 
+  .navlink {
+    animation: glitch-flicker 0.4s ease-out;
+  }
   a {
     font-size: $fs-mobile-small;
     font-family: $font-mono;
@@ -37,9 +40,6 @@
   }
 }
 
-.navlink {
-  animation: glitch-flicker 0.4s ease-out;
-}
 .navigation.hidden {
   display: none;
 }

@@ -28,6 +28,12 @@
       font-weight: $bold;
       text-transform: uppercase;
 
+      @include desktop {
+        font-size: $fs-desktop-xlarge;
+      }
+      @include tablet {
+        font-size: $fs-desktop-large;
+      }
       @include mobile {
         font-size: $fs-mobile-xlarge;
       }
