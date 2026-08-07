@@ -18,12 +18,6 @@ export default defineType({
       description: "Används för att hämta commit- och repostatistik.",
       validation: (Rule) => Rule.required(), // Denna rubrik är viktig
     }),
-    defineField({
-      name: "wakatimeUsername",
-      title: "Wakatime Username",
-      type: "string",
-      description: "Används för att hämta kodningstid (WakaTime).",
-    }),
   ],
   // Valfritt: Lägg till en preview för att se rubriken i Page Builder-listan
   preview: {
@@ -33,7 +27,7 @@ export default defineType({
     prepare(selection) {
       return {
         title: selection.title,
-        subtitle: "Statistik (GitHub/WakaTime)",
+        subtitle: "Statistik (GitHub)",
       };
     },
   },

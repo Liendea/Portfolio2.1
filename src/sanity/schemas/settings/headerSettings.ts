@@ -19,12 +19,6 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
-      name: "exploreText",
-      title: "Explore Button Text",
-      type: "string",
-      initialValue: "EXPLORE",
-    }),
-    defineField({
       name: "navigationLinks",
       title: "Navigation Links",
       type: "array",

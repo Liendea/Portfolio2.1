@@ -1,15 +1,15 @@
 import Image from "next/image";
 import hamburger from "../../../public/icons/Hamburger.svg";
 
-type exploreButtonProps = {
+type MenuButtonProps = {
   buttonText: string;
   onExploreClick: () => void;
 };
 
-export default function ExploreButton({
+export default function MenuButton({
   buttonText,
   onExploreClick,
-}: exploreButtonProps) {
+}: MenuButtonProps) {
   return (
     <button onClick={onExploreClick} className="menu-button">
       {buttonText}

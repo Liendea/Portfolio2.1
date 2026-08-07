@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk, Geist_Mono } from "next/font/google";
-import "../styles/main.scss";
+import "@/src/styles/main.scss";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",

@@ -15,7 +15,6 @@
   }
 
   .hero-text-container {
-    padding: $spacing-medium;
     line-height: 0.9;
     display: block;
 
@@ -24,7 +23,7 @@
     }
 
     .hero-text {
-      font-size: $fs-desktop-xxlarge;
+      font-size: $fs-desktop-xlarge;
       font-weight: $bold;
       text-transform: uppercase;
 
@@ -44,7 +43,8 @@
     }
     .animated-text {
       margin-top: $spacing-small;
-      padding-left: $spacing-small;
+      padding-left: $spacing-xsmall;
+      font-size: $fs-mobile-xsmall;
 
       @include mobile {
         width: 50%;
@@ -58,7 +58,7 @@
 /* Själva textbytet med en snabb fade-in/flicker */
 .role-animation {
   display: inline-block;
-  animation: glitch-flicker 0.4s ease-out;
+  //animation: glitch-flicker 0.4s ease-out;
 }
 
 @keyframes glitch-flicker {

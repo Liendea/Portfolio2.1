@@ -6,8 +6,7 @@
 .stats-section {
   width: 100%;
   height: auto;
-  margin-top: 4rem;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 
   // GITHUB STATS
   .github-stats-container {
@@ -15,68 +14,79 @@
     flex-direction: column;
 
     .stat-card {
-      background-color: black;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
+    .card-title {
+      font-weight: $regular;
+      text-transform: uppercase;
+    }
 
-    // SPRÅK BAR
+    // SPRÅK BARS
     .language-stat {
       width: 100%;
-      text-transform: uppercase;
 
-      .card-title {
-        font-weight: $regular;
-      }
-      .language-legend {
-        display: flex;
-        gap: 2rem;
-        flex-wrap: wrap;
-
-        .legend-item {
-          width: auto;
-          display: flex;
-          gap: 1rem;
-          align-items: center;
-
-          .color-dot {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 100%;
-          }
-        }
-      }
-      .stacked-bar-chart {
+      .language-bars {
         margin-block: 2rem;
         display: flex;
         flex-direction: column;
-        height: auto;
-        width: 220%;
-        gap: 1rem;
+        gap: 2.5rem;
+        padding-block: 2rem;
 
-        .bar-segment {
-          border-radius: 0 0px 70px 0;
-          height: 2rem;
+        .language-bar-row {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+
+          .language-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            .language-name {
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              font-size: $fs-desktop-xsmall;
+              color: $text-color-white;
+            }
+
+            .language-percentage {
+              font-size: $fs-desktop-small;
+              font-weight: $thin;
+              line-height: 1;
+            }
+          }
         }
       }
     }
 
     // COMMITS
     .commit-stat {
-      margin-bottom: 8rem;
-      font-size: 4rem;
+      margin: 4rem 0;
+      font-size: 2rem;
+
       @include mobile {
-        font-size: 4rem;
+        font-size: 2rem;
       }
     }
   }
+}
 
-  // WAKATIME
-  .wakatime-figure {
-    background-color: black;
-    max-width: 60%;
-    margin-block: 2rem;
-    padding: 4rem;
-  }
+// PROGRESS BAR (används av AnimatedProgressBar-komponenten)
+.progress-wrapper {
+  width: 100%;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
 }

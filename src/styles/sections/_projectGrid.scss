@@ -7,9 +7,9 @@
 
 .project-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-xlarge; // mellanrum mellan projekten
-  padding: $spacing-large;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $spacing-xxlarge; // mellanrum mellan projekten
+
   width: 100%;
   justify-content: center;
 
@@ -19,6 +19,12 @@
   }
 
   @include tablet {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xlarge;
+    padding: $spacing-small;
+  }
+
+  @include mobile {
     grid-template-columns: 1fr;
     gap: $spacing-xlarge;
     padding: $spacing-small;
@@ -27,11 +33,6 @@
   .project-card {
     cursor: pointer;
     position: relative;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
 
     .project-title {
       position: absolute;
@@ -49,6 +50,7 @@
     }
 
     .project-img-wrapper {
+      position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
@@ -57,8 +59,30 @@
       .project-img {
         width: 100%;
         height: 100%;
-        object-fit: fit; // fyller ytan utan att sträcka ut bilden
+        object-fit: cover;
         object-position: center;
+        transition: transform 0.3s ease;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: hsl(0, 0%, 70%);
+        mix-blend-mode: saturation;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+    }
+
+    &:hover {
+      .project-img {
+        transform: scale(1.08);
+      }
+
+      .project-img-wrapper::after {
+        opacity: 0;
       }
     }
 
@@ -67,7 +91,7 @@
       display: flex;
       flex-direction: column;
       padding: 4px;
-      color: $text-color-light;
+      color: $text-color-white;
 
       p {
         font-size: $fs-mobile-xsmall;
@@ -75,6 +99,22 @@
         @include mobile {
           font-size: $fs-mobile-xxsmall;
         }
+      }
+    }
+  }
+
+  .project-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    color: $text-color-white;
+
+    p {
+      font-size: $fs-mobile-xsmall;
+
+      @include mobile {
+        font-size: $fs-mobile-xxsmall;
       }
     }
   }

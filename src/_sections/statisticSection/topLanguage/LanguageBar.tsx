@@ -1,3 +1,9 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import AnimatedProgressBar from "@/src/_components/animatedProgressBar/AnimatedProgressBar";
+import AnimatedNumber from "@/src/_components/animatedNumber/AnimatedNumber";
+
 type TopLanguage = {
   name: string;
   size: number;
@@ -20,40 +26,55 @@ const getColorGradient = (index: number) => {
 };
 
 export default function LanguageBar({ topLanguages }: LanguageBarProps) {
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); // ska bara triggas en gång
+        }
+      },
+      { threshold: 0.8 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   if (!topLanguages || topLanguages.length === 0) {
     return null;
   }
 
   return (
-    <>
-      <div className="stacked-bar-chart">
-        {topLanguages.map((language, index) => {
-          const { start, end } = getColorGradient(index);
-          return (
-            <div
-              key={language.name}
-              className="bar-segment"
-              style={{
-                width: `${language.percentage}%`,
-                backgroundImage: `linear-gradient(90deg, ${start} 0%, ${end} 100%)`,
-              }}
-              title={`${language.name}: ${language.percentage.toFixed(1)}%`}
-            />
-          );
-        })}
-      </div>
-
-      <div className="language-legend">
-        {topLanguages.map((language, index) => {
-          const { start } = getColorGradient(index);
-          return (
-            <div key={language.name} className="legend-item">
-              <span className="color-dot" style={{ backgroundColor: start }} />
-              {language.name} ({language.percentage.toFixed(1)}%)
+    <div className="language-bars" ref={containerRef}>
+      {topLanguages.map((language, index) => {
+        const { start, end } = getColorGradient(index);
+        return (
+          <div key={language.name} className="language-bar-row">
+            <div className="language-bar-header">
+              <span className="language-name">{language.name}</span>
+              <span className="language-percentage">
+                <AnimatedNumber
+                  value={Math.round(language.percentage)}
+                  animate={inView}
+                  suffix="%"
+                />
+              </span>
             </div>
-          );
-        })}
-      </div>
-    </>
+            <AnimatedProgressBar
+              percentage={language.percentage}
+              fillColor={`linear-gradient(90deg, ${start} 0%, ${end} 100%)`}
+              animate={inView}
+            />
+          </div>
+        );
+      })}
+    </div>
   );
 }

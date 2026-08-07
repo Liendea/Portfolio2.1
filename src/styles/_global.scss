@@ -16,7 +16,7 @@ body {
 body {
   font-family: $font-primary;
   background-color: black;
-  color: $text-color-light;
+  color: $text-color-white;
 }
 
 body.no-scroll {
@@ -43,32 +43,10 @@ body.no-scroll {
   overflow-x: hidden;
 
   section {
-    padding: 3rem;
+    padding: 2rem 3rem;
 
     @include mobile {
       padding: 1rem;
-    }
-  }
-
-  // INTRO SECTION [TITEL OCH INGRESSTEXT]
-  .intro-section {
-    margin-bottom: 3rem;
-    .page-title {
-      text-transform: uppercase;
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
-    .intro-paragraphs {
-      margin-top: $spacing-xxlarge;
-      width: 60%;
-      font-family: $font-mono;
-      padding-top: $spacing-xxlarge;
-      @include mobile {
-        width: 100%;
-        margin-top: $spacing-xxlarge;
-        padding-top: $spacing-xxlarge;
-      }
     }
   }
 }

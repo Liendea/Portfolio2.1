@@ -1,6 +1,7 @@
 //import ScrollCarousel from "./carousel/ScrollCarusel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import ProjectGrid from "./projectGrid/projectGrid";
+import ProjectList from "./projectList/ProjectList";
 
 export type projectBlockType = {
   _type: "projectBlock";
@@ -11,7 +12,9 @@ export type projectBlockType = {
 export type projectItem = {
   _type: "projectItem";
   title: string;
-  description: string;
+  jobDescription: string;
+  projectDescription: string;
+  stack: string;
   image: SanityImageSource;
   url: string;
 };
@@ -25,14 +28,8 @@ type projectSectionProps = {
 
 export default function ProjectSection({ projectBlock }: projectSectionProps) {
   return (
-    <section className="project-section">
-      <div className="desktop-only">
-        <ProjectGrid projectItems={projectBlock.projectItems} />
-      </div>
-      <div className="tablet-only">
-        <ProjectGrid projectItems={projectBlock.projectItems} />
-        {/* <ScrollCarousel projectItems={projectBlock.projectItems} /> */}
-      </div>
+    <section className="showcase_section">
+      <ProjectList projectItems={projectBlock.projectItems} />
     </section>
   );
 }

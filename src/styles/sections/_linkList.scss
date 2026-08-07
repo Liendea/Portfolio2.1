@@ -1,0 +1,47 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+.link-list-section {
+  .link-list-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    height: auto;
+    color: $text-color-white;
+
+    a {
+      color: $text-color-white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $text-color-light;
+    }
+
+    .link-list-title {
+      text-transform: uppercase;
+      width: 6rem;
+    }
+
+    .link-list-items {
+      display: flex;
+      flex-direction: column;
+
+      .link-list-item {
+        margin-bottom: 1rem;
+      }
+
+      .link-list-item:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include mobile {
+    .link-list-block {
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+  }
+}

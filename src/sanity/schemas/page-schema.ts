@@ -29,7 +29,7 @@ export default defineType({
         { type: "textBlock" },
         { type: "techStackBlock" },
         { type: "statsBlock" },
-        { type: "contactBlock" },
+        { type: "linkListBlock" },
         { type: "projectBlock" },
         { type: "heroBlock" },
         { type: "spacer" },

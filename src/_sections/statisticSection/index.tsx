@@ -4,7 +4,6 @@ type statsBlockType = {
   _type: "statsBlock";
   sectionTitle: string;
   githubUsername: string;
-  wakatimeUsername?: string; // Valfri
 };
 
 type statsProps = {

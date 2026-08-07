@@ -1,0 +1,128 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+/* ================= SHOWCASE ================ */
+/* ================================================*/
+
+.showcase_section {
+  .showcase_list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    font-family: $font-primary;
+
+    .case-item:first-child {
+      border-top: 1px solid white;
+    }
+    .case-item {
+      cursor: pointer;
+      width: 100%;
+      border-bottom: 1px solid white;
+      padding: 1rem 0;
+
+      .case-item__flex-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      // Title
+      .case-item__title {
+        color: white;
+        font-size: $fs-desktop-medium;
+        font-family: $font-primary;
+        font-weight: 500;
+        line-height: 0.9;
+      }
+
+      // description
+      .case-item__text {
+        color: $text-color-white;
+        text-align: right;
+      }
+
+      .case-item__flex-row.case-item__flex-row--hovered {
+        display: flex;
+        overflow: hidden;
+        // Sträck flex-barnen till samma höjd som .case-item__img-wrapper
+        // (som har en verklig höjd via aspect-ratio) - basklassen ovan sätter
+        // align-items: flex-start, vilket annars hindrar .case-item__flex-col
+        // från att få någon höjd att fördela space-between över.
+        align-items: stretch;
+
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+        transition:
+          opacity 0.5s ease,
+          max-height 0.5s ease,
+          margin-bottom 0.5s ease;
+
+        // Bild
+        .case-item__img-wrapper {
+          width: 40%;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+
+          .case-item__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+
+      // KOLUMN: Stack + beskrivning + länk till projektet
+      .case-item__flex-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+
+        width: 50%;
+
+        // Stack
+        .case-item__stack {
+          color: $text-color-white;
+          text-align: right;
+          margin-top: 1rem;
+        }
+
+        // Beskrivning av projektet
+        .case-item__projectDescription {
+          color: $text-color-white;
+          text-align: left;
+          width: 90%;
+        }
+
+        // Länk till projektet
+        .case-item__link {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: $text-color-white;
+          font-size: $fs-mobile-medium;
+          text-decoration: underline;
+
+          .case-item__link-text {
+            color: $text-color-white;
+            font-size: $fs-mobile-medium;
+          }
+        }
+      }
+      &:hover .case-item__flex-row.case-item__flex-row--hovered {
+        // height togs bort - den var inte med i transition-listan och
+        // hoppade därför direkt till 400px oanimerat, vilket gjorde att
+        // max-height-transitionen aldrig fick effekt (det var glitchen).
+        opacity: 1;
+        max-height: 1000px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

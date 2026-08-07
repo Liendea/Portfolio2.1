@@ -5,11 +5,10 @@ import Hero from "@/src/_sections/heroSection/Index";
 import ProjectSection from "@/src/_sections/projectSection/index";
 import StatisticSection from "@/src/_sections/statisticSection/index";
 import TechStackSection from "@/src/_sections/stackSection/index";
-import ContactSection from "@/src/_sections/contactSection";
+import LinkListBlock from "@/src/_sections/linkListSection";
 import IntroSection from "@/src/_sections/introSection/IntroSection";
-import AboutParagraph from "@/src/_components/aboutParagraph";
-import Spacer from "@/src/_components/spacer";
-import Divider from "@/src/_components/divider";
+import Spacer from "@/src/_components/spacer/Spacer";
+import Divider from "@/src/_components/divider/Divider";
 
 export type SanityColor = {
   hex: string;
@@ -39,14 +38,18 @@ type PageBuilderSection =
       ingressColor: SanityColor;
     }
   | { _type: "projectBlock"; title: string; projectItems: projectItem[] }
-  | { _type: "techStackBlock"; title: string; techStackItems: techStackItem[] }
+  | {
+      _type: "techStackBlock";
+      title: string;
+      techStackItems: techStackItem[];
+      backgroundColor?: SanityColor;
+    }
   | {
       _type: "statsBlock";
       sectionTitle: string;
       githubUsername: string;
-      wakatimeUsername?: string;
     }
-  | { _type: "contactBlock"; title: string; contactItems: contactItem[] }
+  | { _type: "linkListBlock"; title: string; links: LinkItem[] }
   | { _type: "spacer"; size: "small" | "medium" | "large" }
   | {
       _type: "divider";
@@ -54,7 +57,7 @@ type PageBuilderSection =
       padding: "none" | "small" | "large";
     };
 
-export type contactItem = {
+export type LinkItem = {
   displayText: string;
   url?: string;
 };
@@ -67,7 +70,9 @@ export type techStackItem = {
 export type projectItem = {
   _type: "projectItem";
   title: string;
-  description: string;
+  jobDescription: string;
+  projectDescription: string;
+  stack: string;
   image: SanityImageSource;
   url: string;
 };
@@ -102,24 +107,27 @@ export default async function Page(props: {
       subheadingColor,
     },
     _type == "textBlock" => { pageTitle, ingress, pageTitleColor, ingressColor },
-    _type == "projectBlock" => { 
-      title, 
-      "projectItems": projects[] { 
-        title, 
-        description, 
-        image, 
+    _type == "projectBlock" => {
+      title,
+      "projectItems": projects[] {
+        title,
+        jobDescription,
+        projectDescription,
+        stack,
+        image,
         url
       }
     },
-    _type == "techStackBlock" => { 
-      title, 
-      "techStackItems": techStackItems[]{ 
-        title, 
-        icon, 
-      } 
+    _type == "techStackBlock" => {
+      "title": techStackList->title,
+      "techStackItems": techStackList->techStackItems[]{
+        "title": string::split(asset->originalFilename, ".")[0],
+        "icon": @
+      },
+      backgroundColor
     },
-    _type == "statsBlock" => { sectionTitle, githubUsername, wakatimeUsername },
-    _type == "contactBlock" => { title, "contactItems": contactFields[] { displayText, url } },
+    _type == "statsBlock" => { sectionTitle, githubUsername },
+    _type == "linkListBlock" => { title, links[] { displayText, url } },
     _type == "spacer" => {size},
   _type == "divider" => {
   layout,
@@ -152,17 +160,14 @@ export default async function Page(props: {
             );
 
           case "textBlock":
-            if (slug === "about") {
-              return (
-                // ABOUT PAGE INTRO SECTION
-                <AboutParagraph key={index} section={section} />
-              );
-            } else {
-              return (
-                // PAGE TITLE AND INGRESS
-                <IntroSection key={index} section={section} />
-              );
-            }
+            // PAGE TITLE AND INGRESS (about-sidan delar ingress i flera stycken)
+            return (
+              <IntroSection
+                key={index}
+                section={section}
+                splitParagraphs={slug === "about"}
+              />
+            );
           case "projectBlock":
             return (
               // PROJECT GRID OR CAROUSEL
@@ -177,13 +182,13 @@ export default async function Page(props: {
 
           case "statsBlock":
             return (
-              // GIT HUB & WAKATIME STATS SECTION
+              // GITHUB STATS SECTION
               <StatisticSection key={index} statsBlock={section} />
             );
 
-          case "contactBlock":
-            // CONTACT SECTION
-            return <ContactSection key={index} contactBlock={section} />;
+          case "linkListBlock":
+            // LINK LIST SECTION (contact info, CV-länk osv.)
+            return <LinkListBlock key={index} linkListBlock={section} />;
 
           case "spacer":
             // SPACER SECTION

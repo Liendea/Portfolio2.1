@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../../public/icons/Arrows_dark.svg";
 
-export default function button() {
+export default function Button() {
   return (
     <Link href="/projects" className="button projects-button">
       See all projects

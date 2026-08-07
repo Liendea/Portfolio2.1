@@ -1,39 +1,42 @@
 import { type SchemaTypeDefinition } from "sanity";
-import projectItem from "./objects/projectItem";
+
 import page from "./page-schema";
-import techStackItem from "./objects/techStackItem";
-import techStackBlock from "./sections/techStackBlock";
-import textBlock from "./objects/textBlock";
-import statsBlock from "./sections/statsBlock";
-import contactBlock from "./sections/contactBlock";
-import projectBlock from "./sections/projectBlock";
-import contactLine from "./objects/contactItem";
+// SETTINGS
 import headerSettings from "./settings/headerSettings";
 import footerSettings from "./settings/footerSettings";
 import settings from "./settings/settings";
-import heroSection from "./sections/heroSection";
-import scrollCarouselBlock from "./sections/scrollCarouselBlock";
-import spacerBlock from "./sections/spacerBlock";
-import dividerBlock from "./sections/dividerBlock";
+// SECTIONS
+import techStackBlock from "./sections/techStackBlock";
+import statsBlock from "./sections/statsBlock";
+import projectBlock from "./sections/projectBlock";
+import heroBlock from "./sections/heroBlock";
+import spacer from "./sections/spacer";
+import divider from "./sections/divider";
+import linkListBlock from "./sections/linkListBlock";
+import textBlock from "./sections/textBlock";
+// DOKUMENT (fristående, återanvändbara - refereras från sections)
+import techStackList from "./documents/techStackList";
+// OBJEKTS
+import linkLine from "./objects/linkLine";
+import projectItem from "./objects/projectItem";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // LÄGG TILL SKAPADE SCHEMAS HÄR
   types: [
     page,
+    techStackList,
     projectBlock,
     projectItem,
     textBlock,
     techStackBlock,
-    techStackItem,
     statsBlock,
-    contactBlock,
-    contactLine,
+    linkListBlock,
+    linkLine,
     settings,
-    heroSection,
+    heroBlock,
     headerSettings,
     footerSettings,
-    scrollCarouselBlock,
-    spacerBlock,
-    dividerBlock,
+    spacer,
+    divider,
   ],
 };
