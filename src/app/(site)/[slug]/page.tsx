@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import HeroSection from "@/src/_sections/heroSection/Index";
-import ShowcaseSection from "@/src/_sections/showcaseSection/Index";
+import ShowCaseSection from "@/src/_sections/showCaseSection/Index";
 import StatisticSection from "@/src/_sections/statisticSection/Index";
 import TechStackSection from "@/src/_sections/techStackSection/Index";
 import LinkListSection from "@/src/_sections/linkListSection/Index";
@@ -176,7 +176,7 @@ export default async function Page(props: {
           case "projectBlock":
             return (
               // PROJECT LIST SECTION
-              <ShowcaseSection key={index} projectBlock={section} />
+              <ShowCaseSection key={index} projectBlock={section} />
             );
 
           case "techStackBlock":

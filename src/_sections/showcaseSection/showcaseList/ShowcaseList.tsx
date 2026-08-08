@@ -3,7 +3,7 @@
 import type { projectItem } from "../../../app/(site)/[slug]/page";
 import CaseItem from "@/src/_components/caseItem/CaseItem";
 
-export default function ShowcaseList({
+export default function ShowCaseList({
   projectItems,
 }: {
   projectItems: projectItem[];
