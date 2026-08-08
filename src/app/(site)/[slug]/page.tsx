@@ -1,10 +1,10 @@
 import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Hero from "@/src/_sections/heroSection/Index";
-import ProjectSection from "@/src/_sections/projectSection/index";
-import StatisticSection from "@/src/_sections/statisticSection/index";
-import TechStackSection from "@/src/_sections/stackSection/index";
+import HeroSection from "@/src/_sections/heroSection/Index";
+import ShowcaseSection from "@/src/_sections/showcaseSection/Index";
+import StatisticSection from "@/src/_sections/statisticSection/Index";
+import TechStackSection from "@/src/_sections/techStackSection/Index";
 import LinkListSection from "@/src/_sections/linkListSection/Index";
 import IntroSection from "@/src/_sections/introSection/Index";
 import Spacer from "@/src/_components/spacer/Spacer";
@@ -152,7 +152,7 @@ export default async function Page(props: {
         switch (section._type) {
           case "heroBlock":
             return (
-              <Hero
+              <HeroSection
                 key={index}
                 heading={section.heading}
                 subheading={section.subheading}
@@ -176,7 +176,7 @@ export default async function Page(props: {
           case "projectBlock":
             return (
               // PROJECT LIST SECTION
-              <ProjectSection key={index} projectBlock={section} />
+              <ShowcaseSection key={index} projectBlock={section} />
             );
 
           case "techStackBlock":
@@ -195,10 +195,7 @@ export default async function Page(props: {
             // LINK LIST SECTION (contact info, CV-länk osv.)
             // Kolumnerna definieras i Sanity och renderas sida vid sida.
             return (
-              <LinkListSection
-                key={index}
-                linkListBlocks={section.columns}
-              />
+              <LinkListSection key={index} linkListBlocks={section.columns} />
             );
 
           case "spacer":
