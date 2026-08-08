@@ -1,11 +1,8 @@
 "use client";
 
-import { gsap } from "gsap/gsap-core";
-import { SplitText } from "gsap/all";
-import { useEffect } from "react";
+import { useRef } from "react";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
-
-gsap.registerPlugin(SplitText);
+import { useCharGlitchIn } from "./useCharGlitchIn";
 
 type H2_AnimationProps = {
   textToAnimate: string;
@@ -16,23 +13,12 @@ export default function H2_Animation({
   textToAnimate,
   color,
 }: H2_AnimationProps) {
-  useEffect(() => {
-    const split = SplitText.create(".page-title", {
-      type: "chars, words, lines",
-    });
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-    gsap.from(split.chars, {
-      y: 100,
-      autoAlpha: 0,
-      stagger: {
-        amount: 0.1,
-        from: "end",
-      },
-    });
-  }, []);
+  useCharGlitchIn(titleRef);
 
   return (
-    <h2 className="page-title" style={{ color: color?.hex }}>
+    <h2 ref={titleRef} className="page-title" style={{ color: color?.hex }}>
       {textToAnimate}
     </h2>
   );

@@ -5,8 +5,8 @@ import Hero from "@/src/_sections/heroSection/Index";
 import ProjectSection from "@/src/_sections/projectSection/index";
 import StatisticSection from "@/src/_sections/statisticSection/index";
 import TechStackSection from "@/src/_sections/stackSection/index";
-import LinkListBlock from "@/src/_sections/linkListSection";
-import IntroSection from "@/src/_sections/introSection/IntroSection";
+import LinkListSection from "@/src/_sections/linkListSection/Index";
+import IntroSection from "@/src/_sections/introSection/Index";
 import Spacer from "@/src/_components/spacer/Spacer";
 import Divider from "@/src/_components/divider/Divider";
 
@@ -49,7 +49,10 @@ type PageBuilderSection =
       sectionTitle: string;
       githubUsername: string;
     }
-  | { _type: "linkListBlock"; title: string; links: LinkItem[] }
+  | {
+      _type: "linkListBlock";
+      columns: { title: string; links: LinkItem[] }[];
+    }
   | { _type: "spacer"; size: "small" | "medium" | "large" }
   | {
       _type: "divider";
@@ -127,7 +130,9 @@ export default async function Page(props: {
       backgroundColor
     },
     _type == "statsBlock" => { sectionTitle, githubUsername },
-    _type == "linkListBlock" => { title, links[] { displayText, url } },
+    _type == "linkListBlock" => {
+      "columns": coalesce(columns[] { title, links[] { displayText, url } }, [])
+    },
     _type == "spacer" => {size},
   _type == "divider" => {
   layout,
@@ -170,7 +175,7 @@ export default async function Page(props: {
             );
           case "projectBlock":
             return (
-              // PROJECT GRID OR CAROUSEL
+              // PROJECT LIST SECTION
               <ProjectSection key={index} projectBlock={section} />
             );
 
@@ -188,7 +193,13 @@ export default async function Page(props: {
 
           case "linkListBlock":
             // LINK LIST SECTION (contact info, CV-länk osv.)
-            return <LinkListBlock key={index} linkListBlock={section} />;
+            // Kolumnerna definieras i Sanity och renderas sida vid sida.
+            return (
+              <LinkListSection
+                key={index}
+                linkListBlocks={section.columns}
+              />
+            );
 
           case "spacer":
             // SPACER SECTION

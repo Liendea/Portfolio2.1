@@ -1,9 +1,9 @@
 "use client";
 
 import type { projectItem } from "../../../app/(site)/[slug]/page";
-import CaseItem from "@/src/_components/projectCard/CaseItem";
+import CaseItem from "@/src/_components/caseItem/CaseItem";
 
-export default function ProjectList({
+export default function ShowcaseList({
   projectItems,
 }: {
   projectItems: projectItem[];

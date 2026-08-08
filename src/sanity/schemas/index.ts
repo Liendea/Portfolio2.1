@@ -18,6 +18,7 @@ import textBlock from "./sections/textBlock";
 import techStackList from "./documents/techStackList";
 // OBJEKTS
 import linkLine from "./objects/linkLine";
+import linkColumn from "./objects/linkColumn";
 import projectItem from "./objects/projectItem";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -32,6 +33,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     statsBlock,
     linkListBlock,
     linkLine,
+    linkColumn,
     settings,
     heroBlock,
     headerSettings,

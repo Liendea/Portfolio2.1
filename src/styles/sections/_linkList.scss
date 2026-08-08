@@ -3,6 +3,16 @@
 @use "../mixins" as *;
 
 .link-list-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $spacing-xlarge;
+
+  @include tablet {
+    flex-direction: column;
+    gap: $spacing-xxlarge;
+  }
+
   .link-list-block {
     display: flex;
     align-items: flex-start;
@@ -35,13 +45,6 @@
       .link-list-item:last-child {
         margin-bottom: 0;
       }
-    }
-  }
-
-  @include mobile {
-    .link-list-block {
-      margin-top: 2rem;
-      gap: 1rem;
     }
   }
 }

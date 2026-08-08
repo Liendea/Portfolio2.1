@@ -10,19 +10,20 @@ $bold: 700;
 
 //FONTSIZE DESKTOP
 $fs-desktop-xsmall: 14px; // 14px
-$fs-desktop-small: 2rem; // 32px
-$fs-desktop-medium: 4rem; // 64px
-$fs-desktop-large: 6rem; // 96px
-$fs-desktop-xlarge: 8rem; //128px
-$fs-desktop-xxlarge: 12rem; //192px
+$fs-desktop-small: 1rem; // 16px
+$fs-desktop-medium: 2rem; // 32px
+$fs-desktop-large: 4rem; // 64px
+$fs-desktop-xlarge: 6rem; // 96px
+$fs-desktop-xxlarge: 10rem; // 160px
 
 //FONTSIZE MOBILE
 $fs-mobile-xxsmall: 12px; // 12px
-$fs-mobile-xsmall: 1rem; // 16px
-$fs-mobile-small: 1.5rem; // 24px
-$fs-mobile-medium: 2rem; // 32px
-$fs-mobile-large: 2.5rem; // 40px
-$fs-mobile-xlarge: 3.5rem; // 56px
+$fs-mobile-xsmall: 14px; // 14px
+$fs-mobile-small: 1rem; // 16px
+$fs-mobile-medium: 1.5rem; // 24px
+$fs-mobile-large: 2rem; // 32px
+$fs-mobile-xlarge: 2.5rem; // 40px
+$fs-mobile-xxlarge: 3.5rem; // 56px
 
 // RESPONSIVE FONT MIXIN
 @mixin responsive-font($mobile-size, $desktop-size) {
@@ -35,7 +36,7 @@ $fs-mobile-xlarge: 3.5rem; // 56px
 
 // RESONSIVE TEXT
 h1 {
-  @include responsive-font($fs-mobile-xlarge, $fs-desktop-xxlarge);
+  @include responsive-font($fs-mobile-xxlarge, $fs-desktop-xxlarge);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 100%;
@@ -43,35 +44,35 @@ h1 {
 
 h2,
 .h2 {
-  @include responsive-font($fs-mobile-large, $fs-desktop-large);
+  @include responsive-font($fs-mobile-xxlarge, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 110%;
 }
 
 h3 {
-  @include responsive-font($fs-mobile-xlarge, $fs-desktop-large);
+  @include responsive-font($fs-mobile-large, $fs-desktop-large);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 120%;
 }
 
 h4 {
-  @include responsive-font($fs-mobile-small, $fs-desktop-medium);
+  @include responsive-font($fs-mobile-small, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 130%;
 }
 
 p {
-  @include responsive-font($fs-mobile-xxsmall, $fs-desktop-xsmall);
+  @include responsive-font($fs-mobile-xsmall, $fs-desktop-small);
   font-weight: $thin;
   font-family: $font-mono;
   line-height: 150%;
 }
 
 a {
-  @include responsive-font($fs-mobile-xxsmall, $fs-desktop-xsmall);
+  @include responsive-font($fs-mobile-xsmall, $fs-desktop-small);
   font-weight: $thin;
   font-family: $font-mono;
   color: $text-color-light;

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useRef } from "react";
+import { useCharGlitchIn } from "./useCharGlitchIn";
 
 type P_AnimationProps = {
   textToAnimate?: string;
@@ -14,22 +14,12 @@ export default function P_Animation({
 }: P_AnimationProps) {
   const ref = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
-    if (!ref.current) return;
-    gsap.fromTo(
-      ref.current.children,
-      { opacity: 0, x: -10 },
-      { opacity: 1, x: 0, stagger: 0.04 },
-    );
-  }, [textToAnimate]);
+  // Längre text -> mer utspridd och långsammare animation än H2:s default.
+  useCharGlitchIn(ref, { staggerAmount: 0.6, durationScale: 1.5 });
 
   return (
-    <p ref={ref} style={{ display: "flex" }} className="animated-text">
-      {textToAnimate?.split("").map((c, i) => (
-        <span key={i} style={{ color, whiteSpace: "pre" }}>
-          {c}
-        </span>
-      ))}
+    <p ref={ref} className="animated-text" style={{ color }}>
+      {textToAnimate}
     </p>
   );
 }

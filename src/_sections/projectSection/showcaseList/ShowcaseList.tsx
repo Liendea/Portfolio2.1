@@ -1,24 +1,26 @@
 "use client";
 
-import ProjectCard from "../../../_components/projectCard/ProjectCard";
 import type { projectItem } from "../../../app/(site)/[slug]/page";
+import CaseItem from "@/src/_components/caseItem/CaseItem";
 
-export default function ProjectGrid({
+export default function ShowcaseList({
   projectItems,
 }: {
   projectItems: projectItem[];
 }) {
   return (
-    <div className="project-grid">
+    <div className="showcase_list">
       {projectItems?.map((item: projectItem, index: number) => (
-        <ProjectCard
+        <CaseItem
           key={index}
-          url={item.url}
           title={item.title}
-          description={item.description}
+          projectDescription={item.projectDescription}
+          jobDescription={item.jobDescription}
+          stack={item.stack}
           imageObject={item.image}
           width={3000}
           height={2250}
+          url={item.url}
         />
       ))}
     </div>

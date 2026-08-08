@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 40vh;
 
   @include tablet {
     padding: 0 3rem;
@@ -39,7 +40,7 @@
 // Varje ny rad i sanity skapar en paragraph
 
 .intro-section.about {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
 
   @include tablet {
@@ -80,6 +81,6 @@
   }
 
   .paragraph-text {
-    font-size: 12px;
+    font-size: 14px;
   }
 }

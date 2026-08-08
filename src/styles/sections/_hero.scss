@@ -23,34 +23,30 @@
     }
 
     .hero-text {
-      font-size: $fs-desktop-xlarge;
       font-weight: $bold;
       text-transform: uppercase;
 
-      @include desktop {
+      @include tablet {
         font-size: $fs-desktop-xlarge;
       }
-      @include tablet {
-        font-size: $fs-desktop-large;
-      }
       @include mobile {
-        font-size: $fs-mobile-xlarge;
+        font-size: $fs-desktop-large;
       }
     }
 
     .animated-text-container {
-      width: 100%;
-    }
-    .animated-text {
       margin-top: $spacing-small;
-      padding-left: $spacing-xsmall;
-      font-size: $fs-mobile-xsmall;
+      width: 100%;
+
+      margin-left: $spacing-xsmall;
 
       @include mobile {
-        width: 50%;
-        padding-left: 3px;
-        font-size: $fs-mobile-xxsmall;
+        margin-left: 0;
+        width: 90%;
       }
+    }
+    .animated-text {
+      font-size: $fs-mobile-xsmall;
     }
   }
 }

@@ -32,7 +32,7 @@ export default function CaseItem({
   return (
     <div className="case-item">
       <div className="case-item__flex-row">
-        <p className="case-item__title">{title}</p>
+        <h3 className="case-item__title">{title}</h3>
         <div className="case-item__text">
           {jobDescription?.split("\n").map((line, index) => (
             <p key={index}>{line}</p>

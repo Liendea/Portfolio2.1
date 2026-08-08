@@ -1,7 +1,6 @@
 //import ScrollCarousel from "./carousel/ScrollCarusel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import ProjectGrid from "./projectGrid/projectGrid";
-import ProjectList from "./projectList/ProjectList";
+import ShowcaseList from "./projectList/ProjectList";
 
 export type projectBlockType = {
   _type: "projectBlock";
@@ -26,10 +25,10 @@ type projectSectionProps = {
 // Denna komponent är ansvarig för att rendera projektsektionen på sidan.
 // Den tar emot en projectBlock som innehåller information om projekten.
 
-export default function ProjectSection({ projectBlock }: projectSectionProps) {
+export default function ShowcaseSection({ projectBlock }: projectSectionProps) {
   return (
     <section className="showcase_section">
-      <ProjectList projectItems={projectBlock.projectItems} />
+      <ShowcaseList projectItems={projectBlock.projectItems} />
     </section>
   );
 }

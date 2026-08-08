@@ -27,7 +27,7 @@ export default async function GithubStatsRenderer({
   if (!githubStats) {
     return (
       <>
-        <h4>{sectionTitle}</h4>
+        <p>{sectionTitle}</p>
         <p className="error-message">Could not fetch data</p>
       </>
     );

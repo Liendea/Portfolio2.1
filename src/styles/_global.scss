@@ -46,7 +46,7 @@ body.no-scroll {
     padding: 2rem 3rem;
 
     @include mobile {
-      padding: 1rem;
+      padding: 2rem;
     }
   }
 }
@@ -63,18 +63,14 @@ body.no-scroll {
   }
 }
 
-.tablet-only {
-  display: none;
-
-  @include tablet {
-    display: block;
-  }
-}
-
 .mobile-only {
   display: none;
 
   @include mobile {
+    display: block;
+  }
+
+  @include tablet {
     display: block;
   }
 }
