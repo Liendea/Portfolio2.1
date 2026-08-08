@@ -44,7 +44,7 @@ h1 {
 
 h2,
 .h2 {
-  @include responsive-font($fs-mobile-xxlarge, $fs-desktop-xlarge);
+  @include responsive-font($fs-mobile-xlarge, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 110%;
