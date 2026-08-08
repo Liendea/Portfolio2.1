@@ -39,6 +39,10 @@
         font-family: $font-primary;
         font-weight: 500;
         line-height: 0.9;
+
+        @include tablet {
+          font-size: $fs-mobile-large;
+        }
       }
 
       // description
