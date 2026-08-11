@@ -29,8 +29,9 @@
       @include tablet {
         font-size: $fs-desktop-xlarge;
       }
+
       @include mobile {
-        font-size: $fs-desktop-large;
+        font-size: $fs-desktop-medium;
       }
     }
 

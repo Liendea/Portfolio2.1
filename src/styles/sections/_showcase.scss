@@ -47,7 +47,7 @@
 
       // description
       .case-item__text {
-        color: $text-color-white;
+        color: $text-color-light;
         text-align: right;
       }
 
@@ -98,14 +98,14 @@
         }
         // Stack
         .case-item__stack {
-          color: $text-color-white;
+          color: $text-color-light;
           text-align: right;
           margin-top: 1rem;
         }
 
         // Beskrivning av projektet
         .case-item__projectDescription {
-          color: $text-color-white;
+          color: $text-color-light;
           text-align: left;
           width: 90%;
 
@@ -119,12 +119,12 @@
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          color: $text-color-white;
+          color: $text-color-light;
           font-size: $fs-mobile-medium;
           text-decoration: underline;
 
           .case-item__link-text {
-            color: $text-color-white;
+            color: $text-color-light;
             font-size: $fs-mobile-medium;
 
             @include mobile {

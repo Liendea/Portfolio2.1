@@ -7,27 +7,33 @@
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  width: auto;
 
   .navlink {
     font-size: $fs-mobile-small;
     font-family: $font-mono;
     text-decoration: none;
-    color: $text-color-white;
+    color: $text-color-light;
     font-weight: 300;
     text-transform: uppercase;
+    border: 1px solid red;
 
     @include mobile {
-      font-size: $fs-mobile-medium;
+      font-size: $fs-mobile-xxlarge;
     }
   }
 
   .navlink:hover {
     color: $secondary-color;
+
+    @include mobile {
+      background-color: $secondary-color;
+      color: $primary-color;
+    }
   }
 
   // MOBIL: dold fullskärms-overlay tills hamburgarmenyn öppnas.
   @include mobile {
+    background-color: $primary-color;
     position: fixed;
     inset: 0;
     width: 100vw;
@@ -35,8 +41,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-large;
-    background-color: $primary-color;
+    gap: $spacing-xxlarge;
     z-index: 999;
     opacity: 0;
     visibility: hidden;
@@ -44,6 +49,7 @@
     transition:
       opacity 0.3s ease,
       visibility 0.3s ease;
+    border: 2px solid blue;
 
     &.navigation-open {
       opacity: 1;
@@ -74,7 +80,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: $text-color-white;
+    background-color: $text-color-light;
     border-radius: 2px;
     transition:
       transform 0.3s ease,
