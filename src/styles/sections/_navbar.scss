@@ -8,21 +8,31 @@
   flex-direction: row;
   gap: 3rem;
 
-  .navlink {
-    font-size: $fs-mobile-small;
-    font-family: $font-mono;
-    text-decoration: none;
-    color: $text-color-light;
-    font-weight: 300;
-    text-transform: uppercase;
-    border: 1px solid red;
+  .navlink-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+
+    .navlink {
+      font-size: $fs-mobile-small;
+      font-family: $font-mono;
+      text-decoration: none;
+      color: $text-color-light;
+      font-weight: 300;
+      text-transform: uppercase;
+
+      @include mobile {
+        font-size: $fs-mobile-xxlarge;
+      }
+    }
 
     @include mobile {
-      font-size: $fs-mobile-xxlarge;
+      width: 100%;
     }
   }
 
-  .navlink:hover {
+  .navlink-wrapper:hover {
     color: $secondary-color;
 
     @include mobile {
@@ -41,7 +51,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-xxlarge;
+
+    gap: $spacing-small;
     z-index: 999;
     opacity: 0;
     visibility: hidden;
@@ -49,7 +60,6 @@
     transition:
       opacity 0.3s ease,
       visibility 0.3s ease;
-    border: 2px solid blue;
 
     &.navigation-open {
       opacity: 1;

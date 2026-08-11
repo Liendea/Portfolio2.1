@@ -38,7 +38,7 @@ export default function Navbar({ navigationLinks }: navbarProps) {
 
       <nav className={`navigation${isOpen ? " navigation-open" : ""}`}>
         {navigationLinks.map((link, i) => (
-          <div key={i}>
+          <div key={i} className="navlink-wrapper">
             <Link
               href={`/${link.href}`}
               className="navlink"
