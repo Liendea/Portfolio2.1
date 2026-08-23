@@ -36,6 +36,7 @@ export default defineType({
         { type: "contactFormBlock" },
         { type: "spacer" },
         { type: "divider" },
+        { type: "accordionBlock" },
         /*Lägg till fler sectioner här */
       ],
     }),

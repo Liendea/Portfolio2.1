@@ -16,7 +16,6 @@ type FooterProps = {
 };
 
 export default function Footer({
-  contactEmail = "",
   columns = [],
   logo,
   copyright,

@@ -16,12 +16,14 @@ import spacer from "./sections/spacer";
 import divider from "./sections/divider";
 import linkListBlock from "./sections/linkListBlock";
 import textBlock from "./sections/textBlock";
+import accordionBlock from "./sections/accordionBlock";
 // DOKUMENT (fristående, återanvändbara - refereras från sections)
 import techStackList from "./documents/techStackList";
 // OBJEKTS
 import linkLine from "./objects/linkLine";
 import linkColumn from "./objects/linkColumn";
 import projectItem from "./objects/projectItem";
+import accordionItem from "./objects/accordionItem";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // LÄGG TILL SKAPADE SCHEMAS HÄR
@@ -44,5 +46,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     footerSettings,
     spacer,
     divider,
+    accordionBlock,
+    accordionItem,
   ],
 };

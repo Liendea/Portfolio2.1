@@ -11,6 +11,7 @@ import LinkListSection from "@/src/_sections/linkListSection/Index";
 import IntroSection from "@/src/_sections/introSection/Index";
 import Spacer from "@/src/_components/spacer/Spacer";
 import Divider from "@/src/_components/divider/Divider";
+import AccordionSection from "@/src/_sections/accordionSection/Index";
 
 export type SanityColor = {
   hex: string;
@@ -83,6 +84,11 @@ type PageBuilderSection =
       _type: "divider";
       layout: "full" | "centered";
       padding: "none" | "small" | "large";
+    }
+  | {
+      _type: "accordionBlock";
+      kickerLabel?: string;
+      items?: { title: string; text?: string }[];
     };
 
 export type LinkItem = {
@@ -184,6 +190,10 @@ export default async function Page(props: {
   layout,
   padding
 },
+    _type == "accordionBlock" => {
+      kickerLabel,
+      "items": coalesce(items[] { title, text }, [])
+    },
   }
 }
 `;
@@ -287,6 +297,16 @@ export default async function Page(props: {
                 key={index}
                 layout={section.layout}
                 padding={section.padding}
+              />
+            );
+
+          case "accordionBlock":
+            // KLASSISKT ACCORDION (t.ex. "Our Values" på about-sidan)
+            return (
+              <AccordionSection
+                key={index}
+                kickerLabel={section.kickerLabel}
+                items={section.items}
               />
             );
           default:
