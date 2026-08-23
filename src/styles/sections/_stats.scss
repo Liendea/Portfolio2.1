@@ -64,11 +64,15 @@
     // COMMITS
     .commit-stat {
       margin: 4rem 0;
-      font-size: 2rem;
 
       @include mobile {
         font-size: 2rem;
       }
+    }
+    .animeradSiffra {
+      font-size: 16vw;
+
+      line-height: 1;
     }
   }
 }

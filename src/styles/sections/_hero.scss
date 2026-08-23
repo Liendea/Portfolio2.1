@@ -11,7 +11,7 @@
   overflow: hidden;
 
   @include mobile {
-    height: 60vh;
+    height: 80vh;
   }
 
   .hero-text-container {
@@ -24,14 +24,7 @@
 
     .hero-text {
       text-transform: uppercase;
-
-      @include tablet {
-        font-size: $fs-desktop-xlarge;
-      }
-
-      @include mobile {
-        font-size: $fs-mobile-xxlarge;
-      }
+      font-size: 16vw;
     }
   }
 }

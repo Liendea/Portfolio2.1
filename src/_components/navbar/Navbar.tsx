@@ -54,6 +54,7 @@ export default function Navbar({ navigationLinks }: navbarProps) {
               >
                 {link.title}
               </Link>
+
               <Image
                 src={isActive ? "/icons/dot_white.svg" : "/icons/dot_black.svg"}
                 alt=""

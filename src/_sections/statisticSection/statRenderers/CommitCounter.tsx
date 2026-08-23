@@ -40,7 +40,7 @@ export default function CommitCounter({
   const startValue = Math.max(0, totalCommits - countFrom);
 
   return (
-    <h2 ref={ref}>
+    <h2 ref={ref} className="animeradSiffra">
       <AnimatedNumber
         value={totalCommits}
         startValue={startValue}
