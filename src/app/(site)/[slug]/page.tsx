@@ -1,15 +1,17 @@
 import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Hero from "@/src/_sections/heroSection/Index";
-import ProjectSection from "@/src/_sections/projectSection/index";
-import StatisticSection from "@/src/_sections/statisticSection/index";
-import TechStackSection from "@/src/_sections/stackSection/index";
-import ContactSection from "@/src/_sections/contactSection";
-import IntroSection from "@/src/_sections/introSection/IntroSection";
-import AboutParagraph from "@/src/_components/aboutParagraph";
-import Spacer from "@/src/_components/spacer";
-import Divider from "@/src/_components/divider";
+import HeroSection from "@/src/_sections/heroSection/Index";
+import SplashSection from "@/src/_sections/splashSection/Index";
+import ContactFormSection from "@/src/_sections/contactFormSection/Index";
+import ShowCaseSection from "@/src/_sections/showCaseSection/Index";
+import StatisticSection from "@/src/_sections/statisticSection/Index";
+import TechStackSection from "@/src/_sections/techStackSection/Index";
+import LinkListSection from "@/src/_sections/linkListSection/Index";
+import IntroSection from "@/src/_sections/introSection/Index";
+import Spacer from "@/src/_components/spacer/Spacer";
+import Divider from "@/src/_components/divider/Divider";
+import AccordionSection from "@/src/_sections/accordionSection/Index";
 
 export type SanityColor = {
   hex: string;
@@ -23,13 +25,36 @@ type PageBuilderSection =
   | {
       _type: "heroBlock";
       heading: string;
-      subheading: string;
       backgroundType: "video" | "image" | "color";
       backgroundMedia?: string;
       backgroundColor?: SanityColor;
       exploreText?: string;
       headingColor: SanityColor;
-      subheadingColor: SanityColor;
+    }
+  | {
+      _type: "splashBlock";
+      name: string;
+      tagline?: string;
+      textColor?: SanityColor;
+      backgroundColor?: SanityColor;
+    }
+  | {
+      _type: "contactFormBlock";
+      needsLabel?: string;
+      needsOptions?: string[];
+      businessNameLabel?: string;
+      businessNamePlaceholder?: string;
+      budgetLabel?: string;
+      budgetPlaceholder?: string;
+      locationLabel?: string;
+      locationPlaceholder?: string;
+      messageLabel?: string;
+      messagePlaceholder?: string;
+      nameLabel?: string;
+      namePlaceholder?: string;
+      emailLabel?: string;
+      emailPlaceholder?: string;
+      submitButtonText?: string;
     }
   | {
       _type: "textBlock";
@@ -39,22 +64,34 @@ type PageBuilderSection =
       ingressColor: SanityColor;
     }
   | { _type: "projectBlock"; title: string; projectItems: projectItem[] }
-  | { _type: "techStackBlock"; title: string; techStackItems: techStackItem[] }
+  | {
+      _type: "techStackBlock";
+      title: string;
+      techStackItems: techStackItem[];
+      backgroundColor?: SanityColor;
+    }
   | {
       _type: "statsBlock";
       sectionTitle: string;
       githubUsername: string;
-      wakatimeUsername?: string;
     }
-  | { _type: "contactBlock"; title: string; contactItems: contactItem[] }
+  | {
+      _type: "linkListBlock";
+      columns: { title: string; links: LinkItem[] }[];
+    }
   | { _type: "spacer"; size: "small" | "medium" | "large" }
   | {
       _type: "divider";
       layout: "full" | "centered";
       padding: "none" | "small" | "large";
+    }
+  | {
+      _type: "accordionBlock";
+      kickerLabel?: string;
+      items?: { title: string; text?: string }[];
     };
 
-export type contactItem = {
+export type LinkItem = {
   displayText: string;
   url?: string;
 };
@@ -67,7 +104,9 @@ export type techStackItem = {
 export type projectItem = {
   _type: "projectItem";
   title: string;
-  description: string;
+  jobDescription: string;
+  projectDescription: string;
+  stack: string;
   image: SanityImageSource;
   url: string;
 };
@@ -94,37 +133,67 @@ export default async function Page(props: {
     ...,
     _type == "heroBlock" => {
       heading,
-      subheading,
       backgroundType,
     "backgroundMedia": coalesce(backgroundVideo.asset->url, backgroundImage.asset->url),
       backgroundColor,
       headingColor,
-      subheadingColor,
+    },
+    _type == "splashBlock" => {
+      name,
+      tagline,
+      textColor,
+      backgroundColor,
+    },
+    _type == "contactFormBlock" => {
+      needsLabel,
+      needsOptions,
+      businessNameLabel,
+      businessNamePlaceholder,
+      budgetLabel,
+      budgetPlaceholder,
+      locationLabel,
+      locationPlaceholder,
+      messageLabel,
+      messagePlaceholder,
+      nameLabel,
+      namePlaceholder,
+      emailLabel,
+      emailPlaceholder,
+      submitButtonText,
     },
     _type == "textBlock" => { pageTitle, ingress, pageTitleColor, ingressColor },
-    _type == "projectBlock" => { 
-      title, 
-      "projectItems": projects[] { 
-        title, 
-        description, 
-        image, 
+    _type == "projectBlock" => {
+      title,
+      "projectItems": projects[] {
+        title,
+        jobDescription,
+        projectDescription,
+        stack,
+        image,
         url
       }
     },
-    _type == "techStackBlock" => { 
-      title, 
-      "techStackItems": techStackItems[]{ 
-        title, 
-        icon, 
-      } 
+    _type == "techStackBlock" => {
+      "title": techStackList->title,
+      "techStackItems": techStackList->techStackItems[]{
+        "title": string::split(asset->originalFilename, ".")[0],
+        "icon": @
+      },
+      backgroundColor
     },
-    _type == "statsBlock" => { sectionTitle, githubUsername, wakatimeUsername },
-    _type == "contactBlock" => { title, "contactItems": contactFields[] { displayText, url } },
+    _type == "statsBlock" => { sectionTitle, githubUsername },
+    _type == "linkListBlock" => {
+      "columns": coalesce(columns[] { title, links[] { displayText, url } }, [])
+    },
     _type == "spacer" => {size},
   _type == "divider" => {
   layout,
   padding
 },
+    _type == "accordionBlock" => {
+      kickerLabel,
+      "items": coalesce(items[] { title, text }, [])
+    },
   }
 }
 `;
@@ -139,34 +208,64 @@ export default async function Page(props: {
         switch (section._type) {
           case "heroBlock":
             return (
-              <Hero
+              <HeroSection
                 key={index}
                 heading={section.heading}
-                subheading={section.subheading}
                 backgroundType={section.backgroundType}
                 backgroundMedia={section.backgroundMedia}
                 backgroundColor={section.backgroundColor}
                 headingColor={section.headingColor}
-                subheadingColor={section.subheadingColor}
+              />
+            );
+
+          case "splashBlock":
+            // BRAND-MOMENT (namn + tagline), egen sektion i pageBuilder
+            return (
+              <SplashSection
+                key={index}
+                name={section.name}
+                tagline={section.tagline}
+                textColor={section.textColor}
+                backgroundColor={section.backgroundColor}
+              />
+            );
+
+          case "contactFormBlock":
+            return (
+              // KONTAKTFORMULÄR - skickar till /api/contact-form (Resend)
+              <ContactFormSection
+                key={index}
+                needsLabel={section.needsLabel}
+                needsOptions={section.needsOptions}
+                businessNameLabel={section.businessNameLabel}
+                businessNamePlaceholder={section.businessNamePlaceholder}
+                budgetLabel={section.budgetLabel}
+                budgetPlaceholder={section.budgetPlaceholder}
+                locationLabel={section.locationLabel}
+                locationPlaceholder={section.locationPlaceholder}
+                messageLabel={section.messageLabel}
+                messagePlaceholder={section.messagePlaceholder}
+                nameLabel={section.nameLabel}
+                namePlaceholder={section.namePlaceholder}
+                emailLabel={section.emailLabel}
+                emailPlaceholder={section.emailPlaceholder}
+                submitButtonText={section.submitButtonText}
               />
             );
 
           case "textBlock":
-            if (slug === "about") {
-              return (
-                // ABOUT PAGE INTRO SECTION
-                <AboutParagraph key={index} section={section} />
-              );
-            } else {
-              return (
-                // PAGE TITLE AND INGRESS
-                <IntroSection key={index} section={section} />
-              );
-            }
+            // PAGE TITLE AND INGRESS (about-sidan delar ingress i flera stycken)
+            return (
+              <IntroSection
+                key={index}
+                section={section}
+                splitParagraphs={slug === "about"}
+              />
+            );
           case "projectBlock":
             return (
-              // PROJECT GRID OR CAROUSEL
-              <ProjectSection key={index} projectBlock={section} />
+              // PROJECT LIST SECTION
+              <ShowCaseSection key={index} projectBlock={section} />
             );
 
           case "techStackBlock":
@@ -177,13 +276,16 @@ export default async function Page(props: {
 
           case "statsBlock":
             return (
-              // GIT HUB & WAKATIME STATS SECTION
+              // GITHUB STATS SECTION
               <StatisticSection key={index} statsBlock={section} />
             );
 
-          case "contactBlock":
-            // CONTACT SECTION
-            return <ContactSection key={index} contactBlock={section} />;
+          case "linkListBlock":
+            // LINK LIST SECTION (contact info, CV-länk osv.)
+            // Kolumnerna definieras i Sanity och renderas sida vid sida.
+            return (
+              <LinkListSection key={index} linkListBlocks={section.columns} />
+            );
 
           case "spacer":
             // SPACER SECTION
@@ -195,6 +297,16 @@ export default async function Page(props: {
                 key={index}
                 layout={section.layout}
                 padding={section.padding}
+              />
+            );
+
+          case "accordionBlock":
+            // KLASSISKT ACCORDION (t.ex. "Our Values" på about-sidan)
+            return (
+              <AccordionSection
+                key={index}
+                kickerLabel={section.kickerLabel}
+                items={section.items}
               />
             );
           default:

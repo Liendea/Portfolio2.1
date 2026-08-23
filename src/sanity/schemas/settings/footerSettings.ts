@@ -19,34 +19,15 @@ export default defineType({
       name: "contactEmail",
       title: "Contact Email",
       type: "string",
+      description: 'Visas som en egen "SAY HELLO / Send Email"-kolumn.',
     }),
     defineField({
-      name: "socialLinks",
-      title: "Social Links",
+      name: "columns",
+      title: "Kolumner",
       type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            { name: "title", title: "Title", type: "string" },
-            { name: "href", title: "URL", type: "string" },
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: "exploreLinks",
-      title: "Explore Links",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            { name: "title", title: "Title", type: "string" },
-            { name: "href", title: "URL", type: "string" },
-          ],
-        },
-      ],
+      of: [{ type: "linkColumn" }],
+      description:
+        "Fria kolumner, t.ex. Location, Connect, Explore - samma struktur som länklistan på contact-sidan. Rader utan URL visas som vanlig text (t.ex. adressrader), rader med URL blir klickbara länkar.",
     }),
     defineField({
       name: "logo",

@@ -1,39 +1,52 @@
 import { type SchemaTypeDefinition } from "sanity";
-import projectItem from "./objects/projectItem";
+
 import page from "./page-schema";
-import techStackItem from "./objects/techStackItem";
-import techStackBlock from "./sections/techStackBlock";
-import textBlock from "./objects/textBlock";
-import statsBlock from "./sections/statsBlock";
-import contactBlock from "./sections/contactBlock";
-import projectBlock from "./sections/projectBlock";
-import contactLine from "./objects/contactItem";
+// SETTINGS
 import headerSettings from "./settings/headerSettings";
 import footerSettings from "./settings/footerSettings";
 import settings from "./settings/settings";
-import heroSection from "./sections/heroSection";
-import scrollCarouselBlock from "./sections/scrollCarouselBlock";
-import spacerBlock from "./sections/spacerBlock";
-import dividerBlock from "./sections/dividerBlock";
+// SECTIONS
+import techStackBlock from "./sections/techStackBlock";
+import statsBlock from "./sections/statsBlock";
+import projectBlock from "./sections/projectBlock";
+import heroBlock from "./sections/heroBlock";
+import splashBlock from "./sections/splashBlock";
+import contactFormBlock from "./sections/contactFormBlock";
+import spacer from "./sections/spacer";
+import divider from "./sections/divider";
+import linkListBlock from "./sections/linkListBlock";
+import textBlock from "./sections/textBlock";
+import accordionBlock from "./sections/accordionBlock";
+// DOKUMENT (fristående, återanvändbara - refereras från sections)
+import techStackList from "./documents/techStackList";
+// OBJEKTS
+import linkLine from "./objects/linkLine";
+import linkColumn from "./objects/linkColumn";
+import projectItem from "./objects/projectItem";
+import accordionItem from "./objects/accordionItem";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // LÄGG TILL SKAPADE SCHEMAS HÄR
   types: [
     page,
+    techStackList,
     projectBlock,
     projectItem,
     textBlock,
     techStackBlock,
-    techStackItem,
     statsBlock,
-    contactBlock,
-    contactLine,
+    linkListBlock,
+    linkLine,
+    linkColumn,
     settings,
-    heroSection,
+    heroBlock,
+    splashBlock,
+    contactFormBlock,
     headerSettings,
     footerSettings,
-    scrollCarouselBlock,
-    spacerBlock,
-    dividerBlock,
+    spacer,
+    divider,
+    accordionBlock,
+    accordionItem,
   ],
 };

@@ -1,0 +1,156 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+/* ================= SHOWCASE ================ */
+/* ================================================*/
+
+.showcase_section {
+  .showcase_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: $font-primary;
+
+    .case-item:first-child {
+      border-top: 1px solid white;
+    }
+    .case-item {
+      cursor: pointer;
+      width: 100%;
+      border-bottom: 1px solid white;
+      padding: 1rem 0;
+
+      &:hover {
+        .case-item__title {
+          padding-left: 3rem;
+        }
+      }
+
+      .case-item__flex-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+
+        @include mobile {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      // Title
+      .case-item__title {
+        color: white;
+        font-family: $font-primary;
+        font-weight: 500;
+        line-height: 0.9;
+
+        @include tablet {
+          font-size: $fs-mobile-large;
+        }
+      }
+
+      // description
+      .case-item__text {
+        color: $text-color-light;
+        text-align: right;
+      }
+
+      .case-item__flex-row.case-item__flex-row--expanded {
+        display: flex;
+        overflow: hidden;
+        align-items: stretch;
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+
+        transition:
+          opacity 0.5s ease,
+          max-height 0.5s ease,
+          margin-bottom 0.5s ease;
+
+        // Bild
+        .case-item__img-wrapper {
+          width: 40%;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+
+          @include mobile {
+            width: 100%;
+            aspect-ratio: auto;
+          }
+
+          .case-item__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+
+      // KOLUMN: Stack + beskrivning + länk till projektet
+      .case-item__flex-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 2rem;
+        width: 50%;
+
+        @include mobile {
+          width: 100%;
+        }
+        // Stack
+        .case-item__stack {
+          color: $text-color-light;
+          text-align: right;
+          margin-top: 1rem;
+        }
+
+        // Beskrivning av projektet
+        .case-item__projectDescription {
+          color: $text-color-light;
+          text-align: left;
+          width: 90%;
+
+          @include mobile {
+            width: 100%;
+          }
+        }
+
+        // Länk till projektet
+        .case-item__link {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: $text-color-light;
+          font-size: $fs-mobile-medium;
+          text-decoration: underline;
+
+          .case-item__link-text {
+            color: $text-color-light;
+            font-size: $fs-mobile-medium;
+
+            @include mobile {
+              font-size: $fs-mobile-small;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+      }
+      &.case-item--open {
+        .case-item__title {
+          padding-left: 0;
+        }
+
+        .case-item__flex-row.case-item__flex-row--expanded {
+          opacity: 1;
+          max-height: 1000px;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

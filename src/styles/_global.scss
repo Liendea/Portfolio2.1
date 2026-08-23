@@ -43,32 +43,14 @@ body.no-scroll {
   overflow-x: hidden;
 
   section {
-    padding: 3rem;
+    padding: 2rem 3rem;
+
+    @include tablet {
+      padding: 2rem;
+    }
 
     @include mobile {
       padding: 1rem;
-    }
-  }
-
-  // INTRO SECTION [TITEL OCH INGRESSTEXT]
-  .intro-section {
-    margin-bottom: 3rem;
-    .page-title {
-      text-transform: uppercase;
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
-    .intro-paragraphs {
-      margin-top: $spacing-xxlarge;
-      width: 60%;
-      font-family: $font-mono;
-      padding-top: $spacing-xxlarge;
-      @include mobile {
-        width: 100%;
-        margin-top: $spacing-xxlarge;
-        padding-top: $spacing-xxlarge;
-      }
     }
   }
 }
@@ -85,30 +67,26 @@ body.no-scroll {
   }
 }
 
-.tablet-only {
-  display: none;
-
-  @include tablet {
-    display: block;
-  }
-}
-
 .mobile-only {
   display: none;
 
   @include mobile {
     display: block;
   }
+
+  @include tablet {
+    display: block;
+  }
 }
 
 // GLOBAL LINKS
 a {
-  font-family: $font-mono;
+  font-family: $font-primary;
   text-decoration: none;
   color: $text-color-dark;
 
   &:hover {
-    color: $thrid-color;
+    color: $secondary-color;
   }
 }
 

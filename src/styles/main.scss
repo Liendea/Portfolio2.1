@@ -4,12 +4,15 @@
 @use "global" as *;
 
 // SECTIONS
-@use "./sections/projectCarousel" as *;
-@use "./sections/projectGrid" as *;
+@use "./sections/intro" as *;
+@use "./sections/showcase" as *;
 @use "./sections/hero" as *;
 @use "./sections/techstack" as *;
-@use "./sections/contactPage" as *;
+@use "./sections/linkList" as *;
 @use "./sections/header" as *;
 @use "./sections/footer" as *;
 @use "./sections/stats" as *;
 @use "./sections/navbar" as *;
+@use "./sections/splashScreen" as *;
+@use "./sections/contactForm" as *;
+@use "./sections/accordion" as *;

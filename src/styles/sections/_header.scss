@@ -5,55 +5,46 @@
 /* ============== HEADER ============= */
 /* ====== LOGO & EPLORE BUTTON =======*/
 
-header {
-  .header-container {
-    transition: background-color 0.5s ease-in-out;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 3rem;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.197);
-    z-index: 1000;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.197);
 
-    @include mobile {
-      padding: 1rem;
+  @include mobile {
+    padding: 1rem;
+  }
+
+  @include tablet {
+    padding: 2rem;
+  }
+
+  .logo-mobile {
+    display: none;
+  }
+
+  // Mobilvy
+  @include tablet {
+    .logo-desktop {
+      display: block;
     }
-
     .logo-mobile {
       display: none;
     }
+  }
 
-    @include mobile {
-      .logo-desktop {
-        display: none;
-      }
-      .logo-mobile {
-        display: block;
-      }
+  // Mobilvy
+  @include mobile {
+    .header-container {
+      padding: 1rem;
     }
-
-    .menu-button {
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-end;
-      background-color: transparent;
-      width: 30%;
-      border: none;
+    .logo-desktop {
+      display: none;
     }
-    .hamburger-icon {
-      margin-left: 1rem;
-      transition: transform 0.3s ease;
-      position: relative;
-
-      @include mobile {
-        width: 30px;
-        height: 30px;
-      }
-    }
-
-    .menu-button:hover .hamburger-icon {
-      animation: glitch-flicker 1s infinite;
+    .logo-mobile {
+      display: block;
     }
   }
 }

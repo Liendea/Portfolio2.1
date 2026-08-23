@@ -15,7 +15,6 @@
   }
 
   .hero-text-container {
-    padding: $spacing-medium;
     line-height: 0.9;
     display: block;
 
@@ -24,32 +23,14 @@
     }
 
     .hero-text {
-      font-size: $fs-desktop-xxlarge;
-      font-weight: $bold;
       text-transform: uppercase;
 
-      @include desktop {
+      @include tablet {
         font-size: $fs-desktop-xlarge;
       }
-      @include tablet {
-        font-size: $fs-desktop-large;
-      }
-      @include mobile {
-        font-size: $fs-mobile-xlarge;
-      }
-    }
-
-    .animated-text-container {
-      width: 100%;
-    }
-    .animated-text {
-      margin-top: $spacing-small;
-      padding-left: $spacing-small;
 
       @include mobile {
-        width: 50%;
-        padding-left: 3px;
-        font-size: $fs-mobile-xxsmall;
+        font-size: $fs-mobile-xxlarge;
       }
     }
   }
@@ -58,7 +39,7 @@
 /* Själva textbytet med en snabb fade-in/flicker */
 .role-animation {
   display: inline-block;
-  animation: glitch-flicker 0.4s ease-out;
+  //animation: glitch-flicker 0.4s ease-out;
 }
 
 @keyframes glitch-flicker {

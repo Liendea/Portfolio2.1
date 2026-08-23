@@ -6,17 +6,28 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "title",
-      title: "Rubrik för sektionen",
-      type: "string",
+      name: "techStackList",
+      title: "Tech Stack-lista",
+      description:
+        "Välj en delad Tech Stack-lista. Samma lista kan användas på flera sidor - redigerar du den uppdateras alla.",
+      type: "reference",
+      to: [{ type: "techStackList" }],
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
-      name: "techStackItems",
-      title: "Tech Stack",
-      type: "array",
-      of: [{ type: "techStackItem" }], // direkt object istället för reference
-      validation: (Rule) => Rule.required().min(1),
+      name: "backgroundColor",
+      title: "Background Color",
+      type: "color",
+      options: {
+        disableAlpha: false,
+      },
     }),
   ],
+  preview: {
+    select: { title: "techStackList.title" },
+    prepare({ title }) {
+      return { title: `Tech Stack: ${title || "(ingen lista vald)"}` };
+    },
+  },
 });
