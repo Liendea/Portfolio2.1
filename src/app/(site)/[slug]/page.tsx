@@ -255,13 +255,7 @@ export default async function Page(props: {
 
           case "textBlock":
             // PAGE TITLE AND INGRESS (about-sidan delar ingress i flera stycken)
-            return (
-              <IntroSection
-                key={index}
-                section={section}
-                splitParagraphs={slug === "about"}
-              />
-            );
+            return <IntroSection key={index} section={section} />;
           case "projectBlock":
             return (
               // PROJECT LIST SECTION
