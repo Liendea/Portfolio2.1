@@ -7,6 +7,10 @@
   max-width: 60vw;
   margin: 0 auto;
 
+  @include mobile {
+    max-width: 100%;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -32,12 +36,8 @@
     text-transform: none;
     font-weight: $regular;
     color: $text-color-light;
-    font-size: $fs-mobile-large;
-    line-height: 130%;
 
-    @include tablet {
-      font-size: $fs-desktop-large;
-    }
+    line-height: 130%;
   }
 
   &__input {

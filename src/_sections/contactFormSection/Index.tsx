@@ -154,7 +154,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{needsLabel}</p>
+              <h4 className="contact-form__question">{needsLabel}</h4>
             </div>
 
             <div className="contact-form__checkbox-group">
@@ -178,7 +178,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{businessNameLabel}</p>
+              <h4 className="contact-form__question">{businessNameLabel}</h4>
             </div>
 
             <input
@@ -198,7 +198,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{budgetLabel}</p>
+              <h4 className="contact-form__question">{budgetLabel}</h4>
             </div>
             <input
               className="contact-form__input"
@@ -217,7 +217,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{locationLabel}</p>{" "}
+              <h4 className="contact-form__question">{locationLabel}</h4>{" "}
             </div>
             <input
               className="contact-form__input"
@@ -236,7 +236,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{messageLabel}</p>
+              <h4 className="contact-form__question">{messageLabel}</h4>
             </div>
             <textarea
               className="contact-form__input contact-form__input--textarea"
@@ -255,7 +255,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">{nameLabel}</p>
+              <h4 className="contact-form__question">{nameLabel}</h4>
             </div>
             <input
               className="contact-form__input"
@@ -271,7 +271,7 @@ export default function ContactFormSection({
 
         {step.id === "email" && (
           <>
-            <p className="contact-form__question">{emailLabel}</p>
+            <h4 className="contact-form__question">{emailLabel}</h4>
             <input
               className="contact-form__input"
               type="email"
@@ -290,7 +290,7 @@ export default function ContactFormSection({
               <p className="contact-form__kicker">
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <p className="contact-form__question">Review your answers</p>
+              <h4 className="contact-form__question">Review your answers</h4>
             </div>
             <dl className="contact-form__review">
               <div className="contact-form__review-row">
