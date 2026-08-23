@@ -1,5 +1,6 @@
 @use "variables" as *;
 
+$font-hero: var(--font-getai-grotesk-display);
 $font-primary: var(--font-schibsted-grotesk), sans-serif;
 $font-mono: var(--font-geist-mono), monospace;
 
@@ -36,18 +37,20 @@ $fs-mobile-xxlarge: 3.5rem; // 56px
 
 // RESONSIVE TEXT
 h1 {
-  @include responsive-font($fs-mobile-xxlarge, $fs-desktop-xxlarge);
-  font-family: $font-primary;
+  font-family: $font-hero;
   text-transform: uppercase;
   line-height: 100%;
+  font-weight: 400;
+  font-size: 10vw;
 }
 
 h2,
 .h2 {
-  @include responsive-font($fs-mobile-xlarge, $fs-desktop-xlarge);
   font-family: $font-primary;
   text-transform: uppercase;
-  line-height: 110%;
+  line-height: 150%;
+  font-weight: 400;
+  font-size: 10vw;
 }
 
 h3 {
@@ -62,6 +65,13 @@ h4 {
   font-family: $font-primary;
   text-transform: uppercase;
   line-height: 130%;
+}
+
+h5 {
+  font-family: $font-primary;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 p {

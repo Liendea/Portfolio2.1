@@ -2,6 +2,8 @@ import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import HeroSection from "@/src/_sections/heroSection/Index";
+import SplashSection from "@/src/_sections/splashSection/Index";
+import ContactFormSection from "@/src/_sections/contactFormSection/Index";
 import ShowCaseSection from "@/src/_sections/showCaseSection/Index";
 import StatisticSection from "@/src/_sections/statisticSection/Index";
 import TechStackSection from "@/src/_sections/techStackSection/Index";
@@ -22,13 +24,36 @@ type PageBuilderSection =
   | {
       _type: "heroBlock";
       heading: string;
-      subheading: string;
       backgroundType: "video" | "image" | "color";
       backgroundMedia?: string;
       backgroundColor?: SanityColor;
       exploreText?: string;
       headingColor: SanityColor;
-      subheadingColor: SanityColor;
+    }
+  | {
+      _type: "splashBlock";
+      name: string;
+      tagline?: string;
+      textColor?: SanityColor;
+      backgroundColor?: SanityColor;
+    }
+  | {
+      _type: "contactFormBlock";
+      needsLabel?: string;
+      needsOptions?: string[];
+      businessNameLabel?: string;
+      businessNamePlaceholder?: string;
+      budgetLabel?: string;
+      budgetPlaceholder?: string;
+      locationLabel?: string;
+      locationPlaceholder?: string;
+      messageLabel?: string;
+      messagePlaceholder?: string;
+      nameLabel?: string;
+      namePlaceholder?: string;
+      emailLabel?: string;
+      emailPlaceholder?: string;
+      submitButtonText?: string;
     }
   | {
       _type: "textBlock";
@@ -102,12 +127,33 @@ export default async function Page(props: {
     ...,
     _type == "heroBlock" => {
       heading,
-      subheading,
       backgroundType,
     "backgroundMedia": coalesce(backgroundVideo.asset->url, backgroundImage.asset->url),
       backgroundColor,
       headingColor,
-      subheadingColor,
+    },
+    _type == "splashBlock" => {
+      name,
+      tagline,
+      textColor,
+      backgroundColor,
+    },
+    _type == "contactFormBlock" => {
+      needsLabel,
+      needsOptions,
+      businessNameLabel,
+      businessNamePlaceholder,
+      budgetLabel,
+      budgetPlaceholder,
+      locationLabel,
+      locationPlaceholder,
+      messageLabel,
+      messagePlaceholder,
+      nameLabel,
+      namePlaceholder,
+      emailLabel,
+      emailPlaceholder,
+      submitButtonText,
     },
     _type == "textBlock" => { pageTitle, ingress, pageTitleColor, ingressColor },
     _type == "projectBlock" => {
@@ -155,12 +201,45 @@ export default async function Page(props: {
               <HeroSection
                 key={index}
                 heading={section.heading}
-                subheading={section.subheading}
                 backgroundType={section.backgroundType}
                 backgroundMedia={section.backgroundMedia}
                 backgroundColor={section.backgroundColor}
                 headingColor={section.headingColor}
-                subheadingColor={section.subheadingColor}
+              />
+            );
+
+          case "splashBlock":
+            // BRAND-MOMENT (namn + tagline), egen sektion i pageBuilder
+            return (
+              <SplashSection
+                key={index}
+                name={section.name}
+                tagline={section.tagline}
+                textColor={section.textColor}
+                backgroundColor={section.backgroundColor}
+              />
+            );
+
+          case "contactFormBlock":
+            return (
+              // KONTAKTFORMULÄR - skickar till /api/contact-form (Resend)
+              <ContactFormSection
+                key={index}
+                needsLabel={section.needsLabel}
+                needsOptions={section.needsOptions}
+                businessNameLabel={section.businessNameLabel}
+                businessNamePlaceholder={section.businessNamePlaceholder}
+                budgetLabel={section.budgetLabel}
+                budgetPlaceholder={section.budgetPlaceholder}
+                locationLabel={section.locationLabel}
+                locationPlaceholder={section.locationPlaceholder}
+                messageLabel={section.messageLabel}
+                messagePlaceholder={section.messagePlaceholder}
+                nameLabel={section.nameLabel}
+                namePlaceholder={section.namePlaceholder}
+                emailLabel={section.emailLabel}
+                emailPlaceholder={section.emailPlaceholder}
+                submitButtonText={section.submitButtonText}
               />
             );
 

@@ -10,6 +10,8 @@ import techStackBlock from "./sections/techStackBlock";
 import statsBlock from "./sections/statsBlock";
 import projectBlock from "./sections/projectBlock";
 import heroBlock from "./sections/heroBlock";
+import splashBlock from "./sections/splashBlock";
+import contactFormBlock from "./sections/contactFormBlock";
 import spacer from "./sections/spacer";
 import divider from "./sections/divider";
 import linkListBlock from "./sections/linkListBlock";
@@ -36,6 +38,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     linkColumn,
     settings,
     heroBlock,
+    splashBlock,
+    contactFormBlock,
     headerSettings,
     footerSettings,
     spacer,

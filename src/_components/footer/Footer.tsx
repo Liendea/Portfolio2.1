@@ -4,16 +4,11 @@ import { usePathname } from "next/navigation";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/src/sanity/lib/image";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
-
-type LinkItem = {
-  title: string;
-  href: string;
-};
+import type { FooterColumn } from "@/src/sanity/lib/fetchSettings";
 
 type FooterProps = {
-  exploreLinks?: LinkItem[];
-  socialLinks?: LinkItem[];
   contactEmail?: string;
+  columns?: FooterColumn[];
   logo?: SanityImageSource;
   copyright?: string;
   textColor?: SanityColor | null;
@@ -21,9 +16,8 @@ type FooterProps = {
 };
 
 export default function Footer({
-  exploreLinks = [],
-  socialLinks = [],
   contactEmail = "",
+  columns = [],
   logo,
   copyright,
   textColor,
@@ -41,45 +35,36 @@ export default function Footer({
       style={{ backgroundColor: backgroundColor?.hex }}
     >
       <div className="footer-content" style={{ color: textColor?.hex }}>
-        {pathname !== "/contact" && contactEmail && (
-          <div className="footer-contact">
-            <p>SAY HELLO</p>
+        {columns.map((column, i) => (
+          <div key={i} className="footer-column">
+            {column.title && (
+              <h5 className="footer-column__title">
+                {column.title.toUpperCase()}
+              </h5>
+            )}
             <div className="footer-links">
-              <a href={`mailto:${contactEmail}`} className="footer-link">
-                Send Email
-              </a>
+              {column.links?.map((link, j) =>
+                link.url ? (
+                  <a
+                    key={j}
+                    href={link.url}
+                    className="footer-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.displayText}
+                  </a>
+                ) : (
+                  <p key={j} className="footer-link">
+                    {link.displayText}
+                  </p>
+                ),
+              )}
             </div>
           </div>
-        )}
-        {pathname !== "/contact" && socialLinks.length > 0 && (
-          <div className="footer-socials">
-            <p>CONNECT</p>
-            <div className="footer-links">
-              {socialLinks.map((link, i) => (
-                <a
-                  key={i}
-                  href={link.href}
-                  className="footer-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.title}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-        <div className="footer-explore">
-          <p>EXPLORE</p>
-          <div className="footer-links">
-            {exploreLinks.map((link, i) => (
-              <a key={i} href={link.href} className="footer-link">
-                {link.title}
-              </a>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
+
       {logo && (
         <div className="footer-logo-container">
           <Image

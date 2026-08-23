@@ -22,20 +22,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: "subheading",
-      title: "Subheading",
-      type: "string",
-    }),
-    defineField({
-      name: "subheadingColor",
-      title: "Subheading Color",
-      type: "color",
-      options: {
-        colorList: colorSwatches,
-        disableAlpha: false,
-      },
-    }),
-    defineField({
       name: "backgroundType",
       title: "Background Type",
       type: "string",

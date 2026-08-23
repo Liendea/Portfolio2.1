@@ -3,34 +3,28 @@
 import type { SanityAssetDocument } from "@sanity/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import BackgroundMedia from "../../_components/backgroundMedia/BackgroundMedia";
-import P_Animation from "../../_components/textAnimations/P_Animation";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
 import { useEffect, useState, useRef } from "react";
 import AsciiField from "@/src/_components/backgroundAscii/AsciiField";
 
 type HeroProps = {
   heading: string;
-  subheading?: string;
   backgroundType?: "video" | "image" | "color";
   backgroundMedia?: SanityAssetDocument | SanityImageSource | string;
   backgroundColor?: SanityColor;
   exploreText?: string;
-  subheadingColor: SanityColor;
   headingColor: SanityColor;
 };
 
 type Role = "FRONTEND" | "FULLSTACK" | "UX " | "UI" | "APP";
 
 export default function Hero({
-  subheading,
   backgroundType = "video",
   backgroundMedia,
   backgroundColor,
-  subheadingColor,
   headingColor,
 }: HeroProps) {
   const [currentRole, setCurrentRole] = useState<Role>("FRONTEND");
-  const [progress, setProgress] = useState(0);
   const scrollValue = useRef(0);
   const roles: Role[] = ["FRONTEND", "FULLSTACK", "UX ", "UI", "APP"];
 
@@ -43,7 +37,6 @@ export default function Hero({
       const interval = setInterval(() => {
         index = (index + 1) % roles.length;
         setCurrentRole(roles[index]);
-        setProgress(index / (roles.length - 1));
       }, 2000);
 
       return () => clearInterval(interval);
@@ -56,7 +49,6 @@ export default function Hero({
         const newIndex =
           Math.floor(Math.abs(scrollValue.current / threshold)) % roles.length;
         setCurrentRole(roles[newIndex]);
-        setProgress(newIndex / (roles.length - 1));
 
         if (scrollValue.current > 1000) scrollValue.current = 0;
       };
@@ -85,7 +77,7 @@ export default function Hero({
           />
         )}
 
-      <AsciiField progress={progress} />
+      <AsciiField />
 
       <div
         className="hero-text-container"
@@ -96,16 +88,11 @@ export default function Hero({
             {currentRole}
           </span>
           <br />
+
           {currentRole === "UX " || currentRole === "UI"
             ? "DESIGNER"
             : "DEVELOPER"}
         </h1>
-        <div className="animated-text-container">
-          <P_Animation
-            textToAnimate={subheading}
-            color={subheadingColor?.hex}
-          />
-        </div>
       </div>
     </section>
   );

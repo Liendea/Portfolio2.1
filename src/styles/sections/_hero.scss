@@ -23,7 +23,6 @@
     }
 
     .hero-text {
-      font-weight: $bold;
       text-transform: uppercase;
 
       @include tablet {
@@ -33,21 +32,6 @@
       @include mobile {
         font-size: $fs-mobile-xxlarge;
       }
-    }
-
-    .animated-text-container {
-      margin-top: $spacing-small;
-      width: 100%;
-
-      margin-left: $spacing-xsmall;
-
-      @include mobile {
-        margin-left: 0;
-        width: 90%;
-      }
-    }
-    .animated-text {
-      font-size: $fs-mobile-xsmall;
     }
   }
 }

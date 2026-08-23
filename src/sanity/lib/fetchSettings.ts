@@ -15,9 +15,20 @@ export type HeaderSettings = {
   exploreText?: string;
 };
 
+export type FooterLinkItem = {
+  displayText: string;
+  url?: string;
+};
+
+export type FooterColumn = {
+  title?: string;
+  links?: FooterLinkItem[];
+};
+
 export type FooterSettings = {
-  text?: string;
-  links?: NavLink[];
+  contactEmail?: string;
+  columns?: FooterColumn[];
+  copyright?: string;
   backgroundColor?: SanityColor;
   textColor?: SanityColor;
   logo?: SanityImageSource;
@@ -40,10 +51,8 @@ export async function fetchSettings(): Promise<SiteSettings | null> {
         textColor
       },
       "footer": footer {
-        text,
-        exploreLinks,
-        socialLinks, 
         contactEmail,
+        "columns": coalesce(columns[] { title, links[] { displayText, url } }, []),
         copyright,
         backgroundColor,
         textColor,

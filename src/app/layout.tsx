@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk, Geist_Mono } from "next/font/google";
 import "@/src/styles/main.scss";
+import localFont from "next/font/local";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -10,6 +11,12 @@ const schibstedGrotesk = Schibsted_Grotesk({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const getaiGrotesk = localFont({
+  src: "../fonts/DTGetaiGroteskDisplay-Black.woff2",
+  variable: "--font-getai-grotesk-display",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,8 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${schibstedGrotesk.variable} ${geistMono.variable} 
-    `}
+        className={`${schibstedGrotesk.variable} ${geistMono.variable} ${getaiGrotesk.variable}`}
       >
         {children}
       </body>

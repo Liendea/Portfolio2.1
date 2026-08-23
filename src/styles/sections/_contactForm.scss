@@ -1,0 +1,234 @@
+@use "../variables" as *;
+@use "../fonts" as *;
+@use "../mixins" as *;
+
+.contact-form {
+  width: 100%;
+  max-width: 60vw;
+  margin: 0 auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xxlarge;
+
+    @include mobile {
+      gap: $spacing-xlarge;
+    }
+  }
+
+  &__heading {
+    display: flex;
+  }
+  &__kicker {
+    font-family: $font-mono;
+    font-size: $fs-mobile-xsmall;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &__question {
+    font-family: $font-primary;
+    text-transform: none;
+    font-weight: $regular;
+    color: $text-color-light;
+    font-size: $fs-mobile-large;
+    line-height: 130%;
+
+    @include tablet {
+      font-size: $fs-desktop-large;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: $text-color-light;
+    font-family: $font-primary;
+    font-size: $fs-mobile-medium;
+    padding: 0.5rem 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    &:focus {
+      border-color: $text-color-light;
+    }
+  }
+
+  &__input--textarea {
+    resize: vertical;
+    min-height: 3rem;
+    font-family: $font-mono;
+    font-size: $fs-mobile-small;
+  }
+
+  &__checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: $font-mono;
+    font-size: $fs-mobile-small;
+    color: $text-color-light;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: transparent;
+      cursor: pointer;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+
+      &:checked {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+      }
+    }
+  }
+
+  &__submit {
+    align-self: flex-start;
+    padding: 0.9rem 2.5rem;
+    border-radius: 999px;
+    border: none;
+    background-color: $secondary-color;
+    color: $primary-color;
+    font-family: $font-mono;
+    font-weight: $regular;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    color: #ff6b6b;
+    font-size: $fs-mobile-small;
+  }
+
+  &__success {
+    font-family: $font-primary;
+    font-size: $fs-mobile-large;
+    color: $text-color-light;
+  }
+
+  &__review {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+  }
+
+  &__review-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: $spacing-small;
+
+    dt {
+      font-family: $font-mono;
+      font-size: $fs-mobile-xsmall;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    dd {
+      font-family: $font-primary;
+      font-size: $fs-mobile-small;
+      color: $text-color-light;
+      margin: 0;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__back {
+    padding: 0.9rem 2.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: transparent;
+    color: $text-color-light;
+    font-family: $font-mono;
+    font-weight: $regular;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition:
+      opacity 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover:not(:disabled) {
+      border-color: $text-color-light;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__step {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: $font-mono;
+    font-size: $fs-mobile-xsmall;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &__step--active {
+    color: $text-color-light;
+  }
+
+  &__step-label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}

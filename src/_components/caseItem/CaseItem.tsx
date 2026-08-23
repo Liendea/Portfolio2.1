@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { urlFor } from "../../sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -12,6 +14,8 @@ type CaseItemProps = {
   width: number;
   height: number;
   url: string;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 export default function CaseItem({
   imageObject,
@@ -22,6 +26,8 @@ export default function CaseItem({
   height,
   stack,
   url,
+  isOpen,
+  onToggle,
 }: CaseItemProps) {
   const imageUrl = urlFor(imageObject)
     .width(width)
@@ -30,7 +36,19 @@ export default function CaseItem({
     .url();
 
   return (
-    <div className="case-item">
+    <div
+      className={`case-item${isOpen ? " case-item--open" : ""}`}
+      role="button"
+      tabIndex={0}
+      aria-expanded={isOpen}
+      onClick={onToggle}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onToggle();
+        }
+      }}
+    >
       <div className="case-item__flex-row">
         <h3 className="case-item__title">{title}</h3>
         <div className="case-item__text">
@@ -40,7 +58,7 @@ export default function CaseItem({
         </div>
       </div>
 
-      <div className="case-item__flex-row case-item__flex-row--hovered">
+      <div className="case-item__flex-row case-item__flex-row--expanded">
         <div className="case-item__flex-col">
           <p className="case-item__stack">{stack}</p>
           <p className="case-item__projectDescription">{projectDescription}</p>
@@ -49,6 +67,7 @@ export default function CaseItem({
             target="_blank"
             rel="noopener norefferer"
             className="case-item__link"
+            onClick={(event) => event.stopPropagation()}
           >
             <Image
               src="/icons/Arrow_right.svg"

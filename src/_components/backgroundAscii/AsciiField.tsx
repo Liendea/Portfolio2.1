@@ -27,21 +27,15 @@ const CELL_W = 9;
 const CELL_H = 16;
 
 type AsciiFieldProps = {
-  /** 0–1, t.ex. scrollprogress genom hero-sektionen. Styr hur mycket mönstret drar mot mandala-symmetri. */
-  progress?: number;
   className?: string;
 };
 
-export default function AsciiField({
-  progress = 0,
-  className,
-}: AsciiFieldProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const progressRef = useRef(progress);
+// Statisk symmetri-nivå för mönstret (ersätter tidigare scrollstyrda
+// progress-värdet). Fältet animeras ändå kontinuerligt via tiden `t`.
+const FOLD_PROGRESS = 0.5;
 
-  useEffect(() => {
-    progressRef.current = progress;
-  }, [progress]);
+export default function AsciiField({ className }: AsciiFieldProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -142,7 +136,7 @@ export default function AsciiField({
       context.clearRect(0, 0, c.width, c.height);
       context.font = `${CELL_H * dpr}px monospace`;
       context.textBaseline = "top";
-      const prog = progressRef.current;
+      const prog = FOLD_PROGRESS;
 
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {

@@ -5,7 +5,6 @@
 
 // SECTIONS
 @use "./sections/intro" as *;
-@use "./sections/projectGrid" as *;
 @use "./sections/showcase" as *;
 @use "./sections/hero" as *;
 @use "./sections/techstack" as *;
@@ -14,3 +13,5 @@
 @use "./sections/footer" as *;
 @use "./sections/stats" as *;
 @use "./sections/navbar" as *;
+@use "./sections/splashScreen" as *;
+@use "./sections/contactForm" as *;
