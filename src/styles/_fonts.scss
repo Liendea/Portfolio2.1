@@ -75,7 +75,7 @@ h5 {
 }
 
 p {
-  @include responsive-font($fs-mobile-xsmall, $fs-desktop-large);
+  @include responsive-font($fs-mobile-xsmall, $fs-desktop-small);
   font-weight: $thin;
   font-family: $font-mono;
   line-height: 150%;
