@@ -6,6 +6,11 @@ import BackgroundMedia from "../../_components/backgroundMedia/BackgroundMedia";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
 import { useEffect, useState, useRef } from "react";
 import AsciiField from "@/src/_components/backgroundAscii/AsciiField";
+import ContourField from "@/src/_components/backgroundContour/ContourField";
+
+// Byt till AsciiField här igen om ContourField inte känns bra -
+// bara denna rad + JSX-taggen längre ner behöver ändras tillbaka.
+const BACKGROUND_COMPONENT: "ascii" | "contour" = "contour";
 
 type HeroProps = {
   heading: string;
@@ -77,7 +82,7 @@ export default function Hero({
           />
         )}
 
-      <AsciiField />
+      {BACKGROUND_COMPONENT === "contour" ? <ContourField /> : <AsciiField />}
 
       <div
         className="hero-text-container"
@@ -90,8 +95,8 @@ export default function Hero({
           <br />
 
           {currentRole === "UX " || currentRole === "UI"
-            ? "DESIGNER"
-            : "DEVELOPER"}
+            ? "DESIGN"
+            : "DEVELOPMENT"}
         </h1>
       </div>
     </section>

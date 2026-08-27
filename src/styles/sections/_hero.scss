@@ -2,7 +2,7 @@
 @use "../fonts" as *;
 @use "../mixins" as *;
 .hero-section {
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,11 +11,10 @@
   overflow: hidden;
 
   @include mobile {
-    height: 80vh;
+    height: 100vh;
   }
 
   .hero-text-container {
-    line-height: 0.9;
     display: block;
 
     @include mobile {
@@ -24,7 +23,7 @@
 
     .hero-text {
       text-transform: uppercase;
-      font-size: 16vw;
+      margin-top: auto;
     }
   }
 }
@@ -32,58 +31,4 @@
 /* Själva textbytet med en snabb fade-in/flicker */
 .role-animation {
   display: inline-block;
-  //animation: glitch-flicker 0.4s ease-out;
-}
-
-@keyframes glitch-flicker {
-  0% {
-    opacity: 0;
-    transform: skew(10deg);
-    filter: blur(2px);
-  }
-  20% {
-    opacity: 1;
-    transform: skew(-10deg);
-    color: #ff00c1; /* En neon-färg som blinkar till */
-  }
-  40% {
-    transform: skew(0deg);
-    filter: blur(0px);
-  }
-  60% {
-    opacity: 0.8;
-    color: #00fff9; /* En annan neon-blink */
-  }
-  100% {
-    opacity: 1;
-    color: inherit;
-  }
-}
-
-/* Valfritt: En konstant subtil glitch-effekt på texten */
-.glitch {
-  position: relative;
-  text-shadow:
-    0.05em 0 0 rgba(255, 0, 0, 0.75),
-    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-  animation: glitch-steady 500ms infinite;
-}
-
-@keyframes glitch-steady {
-  0% {
-    text-shadow:
-      2px 0 red,
-      -2px 0 cyan;
-  }
-  50% {
-    text-shadow:
-      -2px 0 red,
-      2px 0 cyan;
-  }
-  100% {
-    text-shadow:
-      2px 0 red,
-      -2px 0 cyan;
-  }
 }

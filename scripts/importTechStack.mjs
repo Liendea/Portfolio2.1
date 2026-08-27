@@ -70,7 +70,9 @@ async function run() {
     techStackItems: items,
   });
 
-  console.log(`Klart! techStackList (_id: ${LIST_ID}) har nu ${items.length} items.`);
+  console.log(
+    `Klart! techStackList (_id: ${LIST_ID}) har nu ${items.length} items.`,
+  );
   console.log(
     `Nästa steg: lägg till ett "Tech Stack List"-block på valfri sida i Studio och välj "${LIST_TITLE}" som referens.`,
   );

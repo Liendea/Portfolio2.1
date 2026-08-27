@@ -18,7 +18,7 @@ export default async function GithubStatsRenderer({
 }: StatsRendererProps) {
   // 1. Hämta konfigurationsdata från Sanity
   const { githubUsername, sectionTitle } = statsBlock;
-  console.log(sectionTitle);
+
   // 2. Anropa den server-side funktionen
   // Detta anrop använder GITHUB_TOKEN säkert på servern.
   const githubStats: GithubStats | null = await getGithubStats(githubUsername);

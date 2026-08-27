@@ -9,10 +9,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem;
+  padding: 2rem;
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.197);
-  position: relative;
+
+  // Ligger nu ovanpå hero-sektionen istället för att trycka ner den i
+  // flödet, med genomskinlig bakgrund - bakgrundsanimationen (ContourField/
+  // AsciiField) syns igenom.
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: transparent;
 
   @include mobile {
     padding: 1rem;
