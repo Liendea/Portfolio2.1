@@ -5,10 +5,19 @@
 // =========================
 // FOOTER BASE
 // =========================
+// Osynlig wrapper som ger sticky-footern utrymme att faktiskt glida in
+// och stanna kvar innan sidan tar slut (utan denna slack-höjd har sticky
+// noll pixlar att jobba med och effekten "snäpper" istället för att glida).
+.footer-reveal-wrapper {
+  height: calc(var(--footer-height, 0px) * 2);
+}
+
 .footer-section {
   width: 100%;
   padding: 4rem 4rem 1rem 4rem;
-  margin-top: 6rem;
+  position: sticky;
+  top: calc(100vh - var(--footer-height, 0px));
+  z-index: 0;
 
   @include mobile {
     padding: 2rem 1rem;

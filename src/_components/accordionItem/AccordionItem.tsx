@@ -28,7 +28,7 @@ export default function AccordionItem({
       }}
     >
       <div className="accordion-item__row">
-        <h3 className="accordion-item__title">{title}</h3>
+        <h4 className="accordion-item__title">{title}</h4>
         <span className="accordion-item__icon" aria-hidden="true">
           <span className="accordion-item__icon-line accordion-item__icon-line--vertical" />
           <span className="accordion-item__icon-line accordion-item__icon-line--horizontal" />

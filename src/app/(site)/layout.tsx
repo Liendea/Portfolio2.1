@@ -13,7 +13,7 @@ export default async function Page({
     <>
       {settings?.header && <Header {...settings.header} />}
 
-      <main>{children}</main>
+      <main className="site-main">{children}</main>
 
       {settings?.footer && <Footer {...settings.footer} />}
     </>

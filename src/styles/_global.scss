@@ -23,6 +23,16 @@ body.no-scroll {
   overflow: hidden;
 }
 
+// RIDÅ-EFFEKT: sidans innehåll (main) ligger ovanpå footern och glider
+// undan i normalt scrollflöde, footern ligger sticky i botten och
+// avslöjas bakom. --footer-height sätts av Footer.tsx (ResizeObserver).
+.site-main {
+  position: relative;
+  z-index: 2;
+  background-color: $primary-color;
+  margin-bottom: calc(-1 * var(--footer-height, 0px));
+}
+
 // BUTTON
 .button {
   font-size: $fs-mobile-small;

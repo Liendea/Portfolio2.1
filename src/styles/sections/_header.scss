@@ -12,6 +12,7 @@
   padding: 3rem;
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.197);
+  position: relative;
 
   @include mobile {
     padding: 1rem;

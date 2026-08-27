@@ -50,10 +50,9 @@
         color: $text-color-light;
         font-family: $font-primary;
         text-transform: none;
-        font-weight: 400;
-        line-height: 100%;
-        font-size: $fs-mobile-xlarge;
+
         transition: padding-left 0.3s ease;
+        text-transform: uppercase;
 
         @include tablet {
           font-size: $fs-desktop-medium;
