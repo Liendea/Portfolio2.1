@@ -31,73 +31,72 @@ export default function Footer({
   const footerRef = useRef<HTMLElement | null>(null);
   const innerRef = useRef<HTMLDivElement | null>(null);
 
-  // Sätter --footer-height på :root så .site-main (se _global.scss) vet
-  // hur mycket den ska dras ner över footern för ridå-effekten.
-  // OBS: Footer ligger i den delade (site)-layouten och monteras ALDRIG
-  // om mellan sidnavigeringar, så ResizeObserver måste leva hela tiden
-  // (inte pathname-beroende) - den fångar automatiskt om footerns egen
-  // höjd skulle ändras.
+  // Footer ligger i den delade (site)-layouten och monteras ALDRIG om
+  // mellan sidnavigeringar - men vi tvingar fram en ren omstart av både
+  // höjdmätning och scroll-animation vid varje sidbyte (key={pathname}
+  // på wrappern nedan ger ett helt nytt DOM-element varje gång, så det
+  // aldrig finns kvarbliven GSAP-state från en tidigare sida kvar).
   useEffect(() => {
     const footerEl = footerRef.current;
-    if (!footerEl) return;
+    const innerEl = innerRef.current;
+    if (!footerEl || !innerEl) return;
+
+    let frame = 0;
+    let ctx: gsap.Context | undefined;
 
     const setHeightVar = () => {
       document.documentElement.style.setProperty(
         "--footer-height",
         `${footerEl.offsetHeight}px`,
       );
-      // Sidans totala scrollhöjd beror på --footer-height (se .site-main
-      // och .footer-reveal-wrapper), så ScrollTrigger måste räkna om sig
-      // varje gång värdet ändras.
-      ScrollTrigger.refresh();
     };
 
+    // 1. Mät footerns höjd direkt (--footer-height styr .site-main och
+    //    .footer-reveal-wrapper, se _global.scss / _footer.scss).
     setHeightVar();
-    const observer = new ResizeObserver(setHeightVar);
+
+    // 2. Vänta en frame så layouten hunnit lägga om sig utifrån den nya
+    //    höjden innan ScrollTrigger mäter var i dokumentet footern
+    //    faktiskt hamnar - annars riskerar starten/slutet av animationen
+    //    att räknas ut fel just den här gången.
+    frame = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          innerEl,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: footerEl,
+              start: "top bottom",
+              end: "top 65%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      }, footerEl);
+
+      ScrollTrigger.refresh();
+    });
+
+    // Om footerns egen höjd ändras senare (t.ex. fönster ändrar storlek
+    // och kolumnerna radas om) - håll --footer-height och ScrollTriggers
+    // mått i synk.
+    const observer = new ResizeObserver(() => {
+      setHeightVar();
+      ScrollTrigger.refresh();
+    });
     observer.observe(footerEl);
 
     return () => {
+      cancelAnimationFrame(frame);
       observer.disconnect();
+      ctx?.revert();
       document.documentElement.style.removeProperty("--footer-height");
     };
-  }, []);
-
-  // Footerns innehåll tonas/glider in i takt med scrollen medan den
-  // avslöjas bakom sidans innehåll (ren scrub-animation, ingen pin).
-  // Körs om vid varje sidbyte (pathname) - eftersom Footer inte monteras
-  // om mellan sidor måste vi själva skapa om ScrollTrigger med färska
-  // mått, annars ligger triggerns start/slut kvar från förra sidans
-  // (annorlunda långa) layout och animationen "fastnar" osynlig eller
-  // redan klar.
-  useEffect(() => {
-    const footerEl = footerRef.current;
-    const innerEl = innerRef.current;
-    if (!footerEl || !innerEl) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        innerEl,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerEl,
-            start: "top bottom",
-            end: "top 65%",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        },
-      );
-
-      // Vänta en frame så det nya sidinnehållet (och --footer-height)
-      // hunnit läggas ut innan vi tvingar fram en omräkning.
-      requestAnimationFrame(() => ScrollTrigger.refresh());
-    }, footerEl);
-
-    return () => ctx.revert();
   }, [pathname]);
 
   if (pathname === "/") return null;
@@ -105,63 +104,63 @@ export default function Footer({
   const imageUrl = logo ? urlFor(logo).url() : "";
 
   return (
-    <div className="footer-reveal-wrapper">
+    <div className="footer-reveal-wrapper" key={pathname}>
       <footer
         ref={footerRef}
         className="footer-section"
         style={{ backgroundColor: backgroundColor?.hex }}
       >
-      <div className="footer-inner" ref={innerRef}>
-        <div className="footer-content" style={{ color: textColor?.hex }}>
-          {columns.map((column, i) => (
-            <div key={i} className="footer-column">
-              {column.title && (
-                <h5 className="footer-column__title">
-                  {column.title.toUpperCase()}
-                </h5>
-              )}
-              <div className="footer-links">
-                {column.links?.map((link, j) =>
-                  link.url ? (
-                    <a
-                      key={j}
-                      href={link.url}
-                      className="footer-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.displayText}
-                    </a>
-                  ) : (
-                    <p key={j} className="footer-link">
-                      {link.displayText}
-                    </p>
-                  ),
+        <div className="footer-inner" ref={innerRef}>
+          <div className="footer-content" style={{ color: textColor?.hex }}>
+            {columns.map((column, i) => (
+              <div key={i} className="footer-column">
+                {column.title && (
+                  <h5 className="footer-column__title">
+                    {column.title.toUpperCase()}
+                  </h5>
                 )}
+                <div className="footer-links">
+                  {column.links?.map((link, j) =>
+                    link.url ? (
+                      <a
+                        key={j}
+                        href={link.url}
+                        className="footer-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.displayText}
+                      </a>
+                    ) : (
+                      <p key={j} className="footer-link">
+                        {link.displayText}
+                      </p>
+                    ),
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {logo && (
-          <div className="footer-logo-container">
-            <Image
-              src={imageUrl}
-              alt="Footer Logo"
-              className="footer-logo"
-              width={1000}
-              height={500}
-              priority
-            />
+            ))}
           </div>
-        )}
 
-        {copyright && (
-          <p className="footer-copy" style={{ color: textColor?.hex }}>
-            Copyright:{copyright}
-          </p>
-        )}
-      </div>
+          {logo && (
+            <div className="footer-logo-container">
+              <Image
+                src={imageUrl}
+                alt="Footer Logo"
+                className="footer-logo"
+                width={1000}
+                height={500}
+                priority
+              />
+            </div>
+          )}
+
+          {copyright && (
+            <p className="footer-copy" style={{ color: textColor?.hex }}>
+              Copyright:{copyright}
+            </p>
+          )}
+        </div>
       </footer>
     </div>
   );
