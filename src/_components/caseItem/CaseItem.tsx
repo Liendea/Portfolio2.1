@@ -51,10 +51,16 @@ export default function CaseItem({
     >
       <div className="case-item__flex-row">
         <h4 className="case-item__title">{title}</h4>
-        <div className="case-item__text">
-          {jobDescription?.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
+        <div className="case-item__right">
+          <div className="case-item__text">
+            {jobDescription?.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
+          <span className="accordion-item__icon" aria-hidden="true">
+            <span className="accordion-item__icon-line accordion-item__icon-line--vertical" />
+            <span className="accordion-item__icon-line accordion-item__icon-line--horizontal" />
+          </span>
         </div>
       </div>
 
@@ -72,8 +78,8 @@ export default function CaseItem({
             <Image
               src="/icons/Arrow_right.svg"
               alt="Arrow"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
             />
             <p className="case-item__link-text">View Project</p>
           </Link>

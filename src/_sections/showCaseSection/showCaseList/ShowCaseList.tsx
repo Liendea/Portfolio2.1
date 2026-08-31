@@ -31,6 +31,10 @@ export default function ShowCaseList({
               setOpenIndex((prev) => (prev === index ? null : index))
             }
           />
+          <span className="accordion-item__icon" aria-hidden="true">
+            <span className="accordion-item__icon-line accordion-item__icon-line--vertical" />
+            <span className="accordion-item__icon-line accordion-item__icon-line--horizontal" />
+          </span>
         </>
       ))}
     </div>
