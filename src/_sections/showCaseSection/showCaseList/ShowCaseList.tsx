@@ -23,6 +23,7 @@ export default function ShowCaseList({
             jobDescription={item.jobDescription}
             stack={item.stack}
             imageObject={item.image}
+            videoObject={item.video}
             width={3000}
             height={2250}
             url={item.url}

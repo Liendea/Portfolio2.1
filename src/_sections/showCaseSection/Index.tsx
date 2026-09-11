@@ -14,6 +14,7 @@ export type projectItem = {
   projectDescription: string;
   stack: string;
   image: SanityImageSource;
+  video?: string;
   url: string;
 };
 

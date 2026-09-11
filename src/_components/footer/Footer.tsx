@@ -126,7 +126,7 @@ export default function Footer({
                         key={j}
                         href={link.url}
                         className="footer-link"
-                        target="_blank"
+                        target="_self"
                         rel="noopener noreferrer"
                       >
                         {link.displayText}

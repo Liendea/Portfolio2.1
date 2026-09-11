@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { urlFor } from "../../sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
 
 type CaseItemProps = {
   imageObject: SanityImageSource;
+  videoObject?: string;
   title: string;
   jobDescription?: string;
   projectDescription?: string;
@@ -27,6 +29,7 @@ export default function CaseItem({
   stack,
   url,
   isOpen,
+  videoObject,
   onToggle,
 }: CaseItemProps) {
   const imageUrl = urlFor(imageObject)
@@ -34,6 +37,24 @@ export default function CaseItem({
     .height(height)
     .quality(100)
     .url();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Videon ska börja spelas direkt när caset öppnas, och pausas/nollställas
+  // igen när det stängs.
+  useEffect(() => {
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+
+    if (isOpen) {
+      videoEl.currentTime = 0;
+      videoEl.play().catch(() => {
+        // Autoplay kan blockeras av webbläsaren i vissa lägen - inget att
+        // felsöka, användaren kan då starta videon manuellt via kontrollerna.
+      });
+    } else {
+      videoEl.pause();
+    }
+  }, [isOpen]);
 
   return (
     <div
@@ -86,14 +107,25 @@ export default function CaseItem({
         </div>
 
         <div className="case-item__img-wrapper">
-          <Image
-            className="case-item__img"
-            src={imageUrl}
-            alt={title}
-            width={width}
-            height={height}
-            loading="eager"
-          />
+          {videoObject ? (
+            <video
+              ref={videoRef}
+              src={videoObject}
+              className="case-item__video"
+              muted
+              loop
+              playsInline
+            />
+          ) : (
+            <Image
+              className="case-item__img"
+              src={imageUrl}
+              alt={title}
+              width={width}
+              height={height}
+              loading="eager"
+            />
+          )}
         </div>
       </div>
     </div>

@@ -22,6 +22,38 @@ export default defineType({
       type: "text",
     }),
     defineField({ name: "url", title: "Project URL", type: "url" }),
-    defineField({ name: "image", title: "Image", type: "image" }),
+    defineField({
+      name: "media",
+      title: "Media",
+      type: "string",
+      options: {
+        list: [
+          { title: "Video", value: "video" },
+          { title: "Image", value: "image" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "video",
+    }),
+    defineField({
+      name: "video",
+      title: "Video",
+      type: "file",
+      options: { accept: "video/*" },
+      hidden: ({ parent }) => parent?.media !== "video",
+    }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      hidden: ({ parent }) => parent?.media !== "image",
+    }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      media: "image",
+    },
+  },
 });
