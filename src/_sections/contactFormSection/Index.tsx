@@ -327,7 +327,7 @@ export default function ContactFormSection({
 
         {status === "error" && (
           <p className="contact-form__error">
-            Something went wrong — please try again or email us directly.
+            Something went wrong — please try again or email me directly.
           </p>
         )}
 
