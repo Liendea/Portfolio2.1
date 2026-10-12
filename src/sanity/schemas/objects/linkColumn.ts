@@ -19,6 +19,12 @@ export default defineType({
       description: "Lägg till rad/rader",
       of: [{ type: "linkLine" }],
     }),
+    defineField({
+      name: "file",
+      title: "Fil",
+      type: "file",
+      description: "Välj en fil att länka till",
+    }),
   ],
   preview: {
     select: {
