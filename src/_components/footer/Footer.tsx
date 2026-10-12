@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -120,23 +121,51 @@ export default function Footer({
                   </h5>
                 )}
                 <div className="footer-links">
-                  {column.links?.map((link, j) =>
-                    link.url ? (
+                  {column.links?.map((link, j) => {
+                    if (!link.url) {
+                      return (
+                        <p key={j} className="footer-link">
+                          {link.displayText}
+                        </p>
+                      );
+                    }
+
+                    // Interna sidor (/about, /contact, /showcase) och
+                    // ankare (#sektion) navigeras med Next Link så det
+                    // blir en vanlig SPA-övergång utan omladdning.
+                    // Riktiga externa länkar (https://...) samt
+                    // mailto:/tel: kan inte routas av Next och öppnas
+                    // därför som vanliga länkar.
+                    const isInternal =
+                      link.url.startsWith("/") || link.url.startsWith("#");
+
+                    if (isInternal) {
+                      return (
+                        <Link
+                          key={j}
+                          href={link.url}
+                          className="footer-link"
+                        >
+                          {link.displayText}
+                        </Link>
+                      );
+                    }
+
+                    const isExternalHttp = /^https?:\/\//.test(link.url);
+
+                    return (
                       <a
                         key={j}
                         href={link.url}
                         className="footer-link"
-                        target="_self"
-                        rel="noopener noreferrer"
+                        {...(isExternalHttp
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                       >
                         {link.displayText}
                       </a>
-                    ) : (
-                      <p key={j} className="footer-link">
-                        {link.displayText}
-                      </p>
-                    ),
-                  )}
+                    );
+                  })}
                 </div>
               </div>
             ))}

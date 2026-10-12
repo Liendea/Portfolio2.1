@@ -2,7 +2,6 @@ import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import HeroSection from "@/src/_sections/heroSection/Index";
-import SplashSection from "@/src/_sections/splashSection/Index";
 import ContactFormSection from "@/src/_sections/contactFormSection/Index";
 import ShowCaseSection from "@/src/_sections/showCaseSection/Index";
 import StatisticSection from "@/src/_sections/statisticSection/Index";
@@ -30,13 +29,6 @@ type PageBuilderSection =
       backgroundColor?: SanityColor;
       exploreText?: string;
       headingColor: SanityColor;
-    }
-  | {
-      _type: "splashBlock";
-      name: string;
-      tagline?: string;
-      textColor?: SanityColor;
-      backgroundColor?: SanityColor;
     }
   | {
       _type: "contactFormBlock";
@@ -139,12 +131,6 @@ export default async function Page(props: {
       backgroundColor,
       headingColor,
     },
-    _type == "splashBlock" => {
-      name,
-      tagline,
-      textColor,
-      backgroundColor,
-    },
     _type == "contactFormBlock" => {
       needsLabel,
       needsOptions,
@@ -217,18 +203,6 @@ export default async function Page(props: {
                 backgroundMedia={section.backgroundMedia}
                 backgroundColor={section.backgroundColor}
                 headingColor={section.headingColor}
-              />
-            );
-
-          case "splashBlock":
-            // BRAND-MOMENT (namn + tagline), egen sektion i pageBuilder
-            return (
-              <SplashSection
-                key={index}
-                name={section.name}
-                tagline={section.tagline}
-                textColor={section.textColor}
-                backgroundColor={section.backgroundColor}
               />
             );
 

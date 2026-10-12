@@ -27,8 +27,10 @@ export default defineType({
       validation: (Rule) =>
         Rule.uri({
           scheme: ["http", "https", "mailto", "tel"],
+          allowRelative: true,
         }),
-      description: "Ange mailto:email@exempel.com eller en vanlig URL.",
+      description:
+        "Länk till en sida på siten: ange /about, /contact eller /showcase (navigerar direkt utan att ladda om sidan). För extern länk: en vanlig URL (https://...). För mejl/telefon: mailto:email@exempel.com eller tel:+46701234567.",
     }),
   ],
   preview: {

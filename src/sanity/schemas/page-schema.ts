@@ -32,7 +32,6 @@ export default defineType({
         { type: "linkListBlock" },
         { type: "projectBlock" },
         { type: "heroBlock" },
-        { type: "splashBlock" },
         { type: "contactFormBlock" },
         { type: "spacer" },
         { type: "divider" },

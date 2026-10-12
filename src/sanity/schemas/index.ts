@@ -9,14 +9,13 @@ import settings from "./settings/settings";
 import techStackBlock from "./sections/techStackBlock";
 import statsBlock from "./sections/statsBlock";
 import projectBlock from "./sections/projectBlock";
-import heroBlock from "./sections/heroBlock";
-import splashBlock from "./sections/splashBlock";
 import contactFormBlock from "./sections/contactFormBlock";
 import spacer from "./sections/spacer";
 import divider from "./sections/divider";
 import linkListBlock from "./sections/linkListBlock";
 import textBlock from "./sections/textBlock";
 import accordionBlock from "./sections/accordionBlock";
+import heroBlock from "./sections/heroBlock";
 // DOKUMENT (fristående, återanvändbara - refereras från sections)
 import techStackList from "./documents/techStackList";
 // OBJEKTS
@@ -40,7 +39,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     linkColumn,
     settings,
     heroBlock,
-    splashBlock,
     contactFormBlock,
     headerSettings,
     footerSettings,
