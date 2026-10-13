@@ -145,7 +145,8 @@ export default function ContactFormSection({
     return (
       <section className={styles.contactForm}>
         <p className={styles.contactFormSuccess}>
-          Thanks — your message has been sent.
+          Thanks! Your message has been sent. I&apos;ll get back to you as soon
+          as possible.
         </p>
       </section>
     );
