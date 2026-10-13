@@ -1,28 +1,27 @@
-@use "../variables" as *;
-@use "../fonts" as *;
-@use "../mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 /* ================= SHOWCASE ================ */
 /* ================================================*/
 
-.showcase_section {
-  .showcase_list {
+.showcaseSection {
+  .showcaseList {
     display: flex;
     flex-direction: column;
     width: 100%;
     font-family: $font-primary;
 
-    .case-item:first-child {
+    .caseItem:first-child {
       border-top: 1px solid rgba(255, 255, 255, 0.3);
     }
-    .case-item {
+    .caseItem {
       cursor: pointer;
       width: 100%;
       border-top: 1px solid rgba(255, 255, 255, 0.3);
       padding: 1.25rem 0;
 
       &:hover {
-        .case-item__title {
+        .caseItemTitle {
           padding-left: 3rem;
           color: $secondary-color;
 
@@ -33,7 +32,7 @@
         }
       }
 
-      .case-item__flex-row {
+      .caseItemFlexRow {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -46,7 +45,7 @@
       }
 
       // Title
-      .case-item__title {
+      .caseItemTitle {
         color: $text-color-light;
 
         @include tablet {
@@ -55,7 +54,7 @@
       }
 
       // Höger sida av raden: jobDescription + plus/x-ikonen längst ut
-      .case-item__right {
+      .caseItemRight {
         display: flex;
         align-items: center;
         gap: $spacing-xlarge;
@@ -71,22 +70,22 @@
       }
 
       // description
-      .case-item__text {
+      .caseItemText {
         color: $text-color-light;
         font-size: 14px;
       }
 
       // Plus/x-ikonen (samma klasser/markup som about-accordionen, men
       // måste stylas separat här eftersom _accordion.scss's regler bara
-      // gäller inuti .accordion_section)
-      .accordion-item__icon {
+      // gäller inuti .accordionSection)
+      .accordionItemIcon {
         position: relative;
         flex-shrink: 0;
         width: 1.5rem;
         height: 1.5rem;
       }
 
-      .accordion-item__icon-line {
+      .accordionItemIconLine {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -94,18 +93,18 @@
         transform: translate(-50%, -50%);
         transition: transform 0.3s ease;
 
-        &--horizontal {
+        &Horizontal {
           width: 100%;
           height: 1px;
         }
 
-        &--vertical {
+        &Vertical {
           width: 1px;
           height: 100%;
         }
       }
 
-      .case-item__flex-row.case-item__flex-row--expanded {
+      .caseItemFlexRow.caseItemFlexRowExpanded {
         display: flex;
         overflow: hidden;
         align-items: stretch;
@@ -119,7 +118,7 @@
           margin-bottom 0.5s ease;
 
         // Bild
-        .case-item__img-wrapper {
+        .caseItemImgWrapper {
           width: 40%;
           aspect-ratio: 4 / 3;
           overflow: hidden;
@@ -129,8 +128,8 @@
             aspect-ratio: auto;
           }
 
-          .case-item__img,
-          .case-item__video {
+          .caseItemImg,
+          .caseItemVideo {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -140,7 +139,7 @@
       }
 
       // KOLUMN: Stack + beskrivning + länk till projektet
-      .case-item__flex-col {
+      .caseItemFlexCol {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -153,14 +152,14 @@
           width: 100%;
         }
         // Stack
-        .case-item__stack {
+        .caseItemStack {
           color: $text-color-light;
 
           margin-top: 1rem;
         }
 
         // Beskrivning av projektet
-        .case-item__projectDescription {
+        .caseItemProjectDescription {
           color: $text-color-light;
           text-align: left;
           width: 90%;
@@ -171,7 +170,7 @@
         }
 
         // Länk till projektet
-        .case-item__link {
+        .caseItemLink {
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -183,7 +182,7 @@
             margin-bottom: 1rem;
           }
 
-          .case-item__link-text {
+          .caseItemLinkText {
             color: $text-color-light;
             font-size: $fs-mobile-small;
             text-decoration: underline;
@@ -198,17 +197,17 @@
           }
         }
       }
-      &.case-item--open {
-        .case-item__title {
+      &.caseItemOpen {
+        .caseItemTitle {
           padding-left: 0;
         }
 
-        .accordion-item__icon-line--vertical {
+        .accordionItemIconLineVertical {
           transform: translate(-50%, -50%) rotate(90deg);
           opacity: 0;
         }
 
-        .case-item__flex-row.case-item__flex-row--expanded {
+        .caseItemFlexRow.caseItemFlexRowExpanded {
           opacity: 1;
           max-height: 1000px;
           margin-bottom: 1rem;

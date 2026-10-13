@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import styles from "./ContactForm.module.scss";
 
 type ContactFormSectionProps = {
   needsLabel?: string;
@@ -110,9 +111,14 @@ export default function ContactFormSection({
         }),
       });
 
-      if (!response.ok) throw new Error("Request failed");
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        console.error("Kontaktformulär:", response.status, data);
+        throw new Error(data.detail ?? data.error ?? "Request failed");
+      }
       setStatus("success");
-    } catch {
+    } catch (error) {
+      console.error(error);
       setStatus("error");
     }
   };
@@ -137,8 +143,8 @@ export default function ContactFormSection({
 
   if (status === "success") {
     return (
-      <section className="contact-form">
-        <p className="contact-form__success">
+      <section className={styles.contactForm}>
+        <p className={styles.contactFormSuccess}>
           Thanks — your message has been sent.
         </p>
       </section>
@@ -146,20 +152,20 @@ export default function ContactFormSection({
   }
 
   return (
-    <section className="contact-form">
+    <section className={styles.contactForm}>
       <form onSubmit={handleSubmit}>
         {step.id === "needs" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{needsLabel}</h4>
+              <h4 className={styles.contactFormQuestion}>{needsLabel}</h4>
             </div>
 
-            <div className="contact-form__checkbox-group">
+            <div className={styles.contactFormCheckboxGroup}>
               {needsOptions.map((option, i) => (
-                <label key={i} className="contact-form__checkbox">
+                <label key={i} className={styles.contactFormCheckbox}>
                   <input
                     type="checkbox"
                     checked={needs.includes(option)}
@@ -175,14 +181,16 @@ export default function ContactFormSection({
         {step.id === "businessName" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{businessNameLabel}</h4>
+              <h4 className={styles.contactFormQuestion}>
+                {businessNameLabel}
+              </h4>
             </div>
 
             <input
-              className="contact-form__input"
+              className={styles.contactFormInput}
               type="text"
               placeholder={businessNamePlaceholder}
               value={businessName}
@@ -195,13 +203,13 @@ export default function ContactFormSection({
         {step.id === "budget" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{budgetLabel}</h4>
+              <h4 className={styles.contactFormQuestion}>{budgetLabel}</h4>
             </div>
             <input
-              className="contact-form__input"
+              className={styles.contactFormInput}
               type="text"
               placeholder={budgetPlaceholder}
               value={budget}
@@ -214,13 +222,15 @@ export default function ContactFormSection({
         {step.id === "location" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{locationLabel}</h4>{" "}
+              <h4 className={styles.contactFormQuestion}>
+                {locationLabel}
+              </h4>{" "}
             </div>
             <input
-              className="contact-form__input"
+              className={styles.contactFormInput}
               type="text"
               placeholder={locationPlaceholder}
               value={location}
@@ -233,13 +243,13 @@ export default function ContactFormSection({
         {step.id === "message" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{messageLabel}</h4>
+              <h4 className={styles.contactFormQuestion}>{messageLabel}</h4>
             </div>
             <textarea
-              className="contact-form__input contact-form__input--textarea"
+              className={`${styles.contactFormInput} ${styles.contactFormInputTextarea}`}
               placeholder={messagePlaceholder}
               value={message}
               onChange={(event) => setMessage(event.target.value)}
@@ -252,13 +262,13 @@ export default function ContactFormSection({
         {step.id === "name" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">{nameLabel}</h4>
+              <h4 className={styles.contactFormQuestion}>{nameLabel}</h4>
             </div>
             <input
-              className="contact-form__input"
+              className={styles.contactFormInput}
               type="text"
               placeholder={namePlaceholder}
               value={name}
@@ -271,9 +281,9 @@ export default function ContactFormSection({
 
         {step.id === "email" && (
           <>
-            <h4 className="contact-form__question">{emailLabel}</h4>
+            <h4 className={styles.contactFormQuestion}>{emailLabel}</h4>
             <input
-              className="contact-form__input"
+              className={styles.contactFormInput}
               type="email"
               placeholder={emailPlaceholder}
               value={email}
@@ -287,37 +297,39 @@ export default function ContactFormSection({
         {step.id === "review" && (
           <>
             <div className="form__heading">
-              <p className="contact-form__kicker">
+              <p className={styles.contactFormKicker}>
                 {String(stepIndex + 1).padStart(3, "0")}
               </p>{" "}
-              <h4 className="contact-form__question">Review your answers</h4>
+              <h4 className={styles.contactFormQuestion}>
+                Review your answers
+              </h4>
             </div>
-            <dl className="contact-form__review">
-              <div className="contact-form__review-row">
+            <dl className={styles.contactFormReview}>
+              <div className={styles.contactFormReviewRow}>
                 <dt>Needs</dt>
                 <dd>{needs.length > 0 ? needs.join(", ") : "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Business name</dt>
                 <dd>{businessName || "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Budget</dt>
                 <dd>{budget || "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Location</dt>
                 <dd>{location || "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Message</dt>
                 <dd>{message || "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Name</dt>
                 <dd>{name || "-"}</dd>
               </div>
-              <div className="contact-form__review-row">
+              <div className={styles.contactFormReviewRow}>
                 <dt>Email</dt>
                 <dd>{email || "-"}</dd>
               </div>
@@ -326,15 +338,15 @@ export default function ContactFormSection({
         )}
 
         {status === "error" && (
-          <p className="contact-form__error">
+          <p className={styles.contactFormError}>
             Something went wrong — please try again or email me directly.
           </p>
         )}
 
-        <div className="contact-form__nav">
+        <div className={styles.contactFormNav}>
           <button
             type="button"
-            className="contact-form__back"
+            className={styles.contactFormBack}
             onClick={goBack}
             disabled={isFirstStep}
           >
@@ -343,7 +355,7 @@ export default function ContactFormSection({
 
           <button
             type="submit"
-            className="contact-form__submit"
+            className={styles.contactFormSubmit}
             disabled={!isStepValid() || status === "sending"}
           >
             {isLastStep
@@ -354,19 +366,22 @@ export default function ContactFormSection({
           </button>
         </div>
 
-        <div className="contact-form__steps">
+        <div className={styles.contactFormSteps}>
           {steps.map((s, i) => (
             <button
               type="button"
               key={s.id}
-              className={`contact-form__step${
-                i === stepIndex ? " contact-form__step--active" : ""
+              className={`${styles.contactFormStep}${
+                i === stepIndex ? ` ${styles.contactFormStepActive}` : ""
               }`}
               onClick={() => setStepIndex(i)}
             >
               {i + 1}
               {i === stepIndex && (
-                <span className="contact-form__step-label"> {s.navLabel}</span>
+                <span className={styles.contactFormStepLabel}>
+                  {" "}
+                  {s.navLabel}
+                </span>
               )}
             </button>
           ))}

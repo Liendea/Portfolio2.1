@@ -7,6 +7,7 @@ import type { SanityColor } from "../../app/(site)/[slug]/page";
 import { useEffect, useState, useRef } from "react";
 import AsciiField from "@/src/_components/backgroundAscii/AsciiField";
 import ContourField from "@/src/_components/backgroundContour/ContourField";
+import styles from "./Hero.module.scss";
 
 // Byt till AsciiField här igen om ContourField inte känns bra -
 // bara denna rad + JSX-taggen längre ner behöver ändras tillbaka.
@@ -65,7 +66,7 @@ export default function Hero({
 
   return (
     <section
-      className="hero-section"
+      className={styles.heroSection}
       style={{
         zIndex: 100,
 
@@ -85,11 +86,11 @@ export default function Hero({
       {BACKGROUND_COMPONENT === "contour" ? <ContourField /> : <AsciiField />}
 
       <div
-        className="hero-text-container"
+        className={styles.heroTextContainer}
         style={{ position: "relative", zIndex: 10 }}
       >
-        <h1 className="hero-text" style={{ color: headingColor?.hex }}>
-          <span key={currentRole} className="role-animation">
+        <h1 className={styles.heroText} style={{ color: headingColor?.hex }}>
+          <span key={currentRole} className={styles.roleAnimation}>
             {currentRole}
           </span>
           <br />

@@ -9,6 +9,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/src/sanity/lib/image";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
 import type { FooterColumn } from "@/src/sanity/lib/fetchSettings";
+import styles from "./Footer.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,26 +106,29 @@ export default function Footer({
   const imageUrl = logo ? urlFor(logo).url() : "";
 
   return (
-    <div className="footer-reveal-wrapper" key={pathname}>
+    <div className={styles.footerRevealWrapper} key={pathname}>
       <footer
         ref={footerRef}
-        className="footer-section"
+        className={styles.footerSection}
         style={{ backgroundColor: backgroundColor?.hex }}
       >
         <div className="footer-inner" ref={innerRef}>
-          <div className="footer-content" style={{ color: textColor?.hex }}>
+          <div
+            className={styles.footerContent}
+            style={{ color: textColor?.hex }}
+          >
             {columns.map((column, i) => (
-              <div key={i} className="footer-column">
+              <div key={i} className={styles.footerColumn}>
                 {column.title && (
-                  <h5 className="footer-column__title">
+                  <h5 className={styles.footerColumnTitle}>
                     {column.title.toUpperCase()}
                   </h5>
                 )}
-                <div className="footer-links">
+                <div className={styles.footerLinks}>
                   {column.links?.map((link, j) => {
                     if (!link.url) {
                       return (
-                        <p key={j} className="footer-link">
+                        <p key={j} className={styles.footerLink}>
                           {link.displayText}
                         </p>
                       );
@@ -144,7 +148,7 @@ export default function Footer({
                         <Link
                           key={j}
                           href={link.url}
-                          className="footer-link"
+                          className={styles.footerLink}
                         >
                           {link.displayText}
                         </Link>
@@ -157,7 +161,7 @@ export default function Footer({
                       <a
                         key={j}
                         href={link.url}
-                        className="footer-link"
+                        className={styles.footerLink}
                         {...(isExternalHttp
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}
@@ -172,11 +176,11 @@ export default function Footer({
           </div>
 
           {logo && (
-            <div className="footer-logo-container">
+            <div className={styles.footerLogoContainer}>
               <Image
                 src={imageUrl}
                 alt="Footer Logo"
-                className="footer-logo"
+                className={styles.footerLogo}
                 width={1000}
                 height={500}
                 priority
@@ -185,7 +189,7 @@ export default function Footer({
           )}
 
           {copyright && (
-            <p className="footer-copy" style={{ color: textColor?.hex }}>
+            <p className={styles.footerCopy} style={{ color: textColor?.hex }}>
               Copyright:{copyright}
             </p>
           )}

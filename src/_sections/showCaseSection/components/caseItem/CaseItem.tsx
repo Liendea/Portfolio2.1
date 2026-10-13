@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { urlFor } from "../../sanity/lib/image";
+import { urlFor } from "@/src/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
+import styles from "../../Showcase.module.scss";
 
 type CaseItemProps = {
   imageObject: SanityImageSource;
@@ -58,7 +59,7 @@ export default function CaseItem({
 
   return (
     <div
-      className={`case-item${isOpen ? " case-item--open" : ""}`}
+      className={`${styles.caseItem}${isOpen ? ` ${styles.caseItemOpen}` : ""}`}
       role="button"
       tabIndex={0}
       aria-expanded={isOpen}
@@ -70,30 +71,38 @@ export default function CaseItem({
         }
       }}
     >
-      <div className="case-item__flex-row">
-        <h4 className="case-item__title">{title}</h4>
-        <div className="case-item__right">
-          <div className="case-item__text">
+      <div className={styles.caseItemFlexRow}>
+        <h4 className={styles.caseItemTitle}>{title}</h4>
+        <div className={styles.caseItemRight}>
+          <div className={styles.caseItemText}>
             {jobDescription?.split("\n").map((line, index) => (
               <p key={index}>{line}</p>
             ))}
           </div>
-          <span className="accordion-item__icon" aria-hidden="true">
-            <span className="accordion-item__icon-line accordion-item__icon-line--vertical" />
-            <span className="accordion-item__icon-line accordion-item__icon-line--horizontal" />
+          <span className={styles.accordionItemIcon} aria-hidden="true">
+            <span
+              className={`${styles.accordionItemIconLine} ${styles.accordionItemIconLineVertical}`}
+            />
+            <span
+              className={`${styles.accordionItemIconLine} ${styles.accordionItemIconLineHorizontal}`}
+            />
           </span>
         </div>
       </div>
 
-      <div className="case-item__flex-row case-item__flex-row--expanded">
-        <div className="case-item__flex-col">
-          <p className="case-item__stack">{stack}</p>
-          <p className="case-item__projectDescription">{projectDescription}</p>
+      <div
+        className={`${styles.caseItemFlexRow} ${styles.caseItemFlexRowExpanded}`}
+      >
+        <div className={styles.caseItemFlexCol}>
+          <p className={styles.caseItemStack}>{stack}</p>
+          <p className={styles.caseItemProjectDescription}>
+            {projectDescription}
+          </p>
           <Link
             href={url}
             target="_blank"
             rel="noopener norefferer"
-            className="case-item__link"
+            className={styles.caseItemLink}
             onClick={(event) => event.stopPropagation()}
           >
             <Image
@@ -102,23 +111,23 @@ export default function CaseItem({
               width={15}
               height={15}
             />
-            <p className="case-item__link-text">View Project</p>
+            <p className={styles.caseItemLinkText}>View Project</p>
           </Link>
         </div>
 
-        <div className="case-item__img-wrapper">
+        <div className={styles.caseItemImgWrapper}>
           {videoObject ? (
             <video
               ref={videoRef}
               src={videoObject}
-              className="case-item__video"
+              className={styles.caseItemVideo}
               muted
               loop
               playsInline
             />
           ) : (
             <Image
-              className="case-item__img"
+              className={styles.caseItemImg}
               src={imageUrl}
               alt={title}
               width={width}

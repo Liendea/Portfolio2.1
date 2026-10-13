@@ -1,9 +1,7 @@
-import LinklistBlock from "./linkBlock/LinkBlock";
+import LinklistBlock from "./components/linkBlock/LinkBlock";
 
-export type LinkItem = {
-  displayText: string;
-  url?: string;
-};
+import type { LinkItem } from "@/src/app/(site)/[slug]/page";
+import styles from "./LinkList.module.scss";
 
 export type LinkListBlockData = {
   title: string;
@@ -18,7 +16,7 @@ export default function LinkListSection({
   if (!linkListBlocks?.length) return null;
 
   return (
-    <section className="link-list-section">
+    <section className={styles.linkListSection}>
       {linkListBlocks.map((block, i) => (
         <LinklistBlock key={i} linkListBlock={block} />
       ))}

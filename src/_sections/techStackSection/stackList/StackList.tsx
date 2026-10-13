@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Marquee from "@/src/_components/marquee/Marquee";
+import styles from "../TechStack.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,9 +28,9 @@ function rotate(items: StackItem[], offset: number): StackItem[] {
 function MarqueeIcon({ item }: { item: StackItem }) {
   const imageUrl = urlFor(item.icon).url();
   return (
-    <div className="marquee-item">
+    <div className={styles.marqueeItem}>
       <Image
-        className="marquee-icon"
+        className={styles.marqueeIcon}
         src={imageUrl}
         width={150}
         height={44}
@@ -47,9 +48,10 @@ export default function TechStackList({ techStackItems }: StackListProps) {
     if (!wrapperRef.current || !overlayRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Scopead till wrapperRef, så bara grid-ikonerna (.stack-icon) träffas -
-      // marquee-ikonerna (.marquee-icon) ligger utanför och rörs inte.
-      const icons = gsap.utils.toArray<HTMLElement>(".stack-icon");
+      // Scopead till wrapperRef, så bara grid-ikonerna (styles.stackIcon) träffas -
+      // marquee-ikonerna (styles.marqueeIcon) ligger utanför och rörs inte.
+      // CSS Modules hashar klassnamnet, så selektorn byggs från styles-objektet.
+      const icons = gsap.utils.toArray<HTMLElement>(`.${styles.stackIcon}`);
 
       // Ikoner animeras in underifrån
       gsap.fromTo(
@@ -97,21 +99,21 @@ export default function TechStackList({ techStackItems }: StackListProps) {
 
   return (
     <>
-      <p className="techstack-title">EXPERIENCE WORKING WITH</p>
+      <p className={styles.techstackTitle}>EXPERIENCE WORKING WITH</p>
 
       {/* DESKTOP/TABLET: grid (döljs på mobil via SCSS) */}
       <div
         ref={wrapperRef}
         style={{ position: "relative" }}
-        className="icon-grid-wrapper"
+        className={styles.iconGridWrapper}
       >
-        <div className="icon-Grid">
+        <div className={styles.iconGrid}>
           {techStackItems.map((stackItem) => {
             const imageUrl = urlFor(stackItem.icon).url();
             return (
-              <div key={stackItem.title} className="stack-item">
+              <div key={stackItem.title} className={styles.stackItem}>
                 <Image
-                  className="stack-icon"
+                  className={styles.stackIcon}
                   src={imageUrl}
                   width={150}
                   height={44}
@@ -138,7 +140,7 @@ export default function TechStackList({ techStackItems }: StackListProps) {
       </div>
 
       {/* MOBIL: 3 animerade marquee-rader (döljs på desktop/tablet via SCSS) */}
-      <div className="icon-marquees">
+      <div className={styles.iconMarquees}>
         <Marquee direction="left" speed={80}>
           {techStackItems.map((item) => (
             <MarqueeIcon key={item.title} item={item} />

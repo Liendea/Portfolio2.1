@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import AnimatedProgressBar from "@/src/_components/animatedProgressBar/AnimatedProgressBar";
 import AnimatedNumber from "@/src/_components/animatedNumber/AnimatedNumber";
+import styles from "../Stats.module.scss";
 
 type TopLanguage = {
   name: string;
@@ -52,14 +53,14 @@ export default function LanguageBar({ topLanguages }: LanguageBarProps) {
   }
 
   return (
-    <div className="language-bars" ref={containerRef}>
+    <div className={styles.languageBars} ref={containerRef}>
       {topLanguages.map((language, index) => {
         const { start, end } = getColorGradient(index);
         return (
-          <div key={language.name} className="language-bar-row">
-            <div className="language-bar-header">
-              <span className="language-name">{language.name}</span>
-              <span className="language-percentage">
+          <div key={language.name} className={styles.languageBarRow}>
+            <div className={styles.languageBarHeader}>
+              <span className={styles.languageName}>{language.name}</span>
+              <span className={styles.languagePercentage}>
                 <AnimatedNumber
                   value={Math.round(language.percentage)}
                   animate={inView}

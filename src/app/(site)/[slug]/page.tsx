@@ -85,7 +85,9 @@ type PageBuilderSection =
 
 export type LinkItem = {
   displayText: string;
+  linkType?: "url" | "file";
   url?: string;
+  fileUrl?: string;
 };
 
 export type techStackItem = {
@@ -171,7 +173,15 @@ export default async function Page(props: {
     },
     _type == "statsBlock" => { sectionTitle, githubUsername },
     _type == "linkListBlock" => {
-      "columns": coalesce(columns[] { title, links[] { displayText, url } }, [])
+      "columns": coalesce(columns[] {
+        title,
+        links[] {
+          displayText,
+          linkType,
+          url,
+          "fileUrl": file.asset->url
+        }
+      }, [])
     },
     _type == "spacer" => {size},
   _type == "divider" => {

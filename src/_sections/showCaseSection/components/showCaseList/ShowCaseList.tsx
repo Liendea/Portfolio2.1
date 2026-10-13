@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import type { projectItem } from "../../../app/(site)/[slug]/page";
-import CaseItem from "@/src/_components/caseItem/CaseItem";
+import type { projectItem } from "@/src/app/(site)/[slug]/page";
+import CaseItem from "../caseItem/CaseItem";
+import styles from "../../Showcase.module.scss";
 
 export default function ShowCaseList({
   projectItems,
@@ -13,7 +14,7 @@ export default function ShowCaseList({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="showcase_list">
+    <div className={styles.showcaseList}>
       {projectItems?.map((item: projectItem, index: number) => (
         <>
           <CaseItem
@@ -32,9 +33,13 @@ export default function ShowCaseList({
               setOpenIndex((prev) => (prev === index ? null : index))
             }
           />
-          <span className="accordion-item__icon" aria-hidden="true">
-            <span className="accordion-item__icon-line accordion-item__icon-line--vertical" />
-            <span className="accordion-item__icon-line accordion-item__icon-line--horizontal" />
+          <span className={styles.accordionItemIcon} aria-hidden="true">
+            <span
+              className={`${styles.accordionItemIconLine} ${styles.accordionItemIconLineVertical}`}
+            />
+            <span
+              className={`${styles.accordionItemIconLine} ${styles.accordionItemIconLineHorizontal}`}
+            />
           </span>
         </>
       ))}

@@ -1,4 +1,5 @@
-import AccordionList from "./accordionList/AccordionList";
+import AccordionList from "./components/accordionList/AccordionList";
+import styles from "./Accordion.module.scss";
 
 type AccordionItem = {
   title: string;
@@ -15,8 +16,8 @@ export default function AccordionSection({
   items = [],
 }: AccordionSectionProps) {
   return (
-    <section className="accordion_section">
-      <p className="accordion_section__kicker">{kickerLabel}</p>
+    <section className={styles.accordionSection}>
+      <p className={styles.accordionSectionKicker}>{kickerLabel}</p>
       <AccordionList items={items} />
     </section>
   );

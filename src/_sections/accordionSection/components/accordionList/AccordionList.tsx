@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import AccordionItem from "../../../_components/accordionItem/AccordionItem";
+import AccordionItem from "../accordionItem/AccordionItem";
+import styles from "../../Accordion.module.scss";
 
 type AccordionListItem = {
   title: string;
@@ -16,7 +17,7 @@ export default function AccordionList({ items }: AccordionListProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="accordion_list">
+    <div className={styles.accordionList}>
       {items?.map((item, index) => (
         <AccordionItem
           key={index}

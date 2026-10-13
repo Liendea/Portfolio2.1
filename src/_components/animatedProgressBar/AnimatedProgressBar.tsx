@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "./AnimatedProgressBar.module.scss";
 
 type AnimatedProgressBarProps = {
   percentage: number;
@@ -25,10 +26,10 @@ export default function AnimatedProgressBar({
   }, [animate, percentage]);
 
   return (
-    <div className="progress-wrapper">
-      <div className="progress-bar">
+    <div className={styles.progressWrapper}>
+      <div className={styles.progressBar}>
         <div
-          className="progress-fill"
+          className={styles.progressFill}
           style={{
             width: `${width}%`,
             background: fillColor,

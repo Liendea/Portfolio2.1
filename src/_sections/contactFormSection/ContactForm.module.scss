@@ -1,8 +1,7 @@
-@use "../variables" as *;
-@use "../fonts" as *;
-@use "../mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-.contact-form {
+.contactForm {
   width: 100%;
   max-width: 60vw;
   margin: 3rem auto;
@@ -22,17 +21,17 @@
     }
   }
 
-  &__heading {
+  &Heading {
     display: flex;
   }
-  &__kicker {
+  &Kicker {
     font-family: $font-mono;
     font-size: $fs-mobile-xsmall;
     letter-spacing: 0.1em;
     color: rgba(255, 255, 255, 0.5);
   }
 
-  &__question {
+  &Question {
     font-family: $font-primary;
     text-transform: none;
     font-weight: $regular;
@@ -41,7 +40,7 @@
     line-height: 130%;
   }
 
-  &__input {
+  &Input {
     width: 100%;
     background: transparent;
     border: none;
@@ -62,20 +61,20 @@
     }
   }
 
-  &__input--textarea {
+  &InputTextarea {
     resize: vertical;
     min-height: 3rem;
     font-family: $font-mono;
     font-size: $fs-mobile-small;
   }
 
-  &__checkbox-group {
+  &CheckboxGroup {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  &__checkbox {
+  &Checkbox {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -105,7 +104,7 @@
     }
   }
 
-  &__submit {
+  &Submit {
     align-self: flex-start;
     padding: 0.9rem 2.5rem;
     border-radius: 999px;
@@ -129,24 +128,24 @@
     }
   }
 
-  &__error {
+  &Error {
     color: #ff6b6b;
     font-size: $fs-mobile-small;
   }
 
-  &__success {
+  &Success {
     font-family: $font-primary;
     font-size: $fs-mobile-large;
     color: $text-color-light;
   }
 
-  &__review {
+  &Review {
     display: flex;
     flex-direction: column;
     gap: $spacing-medium;
   }
 
-  &__review-row {
+  &ReviewRow {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -169,13 +168,13 @@
     }
   }
 
-  &__nav {
+  &Nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  &__back {
+  &Back {
     padding: 0.9rem 2.5rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -200,14 +199,14 @@
     }
   }
 
-  &__steps {
+  &Steps {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
   }
 
-  &__step {
+  &Step {
     display: flex;
     align-items: center;
     background: transparent;
@@ -224,11 +223,11 @@
     }
   }
 
-  &__step--active {
+  &StepActive {
     color: $text-color-light;
   }
 
-  &__step-label {
+  &StepLabel {
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }

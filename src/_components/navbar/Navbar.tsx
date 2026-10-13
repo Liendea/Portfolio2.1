@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import styles from "./Navbar.module.scss";
 
 type NavLink = {
   title: string;
@@ -29,27 +30,29 @@ export default function Navbar({ navigationLinks }: navbarProps) {
     <>
       <button
         type="button"
-        className={`hamburger-button${isOpen ? " open" : ""}`}
+        className={`${styles.hamburgerButton}${isOpen ? ` ${styles.open}` : ""}`}
         aria-label={isOpen ? "Stäng meny" : "Öppna meny"}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span className="hamburger-line" />
-        <span className="hamburger-line" />
-        <span className="hamburger-line" />
+        <span className={styles.hamburgerLine} />
+        <span className={styles.hamburgerLine} />
+        <span className={styles.hamburgerLine} />
       </button>
 
-      <nav className={`navigation${isOpen ? " navigation-open" : ""}`}>
+      <nav
+        className={`${styles.navigation}${isOpen ? ` ${styles.navigationOpen}` : ""}`}
+      >
         {navigationLinks.map((link, i) => {
           // Aktiv sida = vit prick, annars svart (som smälter in mot
           // den mörka bakgrunden och alltså inte syns).
           const isActive = pathname === `/${link.href}`;
 
           return (
-            <div key={i} className="navlink-wrapper">
+            <div key={i} className={styles.navlinkWrapper}>
               <Link
                 href={`/${link.href}`}
-                className="navlink"
+                className={styles.navlink}
                 onClick={closeMenu}
               >
                 {link.title}
@@ -60,7 +63,7 @@ export default function Navbar({ navigationLinks }: navbarProps) {
                 alt=""
                 width={20}
                 height={20}
-                className="navlink-dot"
+                className={styles.navlinkDot}
               />
             </div>
           );

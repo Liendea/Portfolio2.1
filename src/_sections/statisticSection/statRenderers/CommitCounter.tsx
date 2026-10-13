@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import AnimatedNumber from "@/src/_components/animatedNumber/AnimatedNumber";
+import styles from "../Stats.module.scss";
 
 type CommitCounterProps = {
   totalCommits: number;
@@ -40,7 +41,7 @@ export default function CommitCounter({
   const startValue = Math.max(0, totalCommits - countFrom);
 
   return (
-    <h2 ref={ref} className="animeradSiffra">
+    <h2 ref={ref} className={styles.animeradSiffra}>
       <AnimatedNumber
         value={totalCommits}
         startValue={startValue}

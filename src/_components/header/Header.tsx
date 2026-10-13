@@ -6,6 +6,7 @@ import { urlFor } from "../../sanity/lib/image";
 import Navbar from "../navbar/Navbar";
 
 import type { SanityColor } from "../../app/(site)/[slug]/page";
+import styles from "./Header.module.scss";
 
 type NavLink = {
   title: string;
@@ -30,7 +31,7 @@ export default function Header({
   const mobileUrl = urlFor(logoMobile).url();
 
   return (
-    <header className="header-container">
+    <header className={styles.headerContainer}>
       <Link href="/">
         <Image
           src={desktopUrl}

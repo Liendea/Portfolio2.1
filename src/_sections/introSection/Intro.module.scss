@@ -1,9 +1,8 @@
-@use "../variables" as *;
-@use "../fonts" as *;
-@use "../mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 // INTRO SECTION [TITEL OCH INGRESSTEXT]
-.intro-section {
+.introSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,13 +20,13 @@
     margin-top: 6rem;
   }
 
-  .page-title {
+  .pageTitle {
     text-transform: uppercase;
     display: flex;
     justify-content: flex-start;
     width: 100%;
   }
-  .body-text {
+  .bodyText {
     margin-top: auto;
     margin-bottom: 0;
     height: auto;

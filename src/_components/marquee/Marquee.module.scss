@@ -1,0 +1,34 @@
+// MARQUEE (används av Marquee-komponenten)
+.marquee {
+  width: 100%;
+  overflow: hidden;
+
+  .marqueeTrack {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation-name: marquee-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &.marqueeRight .marqueeTrack {
+    animation-direction: reverse;
+  }
+
+  .marqueeSet {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

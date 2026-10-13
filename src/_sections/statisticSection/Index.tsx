@@ -1,4 +1,5 @@
 import GithubStatsRenderer from "./statRenderers/GithubStatsRenderer";
+import styles from "./Stats.module.scss";
 
 type statsBlockType = {
   _type: "statsBlock";
@@ -12,7 +13,7 @@ type statsProps = {
 
 export default function StatisticSection({ statsBlock }: statsProps) {
   return (
-    <section className="stats-section">
+    <section className={styles.statsSection}>
       <GithubStatsRenderer statsBlock={statsBlock} />
     </section>
   );

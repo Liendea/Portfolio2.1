@@ -1,6 +1,5 @@
-@use "../variables" as *;
-@use "../fonts" as *;
-@use "../mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 // =========================
 // FOOTER BASE
@@ -8,11 +7,11 @@
 // Osynlig wrapper som ger sticky-footern utrymme att faktiskt glida in
 // och stanna kvar innan sidan tar slut (utan denna slack-höjd har sticky
 // noll pixlar att jobba med och effekten "snäpper" istället för att glida).
-.footer-reveal-wrapper {
+.footerRevealWrapper {
   height: calc(var(--footer-height, 0px) * 2);
 }
 
-.footer-section {
+.footerSection {
   width: 100%;
   padding: 4rem 4rem 1rem 4rem;
   position: sticky;
@@ -27,7 +26,7 @@
 // =========================
 // CONTENT WRAPPER
 // =========================
-.footer-content {
+.footerContent {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -44,14 +43,14 @@
 // KOLUMNER (kontakt-mailen + de fria kolumnerna från Sanity:
 // Location, Connect, Explore osv - alla delar samma klass)
 // =========================
-.footer-column {
+.footerColumn {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid black;
   padding-bottom: 1rem;
 
-  &__title {
+  &Title {
     font-family: $font-primary;
     text-transform: uppercase;
     line-height: 130%;
@@ -63,13 +62,13 @@
 // =========================
 // LINKS
 // =========================
-.footer-links {
+.footerLinks {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   text-align: right;
 
-  .footer-link {
+  .footerLink {
     font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
@@ -89,7 +88,7 @@
 // =========================
 // LOGO + COPYRIGHT
 // =========================
-.footer-logo-container {
+.footerLogoContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,13 +98,13 @@
     margin-top: $spacing-medium;
   }
 
-  .footer-logo {
+  .footerLogo {
     width: 100%;
     height: auto;
   }
 }
 
-.footer-copy {
+.footerCopy {
   margin-top: 1.5rem;
   font-size: 0.9rem;
   text-align: left;

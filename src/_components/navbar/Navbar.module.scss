@@ -1,6 +1,5 @@
-@use "../variables" as *;
-@use "../fonts" as *;
-@use "../mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 // Navigations meny öppen på HERO
 .navigation {
@@ -8,7 +7,7 @@
   flex-direction: row;
   gap: 3rem;
 
-  .navlink-wrapper {
+  .navlinkWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +17,7 @@
       flex-direction: row-reverse;
       gap: 2rem;
 
-      .navlink-dot {
+      .navlinkDot {
         display: none;
       }
     }
@@ -41,7 +40,7 @@
     }
   }
 
-  .navlink-wrapper:hover {
+  .navlinkWrapper:hover {
     color: $secondary-color;
 
     @include mobile {
@@ -70,7 +69,7 @@
       opacity 0.3s ease,
       visibility 0.3s ease;
 
-    &.navigation-open {
+    &.navigationOpen {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
@@ -79,7 +78,7 @@
 }
 
 // HAMBURGARE -> X
-.hamburger-button {
+.hamburgerButton {
   display: none;
   position: relative;
   width: 1.75rem;
@@ -94,7 +93,7 @@
     display: block;
   }
 
-  .hamburger-line {
+  .hamburgerLine {
     position: absolute;
     left: 0;
     width: 100%;
@@ -107,32 +106,32 @@
       top 0.3s ease;
   }
 
-  .hamburger-line:nth-child(1) {
+  .hamburgerLine:nth-child(1) {
     top: 0;
   }
 
-  .hamburger-line:nth-child(2) {
+  .hamburgerLine:nth-child(2) {
     top: 50%;
     transform: translateY(-50%);
   }
 
-  .hamburger-line:nth-child(3) {
+  .hamburgerLine:nth-child(3) {
     top: 100%;
     transform: translateY(-100%);
   }
 
   // Öppen: de tre strecken morphar till ett X
   &.open {
-    .hamburger-line:nth-child(1) {
+    .hamburgerLine:nth-child(1) {
       top: 50%;
       transform: translateY(-50%) rotate(45deg);
     }
 
-    .hamburger-line:nth-child(2) {
+    .hamburgerLine:nth-child(2) {
       opacity: 0;
     }
 
-    .hamburger-line:nth-child(3) {
+    .hamburgerLine:nth-child(3) {
       top: 50%;
       transform: translateY(-50%) rotate(-45deg);
     }

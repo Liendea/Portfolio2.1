@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import styles from "./Marquee.module.scss";
 
 type MarqueeProps = {
   children: ReactNode;
@@ -16,14 +17,21 @@ export default function Marquee({
 }: MarqueeProps) {
   return (
     <div
-      className={["marquee", `marquee-${direction}`, className]
+      className={[
+        styles.marquee,
+        direction === "right" && styles.marqueeRight,
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
-      <div className="marquee-track" style={{ animationDuration: `${speed}s` }}>
-        <div className="marquee-set">{children}</div>
+      <div
+        className={styles.marqueeTrack}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        <div className={styles.marqueeSet}>{children}</div>
         {/* Duplicerad kopia för den sömlösa loopen - dold för skärmläsare */}
-        <div className="marquee-set" aria-hidden="true">
+        <div className={styles.marqueeSet} aria-hidden="true">
           {children}
         </div>
       </div>

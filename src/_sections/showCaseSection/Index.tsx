@@ -1,5 +1,6 @@
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import ShowCaseList from "./showCaseList/ShowCaseList";
+import ShowCaseList from "./components/showCaseList/ShowCaseList";
+import styles from "./Showcase.module.scss";
 
 export type projectBlockType = {
   _type: "projectBlock";
@@ -27,7 +28,7 @@ type projectSectionProps = {
 
 export default function ShowCaseSection({ projectBlock }: projectSectionProps) {
   return (
-    <section className="showcase_section">
+    <section className={styles.showcaseSection}>
       <ShowCaseList projectItems={projectBlock.projectItems} />
     </section>
   );

@@ -72,7 +72,13 @@ export async function POST(request: Request) {
     if (error) {
       console.error("Resend kunde inte skicka mailet:", error);
       return NextResponse.json(
-        { error: "Kunde inte skicka meddelandet." },
+        {
+          error: "Kunde inte skicka meddelandet.",
+          // Visa Resends riktiga fel lokalt, aldrig i produktion
+          ...(process.env.NODE_ENV !== "production" && {
+            detail: `${error.name}: ${error.message}`,
+          }),
+        },
         { status: 502 },
       );
     }

@@ -1,6 +1,7 @@
 import { getGithubStats, GithubStats } from "../../../lib/github-api";
 import LanguageBar from "../topLanguage/LanguageBar";
 import CommitCounter from "./CommitCounter";
+import styles from "../Stats.module.scss";
 
 // Detta är konfigurationsdatan som kommer direkt från Sanity via GROQ
 type statsBlockType = {
@@ -36,15 +37,15 @@ export default async function GithubStatsRenderer({
   // 4. Rendera det dynamiska innehållet
   return (
     <>
-      <div className="github-stats-container">
+      <div className={styles.githubStatsContainer}>
         {/* --- B. Toppspråk --- */}
-        <div className="stat-card language-stat">
-          <p className="card-title">Most used languages</p>
+        <div className={`${styles.statCard} ${styles.languageStat}`}>
+          <p className={styles.cardTitle}>Most used languages</p>
           <LanguageBar topLanguages={githubStats.topLanguages} />
         </div>
         {/* --- A. Commits --- */}
-        <div className="stat-card commit-stat">
-          <p className="card-title">Total Commits this year</p>
+        <div className={`${styles.statCard} ${styles.commitStat}`}>
+          <p className={styles.cardTitle}>Total Commits this year</p>
           <CommitCounter totalCommits={githubStats.totalCommits} />
         </div>
       </div>

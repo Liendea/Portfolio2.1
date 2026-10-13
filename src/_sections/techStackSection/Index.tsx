@@ -1,6 +1,7 @@
 import TechStackList from "./stackList/StackList";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import type { SanityColor } from "../../app/(site)/[slug]/page";
+import styles from "./TechStack.module.scss";
 
 type techStackBlockType = {
   _type: "techStackBlock";
@@ -21,7 +22,7 @@ type techStackProps = {
 export default function TechStackSection({ techStackBlock }: techStackProps) {
   return (
     <section
-      className="techstack-section"
+      className={styles.techstackSection}
       style={{
         backgroundColor: techStackBlock.backgroundColor?.hex,
         overflow: "hidden",
