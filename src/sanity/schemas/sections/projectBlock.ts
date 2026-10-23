@@ -7,8 +7,15 @@ export default defineType({
   fields: [
     defineField({
       name: "title",
-      title: "Title (Rubrik)",
+      title: "Titel",
       type: "string",
+      initialValue: "Enter titel",
+    }),
+    defineField({
+      name: "kickerLabel",
+      title: "Liten rubrik ovanför",
+      type: "string",
+      initialValue: "Enter kciker label",
     }),
     defineField({
       name: "projects",

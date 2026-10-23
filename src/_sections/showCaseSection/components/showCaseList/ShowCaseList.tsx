@@ -1,21 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import type { projectItem } from "@/src/app/(site)/[slug]/page";
+import type { ProjectItem } from "@/src/sanity/types/sanity";
 import CaseItem from "../caseItem/CaseItem";
 import styles from "../../Showcase.module.scss";
 
 export default function ShowCaseList({
   projectItems,
 }: {
-  projectItems: projectItem[];
+  projectItems: ProjectItem[];
 }) {
   // Accordion: bara ett case-item öppet åt gången. null = alla stängda.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className={styles.showcaseList}>
-      {projectItems?.map((item: projectItem, index: number) => (
+   
+      {projectItems?.map((item: ProjectItem, index: number) => (
         <>
           <CaseItem
             key={index}

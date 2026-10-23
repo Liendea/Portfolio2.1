@@ -1,17 +1,11 @@
+import type { StatsBlock } from "@/src/sanity/types/sanity";
 import { getGithubStats, GithubStats } from "../../../lib/github-api";
 import LanguageBar from "../topLanguage/LanguageBar";
 import CommitCounter from "./CommitCounter";
 import styles from "../Stats.module.scss";
 
-// Detta är konfigurationsdatan som kommer direkt från Sanity via GROQ
-type statsBlockType = {
-  _type: "statsBlock";
-  sectionTitle: string;
-  githubUsername: string;
-};
-
 type StatsRendererProps = {
-  statsBlock: statsBlockType;
+  statsBlock: StatsBlock;
 };
 
 export default async function GithubStatsRenderer({

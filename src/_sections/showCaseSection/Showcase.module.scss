@@ -5,6 +5,14 @@
 /* ================================================*/
 
 .showcaseSection {
+  .kicker {
+    font-size: $fs-mobile-xsmall;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $text-color-light;
+    margin-bottom: 0.75rem;
+  }
+
   .showcaseList {
     display: flex;
     flex-direction: column;
@@ -22,7 +30,7 @@
 
       &:hover {
         .caseItemTitle {
-          padding-left: 3rem;
+          padding-left: 1rem;
           color: $secondary-color;
 
           @include mobile {
@@ -166,6 +174,37 @@
 
           @include mobile {
             width: 100%;
+          }
+
+          // Portable Text från Sanity
+          p {
+            // Shift+Enter i Studio ger radbrytning inom stycket
+            white-space: pre-line;
+          }
+
+          p + p,
+          p + ul,
+          ul + p {
+            margin-top: 0.75em;
+          }
+
+          ul {
+            list-style: disc;
+            padding-left: 1.25em;
+          }
+
+          li + li {
+            margin-top: 0.25em;
+          }
+
+          strong {
+            font-weight: 500;
+          }
+
+          a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
           }
         }
 

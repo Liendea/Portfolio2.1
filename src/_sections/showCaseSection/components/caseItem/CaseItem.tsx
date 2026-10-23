@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import { urlFor } from "@/src/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
+import type { PortableTextBlock } from "next-sanity";
+import RichText from "@/src/_components/richText/RichText";
 import styles from "../../Showcase.module.scss";
 
 type CaseItemProps = {
@@ -12,7 +14,7 @@ type CaseItemProps = {
   videoObject?: string;
   title: string;
   jobDescription?: string;
-  projectDescription?: string;
+  projectDescription?: PortableTextBlock[];
   stack: string;
   width: number;
   height: number;
@@ -95,13 +97,14 @@ export default function CaseItem({
       >
         <div className={styles.caseItemFlexCol}>
           <p className={styles.caseItemStack}>{stack}</p>
-          <p className={styles.caseItemProjectDescription}>
-            {projectDescription}
-          </p>
+          <RichText
+            value={projectDescription}
+            className={styles.caseItemProjectDescription}
+          />
           <Link
             href={url}
             target="_blank"
-            rel="noopener norefferer"
+            rel="noopener noreferrer"
             className={styles.caseItemLink}
             onClick={(event) => event.stopPropagation()}
           >

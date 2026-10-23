@@ -7,8 +7,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/src/sanity/lib/image";
-import type { SanityColor } from "../../app/(site)/[slug]/page";
-import type { FooterColumn } from "@/src/sanity/lib/fetchSettings";
+import type { SanityColor } from "@/src/sanity/types/sanity";
+import type { FooterColumn } from "@/src/sanity/types/sanity";
 import styles from "./Footer.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);

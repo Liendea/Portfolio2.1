@@ -5,7 +5,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "../../sanity/lib/image";
 import Navbar from "../navbar/Navbar";
 
-import type { SanityColor } from "../../app/(site)/[slug]/page";
+import type { SanityColor } from "@/src/sanity/types/sanity";
 import styles from "./Header.module.scss";
 
 type NavLink = {

@@ -2,18 +2,15 @@
 
 import { useState } from "react";
 import AccordionItem from "../accordionItem/AccordionItem";
+import type { AccordionItem as AccordionItemData } from "@/src/sanity/types/sanity";
 import styles from "../../Accordion.module.scss";
 
-type AccordionListItem = {
-  title: string;
-  text?: string;
-};
-
 type AccordionListProps = {
-  items: AccordionListItem[];
+  items: AccordionItemData[];
 };
 
 export default function AccordionList({ items }: AccordionListProps) {
+  // Accordion: bara ett case-item öppet åt gången. null = alla stängda.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (

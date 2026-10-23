@@ -3,7 +3,7 @@
 import type { SanityAssetDocument } from "@sanity/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import BackgroundMedia from "../../_components/backgroundMedia/BackgroundMedia";
-import type { SanityColor } from "../../app/(site)/[slug]/page";
+import type { SanityColor } from "@/src/sanity/types/sanity";
 import { useEffect, useState, useRef } from "react";
 import AsciiField from "@/src/_components/backgroundAscii/AsciiField";
 import ContourField from "@/src/_components/backgroundContour/ContourField";
@@ -93,8 +93,8 @@ export default function Hero({
           <span key={currentRole} className={styles.roleAnimation}>
             {currentRole}
           </span>
-          <br />
-
+        </h1>
+        <h1 className={styles.heroSubText}>
           {currentRole === "UX " || currentRole === "UI"
             ? "DESIGN"
             : "DEVELOPMENT"}

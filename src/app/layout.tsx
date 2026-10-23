@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk, Geist_Mono } from "next/font/google";
-import "@/src/styles/main.scss";
+import { Schibsted_Grotesk } from "next/font/google";
+import "../styles/main.scss";
 import localFont from "next/font/local";
 
 const schibstedGrotesk = Schibsted_Grotesk({
@@ -8,14 +8,31 @@ const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const getaiGrotesk = localFont({
   src: "../fonts/DTGetaiGroteskDisplay-Black.woff2",
   variable: "--font-getai-grotesk-display",
+  display: "swap",
+});
+
+const PPPangram = localFont({
+  src: [
+    {
+      path: "../fonts/PPPangramSans-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/PPPangramSans-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/PPPangramSans-Extrabold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pppangram",
   display: "swap",
 });
 
@@ -37,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${schibstedGrotesk.variable} ${geistMono.variable} ${getaiGrotesk.variable}`}
+        className={`${schibstedGrotesk.variable} ${PPPangram.variable} ${getaiGrotesk.variable} `}
       >
         {children}
       </body>

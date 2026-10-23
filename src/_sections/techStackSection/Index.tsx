@@ -1,22 +1,9 @@
 import TechStackList from "./stackList/StackList";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import type { SanityColor } from "../../app/(site)/[slug]/page";
+import type { TechStackBlock } from "@/src/sanity/types/sanity";
 import styles from "./TechStack.module.scss";
 
-type techStackBlockType = {
-  _type: "techStackBlock";
-  title: string;
-  techStackItems: techStackItem[];
-  backgroundColor?: SanityColor;
-};
-
-type techStackItem = {
-  title: string;
-  icon: SanityImageSource;
-};
-
 type techStackProps = {
-  techStackBlock: techStackBlockType;
+  techStackBlock: TechStackBlock;
 };
 
 export default function TechStackSection({ techStackBlock }: techStackProps) {

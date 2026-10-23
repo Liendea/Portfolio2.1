@@ -1,9 +1,12 @@
 "use client";
+
 import styles from "../../Accordion.module.scss";
+import RichText from "@/src/_components/richText/RichText";
+import type { PortableTextBlock } from "next-sanity";
 
 type AccordionItemProps = {
   title: string;
-  text?: string;
+  text?: PortableTextBlock[];
   isOpen: boolean;
   onToggle: () => void;
 };
@@ -41,11 +44,7 @@ export default function AccordionItem({
       </div>
 
       <div className={styles.accordionItemContent}>
-        {text?.split("\n").map((line, index) => (
-          <p key={index} className={styles.accordionItemText}>
-            {line}
-          </p>
-        ))}
+        <RichText className={styles.accordionItemText} value={text} />
       </div>
     </div>
   );

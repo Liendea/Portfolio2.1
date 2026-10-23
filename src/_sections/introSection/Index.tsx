@@ -1,14 +1,9 @@
 import H2_Animation from "../../_components/textAnimations/H2_Animation";
-import type { SanityColor } from "../../app/(site)/[slug]/page";
+import type { TextBlock } from "@/src/sanity/types/sanity";
 import styles from "./Intro.module.scss";
 
 type IntroSectionProps = {
-  section: {
-    pageTitle: string;
-    ingress: string;
-    pageTitleColor: SanityColor;
-    ingressColor: SanityColor;
-  };
+  section: TextBlock;
 };
 
 export default function IntroSection({ section }: IntroSectionProps) {

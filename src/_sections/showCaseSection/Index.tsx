@@ -1,34 +1,22 @@
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { ProjectBlock } from "@/src/sanity/types/sanity";
 import ShowCaseList from "./components/showCaseList/ShowCaseList";
 import styles from "./Showcase.module.scss";
 
-export type projectBlockType = {
-  _type: "projectBlock";
-  title: string;
-  projectItems: projectItem[];
-};
-
-export type projectItem = {
-  _type: "projectItem";
-  title: string;
-  jobDescription: string;
-  projectDescription: string;
-  stack: string;
-  image: SanityImageSource;
-  video?: string;
-  url: string;
-};
-
 type projectSectionProps = {
-  projectBlock: projectBlockType;
+  projectBlock: ProjectBlock;
+  kickerLabel?: string;
 };
 
 // Denna komponent är ansvarig för att rendera projektsektionen på sidan.
 // Den tar emot en projectBlock som innehåller information om projekten.
 
-export default function ShowCaseSection({ projectBlock }: projectSectionProps) {
+export default function ShowCaseSection({
+  projectBlock,
+  kickerLabel,
+}: projectSectionProps) {
   return (
     <section className={styles.showcaseSection}>
+      <p className={styles.kicker}>{kickerLabel}</p>
       <ShowCaseList projectItems={projectBlock.projectItems} />
     </section>
   );

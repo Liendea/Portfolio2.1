@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { richTextBlock } from "./shared/richTextBlock";
 
 export default defineType({
   name: "accordionItem",
@@ -14,8 +15,8 @@ export default defineType({
     defineField({
       name: "text",
       title: "Text",
-      type: "text",
-      rows: 4,
+      type: "array",
+      of: [richTextBlock],
     }),
   ],
   preview: {

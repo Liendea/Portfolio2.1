@@ -1,14 +1,9 @@
+import type { StatsBlock } from "@/src/sanity/types/sanity";
 import GithubStatsRenderer from "./statRenderers/GithubStatsRenderer";
 import styles from "./Stats.module.scss";
 
-type statsBlockType = {
-  _type: "statsBlock";
-  sectionTitle: string;
-  githubUsername: string;
-};
-
 type statsProps = {
-  statsBlock: statsBlockType;
+  statsBlock: StatsBlock;
 };
 
 export default function StatisticSection({ statsBlock }: statsProps) {

@@ -1,17 +1,12 @@
 import LinklistBlock from "./components/linkBlock/LinkBlock";
 
-import type { LinkItem } from "@/src/app/(site)/[slug]/page";
+import type { LinkListColumn } from "@/src/sanity/types/sanity";
 import styles from "./LinkList.module.scss";
-
-export type LinkListBlockData = {
-  title: string;
-  links: LinkItem[];
-};
 
 export default function LinkListSection({
   linkListBlocks,
 }: {
-  linkListBlocks: LinkListBlockData[] | null;
+  linkListBlocks: LinkListColumn[] | null;
 }) {
   if (!linkListBlocks?.length) return null;
 

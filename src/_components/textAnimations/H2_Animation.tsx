@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import type { SanityColor } from "../../app/(site)/[slug]/page";
+import type { SanityColor } from "@/src/sanity/types/sanity";
 import { useCharGlitchIn } from "./useCharGlitchIn";
 
 type H2_AnimationProps = {

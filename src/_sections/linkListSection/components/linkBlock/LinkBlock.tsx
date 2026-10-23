@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { LinkItem } from "@/src/app/(site)/[slug]/page";
+import type { LinkListColumn, LinkItem } from "@/src/sanity/types/sanity";
 import styles from "../../LinkList.module.scss";
 
 function resolveHref(item: LinkItem) {
@@ -11,7 +11,7 @@ function resolveHref(item: LinkItem) {
 export default function LinkListBlock({
   linkListBlock,
 }: {
-  linkListBlock: { title: string; links: LinkItem[] };
+  linkListBlock: LinkListColumn;
 }) {
   return (
     <div className={styles.linkListBlock}>

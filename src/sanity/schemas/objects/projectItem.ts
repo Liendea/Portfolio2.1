@@ -1,11 +1,16 @@
 import { defineField, defineType } from "sanity";
+import { richTextBlock } from "./shared/richTextBlock";
 
 export default defineType({
   name: "projectItem",
   title: "Project Item",
   type: "object",
   fields: [
-    defineField({ name: "title", title: "Title", type: "string" }),
+    defineField({
+      name: "title",
+      title: "Rubrik",
+      type: "string",
+    }),
     defineField({
       name: "stack",
       title: "Stack & Tools",
@@ -19,7 +24,8 @@ export default defineType({
     defineField({
       name: "projectDescription",
       title: "Project Description",
-      type: "text",
+      type: "array",
+      of: [richTextBlock],
     }),
     defineField({ name: "url", title: "Project URL", type: "url" }),
     defineField({

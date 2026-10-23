@@ -1,6 +1,6 @@
-import { groq } from "next-sanity";
 import { client } from "@/src/sanity/lib/client";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { pageBySlugQuery } from "@/src/sanity/lib/queries";
+import type { PageData } from "@/src/sanity/types/sanity";
 import HeroSection from "@/src/_sections/heroSection/Index";
 import ContactFormSection from "@/src/_sections/contactFormSection/Index";
 import ShowCaseSection from "@/src/_sections/showCaseSection/Index";
@@ -12,191 +12,15 @@ import Spacer from "@/src/_components/spacer/Spacer";
 import Divider from "@/src/_components/divider/Divider";
 import AccordionSection from "@/src/_sections/accordionSection/Index";
 
-export type SanityColor = {
-  hex: string;
-  alpha: number;
-  hsl?: { h: number; s: number; l: number; a: number };
-  hsv?: { h: number; s: number; v: number; a: number };
-  rgb?: { r: number; g: number; b: number; a: number };
-};
-
-type PageBuilderSection =
-  | {
-      _type: "heroBlock";
-      heading: string;
-      backgroundType: "video" | "image" | "color";
-      backgroundMedia?: string;
-      backgroundColor?: SanityColor;
-      exploreText?: string;
-      headingColor: SanityColor;
-    }
-  | {
-      _type: "contactFormBlock";
-      needsLabel?: string;
-      needsOptions?: string[];
-      businessNameLabel?: string;
-      businessNamePlaceholder?: string;
-      budgetLabel?: string;
-      budgetPlaceholder?: string;
-      locationLabel?: string;
-      locationPlaceholder?: string;
-      messageLabel?: string;
-      messagePlaceholder?: string;
-      nameLabel?: string;
-      namePlaceholder?: string;
-      emailLabel?: string;
-      emailPlaceholder?: string;
-      submitButtonText?: string;
-    }
-  | {
-      _type: "textBlock";
-      pageTitle: string;
-      ingress: string;
-      pageTitleColor: SanityColor;
-      ingressColor: SanityColor;
-    }
-  | { _type: "projectBlock"; title: string; projectItems: projectItem[] }
-  | {
-      _type: "techStackBlock";
-      title: string;
-      techStackItems: techStackItem[];
-      backgroundColor?: SanityColor;
-    }
-  | {
-      _type: "statsBlock";
-      sectionTitle: string;
-      githubUsername: string;
-    }
-  | {
-      _type: "linkListBlock";
-      columns: { title: string; links: LinkItem[] }[];
-    }
-  | { _type: "spacer"; size: "small" | "medium" | "large" }
-  | {
-      _type: "divider";
-      layout: "full" | "centered";
-      padding: "none" | "small" | "large";
-    }
-  | {
-      _type: "accordionBlock";
-      kickerLabel?: string;
-      items?: { title: string; text?: string }[];
-    };
-
-export type LinkItem = {
-  displayText: string;
-  linkType?: "url" | "file";
-  url?: string;
-  fileUrl?: string;
-};
-
-export type techStackItem = {
-  title: string;
-  icon: SanityImageSource;
-};
-
-export type projectItem = {
-  _type: "projectItem";
-  title: string;
-  jobDescription: string;
-  projectDescription: string;
-  stack: string;
-  image: SanityImageSource;
-  video?: string;
-  url: string;
-};
-
-type PageData = {
-  _id: string;
-  title: string;
-  slug: string;
-  pageBuilder: PageBuilderSection[];
-};
-
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug: rawSlug } = await props.params;
   const slug = rawSlug ? String(rawSlug).toLowerCase() : "home";
 
-  const query = groq`
-*[_type == "page" && slug.current == $slug][0] {
-  _id,
-  title,
-  "slug": slug.current,
-  pageBuilder[] {
-    ...,
-    _type == "heroBlock" => {
-      heading,
-      backgroundType,
-    "backgroundMedia": coalesce(backgroundVideo.asset->url, backgroundImage.asset->url),
-      backgroundColor,
-      headingColor,
-    },
-    _type == "contactFormBlock" => {
-      needsLabel,
-      needsOptions,
-      businessNameLabel,
-      businessNamePlaceholder,
-      budgetLabel,
-      budgetPlaceholder,
-      locationLabel,
-      locationPlaceholder,
-      messageLabel,
-      messagePlaceholder,
-      nameLabel,
-      namePlaceholder,
-      emailLabel,
-      emailPlaceholder,
-      submitButtonText,
-    },
-    _type == "textBlock" => { pageTitle, ingress, pageTitleColor, ingressColor },
-    _type == "projectBlock" => {
-      title,
-      "projectItems": projects[] {
-        title,
-        jobDescription,
-        projectDescription,
-        stack,
-        image,
-        "video": video.asset->url,
-        url
-      }
-    },
-    _type == "techStackBlock" => {
-      "title": techStackList->title,
-      "techStackItems": techStackList->techStackItems[]{
-        "title": string::split(asset->originalFilename, ".")[0],
-        "icon": @
-      },
-      backgroundColor
-    },
-    _type == "statsBlock" => { sectionTitle, githubUsername },
-    _type == "linkListBlock" => {
-      "columns": coalesce(columns[] {
-        title,
-        links[] {
-          displayText,
-          linkType,
-          url,
-          "fileUrl": file.asset->url
-        }
-      }, [])
-    },
-    _type == "spacer" => {size},
-  _type == "divider" => {
-  layout,
-  padding
-},
-    _type == "accordionBlock" => {
-      kickerLabel,
-      "items": coalesce(items[] { title, text }, [])
-    },
-  }
-}
-`;
-
-  const page: PageData = await client.fetch(query, { slug: slug });
+  const page = await client.fetch<PageData | null>(pageBySlugQuery, {
+    slug,
+  });
 
   if (!page) return <div>Page not found</div>;
 
@@ -245,7 +69,11 @@ export default async function Page(props: {
           case "projectBlock":
             return (
               // PROJECT LIST SECTION
-              <ShowCaseSection key={index} projectBlock={section} />
+              <ShowCaseSection
+                key={index}
+                projectBlock={section}
+                kickerLabel={section.kickerLabel}
+              />
             );
 
           case "techStackBlock":

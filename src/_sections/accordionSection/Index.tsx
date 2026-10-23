@@ -1,10 +1,7 @@
+import type { AccordionItem } from "@/src/sanity/types/sanity";
 import AccordionList from "./components/accordionList/AccordionList";
 import styles from "./Accordion.module.scss";
 
-type AccordionItem = {
-  title: string;
-  text?: string;
-};
 
 type AccordionSectionProps = {
   kickerLabel?: string;
