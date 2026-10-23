@@ -2,9 +2,8 @@
 @use "../../styles/mixins" as *;
 
 .contactForm {
-  width: 100%;
   max-width: 60vw;
-  margin: 3rem auto;
+  margin: auto;
 
   @include mobile {
     max-width: 100%;
@@ -14,7 +13,7 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: $spacing-xxlarge;
+    gap: $spacing-xlarge;
 
     @include mobile {
       gap: $spacing-xlarge;
