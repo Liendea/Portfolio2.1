@@ -1,0 +1,21 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.button {
+  border-radius: 4px;
+  color: white;
+
+  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  color: white;
+
+  text-transform: uppercase;
+
+  @include mobile {
+    border: 1px solid white;
+    padding: 8px 8px 8px 16px;
+  }
+}

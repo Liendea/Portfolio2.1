@@ -12,7 +12,7 @@
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.197);
 
-  // Ligger nu ovanpå hero-sektionen istället för att trycka ner den i
+  // Ligger ovanpå hero-sektionen istället för att trycka ner den i
   // flödet, med genomskinlig bakgrund - bakgrundsanimationen (ContourField/
   // AsciiField) syns igenom.
   position: absolute;
@@ -23,6 +23,7 @@
 
   @include mobile {
     padding: 1rem;
+    border: none;
   }
 
   @include tablet {

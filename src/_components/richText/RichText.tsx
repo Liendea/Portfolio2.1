@@ -4,6 +4,14 @@ import {
   type PortableTextComponents,
 } from "next-sanity";
 
+// Länkar sparade utan protokoll ("www.linkedin.com/…") tolkas annars som
+// relativa sökvägar på sajten. Gäller data sparad innan valideringen fanns.
+function normalizeHref(href?: string): string {
+  if (!href) return "#";
+  if (/^(https?:\/\/|mailto:|tel:|\/|#)/.test(href)) return href;
+  return `https://${href.replace(/^\/+/, "")}`;
+}
+
 // Renderar Portable Text från richTextBlock-schemat.
 // Styling sätts av föräldern via className.
 const components: PortableTextComponents = {
@@ -16,7 +24,7 @@ const components: PortableTextComponents = {
   marks: {
     strong: ({ children }) => <strong>{children}</strong>,
     link: ({ value, children }) => {
-      const href: string = value?.href ?? "#";
+      const href = normalizeHref(value?.href);
       const isExternal = href.startsWith("http");
       return (
         <a

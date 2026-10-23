@@ -2,16 +2,18 @@
 
 import type { SanityAssetDocument } from "@sanity/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import BackgroundMedia from "../../_components/backgroundMedia/BackgroundMedia";
 import type { SanityColor } from "@/src/sanity/types/sanity";
-import { useEffect, useState, useRef } from "react";
-import AsciiField from "@/src/_components/backgroundAscii/AsciiField";
+import BackgroundMedia from "@/src/_components/backgroundMedia/BackgroundMedia";
 import ContourField from "@/src/_components/backgroundContour/ContourField";
+import { useMediaQuery } from "@/src/_hooks/useMediaQuery";
+import HeroRoleScroller from "./components/HeroRoleScroller";
+import HeroStatic from "./components/HeroStatic";
 import styles from "./Hero.module.scss";
 
-// Byt till AsciiField här igen om ContourField inte känns bra -
-// bara denna rad + JSX-taggen längre ner behöver ändras tillbaka.
-const BACKGROUND_COMPONENT: "ascii" | "contour" = "contour";
+// Motsatsen till @mixin mobile (max-width: 768px) i _mixins.scss — håll
+// dem i synk. Den som har stängt av animationer i OS:et får statisk version.
+const ANIMATED_QUERY =
+  "(min-width: 769px) and (prefers-reduced-motion: no-preference)";
 
 type HeroProps = {
   heading: string;
@@ -22,59 +24,27 @@ type HeroProps = {
   headingColor: SanityColor;
 };
 
-type Role = "FRONTEND" | "FULLSTACK" | "UX " | "UI" | "APP";
-
 export default function Hero({
   backgroundType = "video",
   backgroundMedia,
   backgroundColor,
   headingColor,
 }: HeroProps) {
-  const [currentRole, setCurrentRole] = useState<Role>("FRONTEND");
-  const scrollValue = useRef(0);
-  const roles: Role[] = ["FRONTEND", "FULLSTACK", "UX ", "UI", "APP"];
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-
-    if (isMobile) {
-      // --- MOBILLOGIK: Tidsstyrd loop ---
-      let index = 0;
-      const interval = setInterval(() => {
-        index = (index + 1) % roles.length;
-        setCurrentRole(roles[index]);
-      }, 2000);
-
-      return () => clearInterval(interval);
-    } else {
-      // --- DESKTOPLOGIK: Wheel/Scroll ---
-      const handleWheel = (event: WheelEvent) => {
-        scrollValue.current += event.deltaY;
-
-        const threshold = 50;
-        const newIndex =
-          Math.floor(Math.abs(scrollValue.current / threshold)) % roles.length;
-        setCurrentRole(roles[newIndex]);
-
-        if (scrollValue.current > 1000) scrollValue.current = 0;
-      };
-
-      window.addEventListener("wheel", handleWheel, { passive: true });
-      return () => window.removeEventListener("wheel", handleWheel);
-    }
-  }, []);
+  // false på servern och första klientrenderingen → statisk version först,
+  // sedan byter desktop till den animerade.
+  const isAnimated = useMediaQuery(ANIMATED_QUERY);
 
   return (
     <section
       className={styles.heroSection}
       style={{
         zIndex: 100,
-
         backgroundColor:
           backgroundType === "color" ? backgroundColor?.hex : undefined,
         overflow: "hidden",
       }}
     >
+      {/* Bakgrund */}
       {(backgroundType === "video" || backgroundType === "image") &&
         backgroundMedia && (
           <BackgroundMedia
@@ -82,24 +52,15 @@ export default function Hero({
             backgroundMedia={backgroundMedia}
           />
         )}
+      <ContourField />
 
-      {BACKGROUND_COMPONENT === "contour" ? <ContourField /> : <AsciiField />}
+      {/* Innehåll */}
 
-      <div
-        className={styles.heroTextContainer}
-        style={{ position: "relative", zIndex: 10 }}
-      >
-        <h1 className={styles.heroText} style={{ color: headingColor?.hex }}>
-          <span key={currentRole} className={styles.roleAnimation}>
-            {currentRole}
-          </span>
-        </h1>
-        <h1 className={styles.heroSubText}>
-          {currentRole === "UX " || currentRole === "UI"
-            ? "DESIGN"
-            : "DEVELOPMENT"}
-        </h1>
-      </div>
+      {isAnimated ? (
+        <HeroRoleScroller headingColor={headingColor} />
+      ) : (
+        <HeroStatic headingColor={headingColor} />
+      )}
     </section>
   );
 }

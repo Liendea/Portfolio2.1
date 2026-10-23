@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.scss";
+import Button from "../buttons/Button";
 
 type NavLink = {
   title: string;
@@ -49,25 +50,30 @@ export default function Navbar({ navigationLinks }: navbarProps) {
           const isActive = pathname === `/${link.href}`;
 
           return (
-            <div key={i} className={styles.navlinkWrapper}>
-              <Link
-                href={`/${link.href}`}
-                className={styles.navlink}
-                onClick={closeMenu}
-              >
-                {link.title}
-              </Link>
+            <>
+              <div key={i} className={styles.navlinkWrapper}>
+                <Link
+                  href={`/${link.href}`}
+                  className={styles.navlink}
+                  onClick={closeMenu}
+                >
+                  {link.title}
+                </Link>
 
-              <Image
-                src={isActive ? "/icons/dot_white.svg" : "/icons/dot_black.svg"}
-                alt=""
-                width={20}
-                height={20}
-                className={styles.navlinkDot}
-              />
-            </div>
+                <Image
+                  src={
+                    isActive ? "/icons/dot_white.svg" : "/icons/dot_black.svg"
+                  }
+                  alt=""
+                  width={20}
+                  height={20}
+                  className={styles.navlinkDot}
+                />
+              </div>
+            </>
           );
         })}
+        <Button>Linked In</Button>
       </nav>
     </>
   );

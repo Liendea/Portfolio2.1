@@ -113,7 +113,7 @@ export default function ContourField({ className }: ContourFieldProps) {
       context.clearRect(0, 0, c.width, c.height);
 
       const cx = width * 0.66;
-      const cy = height * 0.34;
+      const cy = height * 0.55;
       // MAX(bredd, höjd) istället för bredd - nu ska mönstret sträcka sig
       // över hela skärmen (inte bara halva bredden), oavsett om skärmen är
       // liggande (desktop) eller stående (mobil). Med hero på 100vh är det

@@ -10,31 +10,60 @@
   justify-content: flex-end;
   overflow: hidden;
 
-  @include mobile {
-    height: 100vh;
+  .heroText {
+    text-transform: uppercase;
+    margin-top: auto;
+    font-weight: 400;
   }
 
-  .heroTextContainer {
-    display: block;
-
-    @include mobile {
-      padding: 0;
-      padding-bottom: 3rem;
-    }
-
-    .heroText {
-      text-transform: uppercase;
-      margin-top: auto;
-      font-weight: 400;
-    }
-
-    .heroSubText {
-      font-weight: 800;
-    }
+  .heroSubText {
+    font-weight: 800;
   }
 }
-
 /* Själva textbytet med en snabb fade-in/flicker */
 .roleAnimation {
   display: inline-block;
+}
+
+// Mobil
+.mobileHero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2rem;
+  height: 50vh;
+  width: 100%;
+
+  .mobileHeroTop {
+    display: flex;
+    flex-direction: column;
+
+    .heroSubText {
+      font-size: 10vw;
+      font-weight: 700;
+    }
+  }
+
+  .mobileHeroBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+
+    h1 {
+      font-size: 15vw;
+      width: 100%;
+      font-weight: 400;
+    }
+    .left {
+      text-align: left;
+    }
+    .right {
+      text-align: right;
+    }
+    .center {
+      text-align: center;
+    }
+  }
 }
